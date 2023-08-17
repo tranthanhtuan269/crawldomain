@@ -30,10 +30,11 @@ module.exports = {
             const browser = await puppeteer.launch({headless: false});
             const page = await browser.newPage();
             await page.setViewport({width: 1200, height: 720});
-            await page.setJavaScriptEnabled(false)
+            // await page.setJavaScriptEnabled(false)
 
             const previousSession = fs.existsSync(cookiesFilePath)
             if (previousSession) {
+                // fs.unlinkSync(cookiesFilePath);
                 // If file exist load the cookies
                 const cookiesString = fs.readFileSync(cookiesFilePath);
                 const parsedCookies = JSON.parse(cookiesString);
@@ -45,8 +46,8 @@ module.exports = {
                 }
             }else{
                 await page.goto('https://www.expireddomains.net/login/', { waitUntil: 'networkidle0' }); // wait until page load
-                await page.type('#inputLogin', 'phonghao19988888');
-                await page.type('#inputPassword', 'phonghao19988888');
+                await page.type('#inputLogin', 'phonghao199888888');
+                await page.type('#inputPassword', 'phonghao199888888');
                 // click and wait for navigation
                 await Promise.all([
                     page.click('.col-sm-12 button[type=submit]'),
@@ -69,7 +70,9 @@ module.exports = {
         }
 
         async function gotoPage(url, page, numberpage){
-            await new Promise(r => setTimeout(r, Math.random(3000, 10000)));
+            // console.log(Math.floor(Math.random() * 10)*1000 + 3000);
+            await new Promise(r => setTimeout(r, Math.floor(Math.random() * 10)*1000 + 5000));
+            // await new Promise(r => setTimeout(r, 3000));
             console.log(url + '?start='+numberpage+'#listing')
             await page.goto(url + '?start='+numberpage+'#listing', { waitUntil: 'networkidle0' }); // wait until page load
 
