@@ -57,7 +57,7 @@ module.exports = {
                 const cookiesObject = await page.cookies()
                 // Write cookies to temp file to be used in other profile pages
                 fs.writeFile(cookiesFilePath, JSON.stringify(cookiesObject),
-                function(err) { 
+                function(err) {
                 if (err) {
                     console.log('The file could not be written.', err)
                 }
@@ -69,14 +69,14 @@ module.exports = {
         }
 
         async function gotoPage(url, page, numberpage){
-            await new Promise(r => setTimeout(r, 3000));
+            await new Promise(r => setTimeout(r, Math.random(3000, 10000)));
             console.log(url + '?start='+numberpage+'#listing')
             await page.goto(url + '?start='+numberpage+'#listing', { waitUntil: 'networkidle0' }); // wait until page load
 
             try {
                 await page.waitForSelector('.base1');
                 var body_content = await page.$eval('.base1', element => element.innerHTML);
-                
+
                 var sql = "INSERT IGNORE INTO contents (content) VALUES ('"+body_content+"')";
                 con.query(sql, function (err, result) {
                     if (err) throw err;
@@ -168,7 +168,7 @@ module.exports = {
             try {
                 await page.waitForSelector('#recaptcha-anchor', {timeout:100000});
             } catch (error) {
-            
+
                 const elementHandle = await page.waitForSelector('iframe', {timeout:100000});
                 const frame = await elementHandle.contentFrame();
                 var captcha = await frame.waitForSelector('#recaptcha-anchor', {timeout:100000});
@@ -209,7 +209,7 @@ module.exports = {
             try {
                 await page.waitForSelector('#recaptcha-anchor', {timeout:100000});
             } catch (error) {
-            
+
                 const elementHandle = await page.waitForSelector('iframe', {timeout:100000});
                 const frame = await elementHandle.contentFrame();
                 var captcha = await frame.waitForSelector('#recaptcha-anchor', {timeout:100000});
