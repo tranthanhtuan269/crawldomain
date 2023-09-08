@@ -19,4 +19,20 @@ module.exports = function (app) {
     app.route('/test/getDomain4')
     .get(testCtrl.getDomain4)
 
+    // todoList Routes
+    app.route('/getDomainBuyPr')
+    .get(testCtrl.getDomainBuyPr)
+
+    // todoList Routes
+    app.route('/getDomainHammer')
+    .get(testCtrl.getDomainHammer)
+
+    // todoList Routes
+    app.route('/dapachecker')
+    .get(testCtrl.dapachecker)
+
+    // todoList Routes
+    app.route('/snapnames')
+    .get(testCtrl.snapnames)
+
 };
