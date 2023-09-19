@@ -620,19 +620,51 @@ module.exports = {
             const {executablePath} = require('puppeteer') 
             
             // puppeteer usage as normal 
-            puppeteer.launch({ headless: true, executablePath: executablePath() }).then(async browser => { 
-                const page = await browser.newPage() 
-                await page.goto('https://www.snapnames.com') 
-                await page.waitForTimeout(2000) 
-                await page.screenshot({ path: 'cointracker_home.png', fullPage: true }) 
-                await browser.close() 
-            })
+            // puppeteer.launch({ headless: false, executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe' }).then(async browser => { 
+            //     const page = await browser.newPage() 
+            //     await page.goto('https://www.snapnames.com') 
+            //     await page.waitForTimeout(2000) 
+            //     await page.screenshot({ path: 'cointracker_home.png', fullPage: true }) 
+            //     await browser.close() 
+            // })
 
 
-            // const browser = await puppeteer.launch({headless: false});
-            // const page = await browser.newPage();
-            // await page.goto('https://www.snapnames.com'); // wait until page load
+            const browser = await puppeteer.launch({headless: false, executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+            const page = await browser.newPage();
+            await page.goto('https://www.snapnames.com/store/exclusivestorefront.action'); // wait until page load
+            await page.waitForSelector('.searchResults tbody tr');
+            var domains = await page.$$('.searchResults tbody tr');
+            let arr_data = [];
+        
+            for (let i = 0; i < domains.length; i++) {
+                const domain = await domains[i].$eval('.left.all', el => el.textContent.trim());
+                console.log(domain)
+                // arr_data.push(domain);
+            }
 
+
+            let pageCount = 5761;
+            let arr_page_web_clone = [];
+            for (var i = 2; i <= pageCount; i++) {
+              arr_page_web_clone.push(i);
+            }
+          
+            for (let page_idx = 1; page_idx <= pageCount; page_idx++) {
+              var goToNext = await page.waitForSelector('.goToNext', {timeout:100});
+              await goToNext.evaluate(b => b.click());
+              await page.waitForResponse(response => response.url().includes('exclusivestorefront.action') && response.status() == 200);
+              await page.waitForSelector('.searchResults tbody tr');
+            
+              domains = await page.$$('.searchResults tbody tr');
+              for (let j = 0; j < domains.length; j++) {
+                const domain = await domains[j].$eval('.left.all', el => el.textContent.trim());
+                console.log(domain)
+              }
+            }
+
+
+            
+            // await browser.close();
             // await page.waitForSelector('#challenge-form');
             // await page.evaluate(() => {
             //     document.querySelector('#challenge-form').submit();
