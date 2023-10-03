@@ -115,7 +115,8 @@
               {!! Form::select('status', array(
                 'Available Soon' => 'Available Soon', 
                 'Buy It Now' => 'Buy It Now', 
-                'In Auction' => 'In Auction'
+                'In Auction' => 'In Auction',
+                'Expired' => 'Expired'
                 ), NULL, ['class' => 'form-control', 'id' => 'status_du']); 
               !!}
           </div>
@@ -224,7 +225,8 @@
               {!! Form::select('status', array(
                 'Available Soon' => 'Available Soon', 
                 'Buy It Now' => 'Buy It Now', 
-                'In Auction' => 'In Auction'
+                'In Auction' => 'In Auction',
+                'Expired' => 'Expired'
                 ), NULL, ['class' => 'form-control', 'id' => 'status_d']); 
               !!}
           </div>
@@ -425,9 +427,9 @@
             <ul>
                 @foreach($filters as $filter)
                 <li class="filter-item" value="{{ $filter->id }}">
-                    <span class="accept-item" data-id="{{ $filter->id }}">{{ $filter->name }}</span>
-                    <span class="delete-item" data-id="{{ $filter->id }}">delete</span>
-                    <span class="update-item" 
+                    <a href="#" class="accept-item" data-id="{{ $filter->id }}">{{ $filter->name }}</a>
+                    <a href="#" class="delete-item" data-id="{{ $filter->id }}">delete</a>
+                    <a href="#" class="update-item" 
                                 data-id="{{ $filter->id }}" 
                                 data-name="{{ $filter->name }}"
                                 data-damin="{{ $filter->damin }}"
@@ -446,19 +448,19 @@
                                 data-pricemax="{{ $filter->pricemax }}"
                                 data-agemin="{{ $filter->agemin }}"
                                 data-agemax="{{ $filter->agemax }}"
-                            >update</span>
+                            >update</a>
                 </li>
                 @endforeach
-                <li id="filter-clear">Clear Filter</li>
-                <li id="filter-add">Add Filter</li>
+                <li id="filter-clear"><a href="#">Clear Filter</a></li>
+                <li id="filter-add"><a href="#">Add Filter</a></li>
             </ul>
         </div>
     </div>
     <div class="color-in">
-      <span class="btn domain-available-soon"> Domain Available Soon</span>
-      <span class="btn domain-available"> Domain Available</span>
-      <span class="btn domain-in-auction"> Domain In Auction</span>
-      <span class="btn domain-exp"> Domain Exp</span>
+      <span class="btn domain-available-soon">Available Soon</span>
+      <span class="btn domain-available">Buy It Now</span>
+      <span class="btn domain-in-auction">In Auction</span>
+      <span class="btn domain-exp">Expired</span>
     </div>
     <div>
         Toggle column:  <a class="toggle-vis" data-column="0">No</a> - 
@@ -550,6 +552,7 @@
         ],
         'createdRow': function( row, data, dataIndex ) {
             $(row).addClass( 'domain-row' );
+
             if(data.status == 'Available Soon'){
               $(row).addClass( 'domain-available-soon' );
             }else if(data.status == 'Buy It Now'){
