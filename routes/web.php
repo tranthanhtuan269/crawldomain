@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DomainController;
+use App\Http\Controllers\FilterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +18,14 @@ use App\Http\Controllers\DomainController;
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [DomainController::class, 'index']);
 
 Route::get('/listen', [HomeController::class, 'index']);
 Route::get('/listen2', [HomeController::class, 'index2']);
 Route::get('/listen3', [HomeController::class, 'index3']);
 
-Route::get('/', [DomainController::class, 'index'])->name('domains.index');
+Route::resource('domains', DomainController::class);
+Route::resource('filters', FilterController::class);
 Route::get('domains', [DomainController::class, 'index'])->name('domains.index');
 Route::get('/test', [HomeController::class, 'test'])->name('home.test');
+Route::get('/remove', [DomainController::class, 'removeDupplicateDomain'])->name('domain.removeDupplicateDomain');

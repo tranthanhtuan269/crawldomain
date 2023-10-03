@@ -11,10 +11,10 @@ const cookiesFilePath2 = 'cookiesHammer.json';
 var mysql = require('mysql');
 var i = 1;
 var con = mysql.createConnection({
-    host: "localhost",
+    host: "192.168.20.70",
     database: "crawldomain",
-    user: "root",
-    password: ""
+    user: "tuantt",
+    password: "123456"
 });
 
 var list_domain = null;
@@ -547,18 +547,22 @@ module.exports = {
 
             (async () => {
                 try {
-                    const rows = await query("SELECT name FROM domains where name like '%.com' and status = 0 limit 10");
+                    const rows = await query("SELECT name FROM domains where name like '%.com' and state = 0 limit 10");
                     list_domain = '';
                     rows.forEach(element => {
                         list_domain += ',' + element.name
                     });
+                    console.log(list_domain);
 
                     if(list_domain.length > 0){
                         godapachecker(list_domain.substring(1), query)
                     }
 
                     
-                } finally {
+                } catch(e){
+                    main();
+                }
+                finally {
                     // con.end();
                 }
             })()
@@ -576,23 +580,29 @@ module.exports = {
             
             await page.waitForSelector('.fetch_data');
             await page.type('.fetch_data', domain_list);
-
-            let xhrCatcher = page.waitForResponse(r => r.request().url().includes('checkDA_new') && r.request().method() != 'OPTIONS');
-            page.click('#tool_btn_container');
-            let xhrResponse = await xhrCatcher;
-
-            // now get the JSON payload
-            let xhrPayload = await xhrResponse.json();
-            console.log(xhrPayload.data[0].domain)
-            console.log(xhrPayload.data[0].site_da)
-            console.log(xhrPayload.data[0].site_pa)
-            console.log(xhrPayload.data[0].site_mr)
-            console.log(xhrPayload.data[0].spam_score)
-            console.log('xhrPayload', xhrPayload);
-
-            xhrPayload.data.forEach(element => {
-                query("UPDATE domains set da = '"+element.site_da+"', pa = '"+element.site_pa+"', status = 1 where name = '"+element.domain+"'");
-            });
+            
+            try {
+                let xhrCatcher = page.waitForResponse(r => r.request().url().includes('checkDA_new') && r.request().method() != 'OPTIONS');
+                page.click('#tool_btn_container');
+                let xhrResponse = await xhrCatcher;
+            
+                // now get the JSON payload
+                let xhrPayload = await xhrResponse.json();
+                console.log(xhrPayload.data[0].domain)
+                console.log(xhrPayload.data[0].site_da)
+                console.log(xhrPayload.data[0].site_pa)
+                console.log(xhrPayload.data[0].site_mr)
+                console.log(xhrPayload.data[0].spam_score)
+                console.log('xhrPayload', xhrPayload);
+                if(xhrPayload.data.length > 0){
+                    xhrPayload.data.forEach(element => {
+                        query("UPDATE domains set da = '"+element.site_da+"', pa = '"+element.site_pa+"', state = 1 where name = '"+element.domain+"'");
+                    });
+                }
+            } catch(e){
+                await browser.close();
+                main();
+            }
 
             await page.screenshot({path: 'step2.png'});
             await browser.close();
@@ -601,14 +611,12 @@ module.exports = {
         }
 
         main();
-
     },
 
     snapnames: (req, res) => {
         // var region = req.params.region;
         var b = req.query.b;
         async function main() {
-
             // puppeteer-extra is a drop-in replacement for puppeteer, 
             // it augments the installed puppeteer with plugin functionality 
             const puppeteer = require('puppeteer-extra') 
@@ -628,7 +636,7 @@ module.exports = {
             //     await browser.close() 
             // })
 
-
+            const query = util.promisify(con.query).bind(con);
             const browser = await puppeteer.launch({headless: false, executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe'});
             const page = await browser.newPage();
             await page.goto('https://www.snapnames.com/store/exclusivestorefront.action'); // wait until page load
@@ -638,7 +646,20 @@ module.exports = {
         
             for (let i = 0; i < domains.length; i++) {
                 const domain = await domains[i].$eval('.left.all', el => el.textContent.trim());
-                console.log(domain)
+                const bid = await domains[i].$eval('.right.all', el => el.textContent.trim());
+                const status = await domains[i].$eval('.status.left', el => el.textContent.trim());
+                const order = await domains[i].$eval('.left.dtOrderBy', el => el.textContent.trim());
+
+                // insert ignore 
+                var sql = "INSERT IGNORE INTO domains (name, price, status, order_time) VALUES ('"+domain+"', '"+bid.substr(1).replaceAll(",","")+"', '"+status+"', '"+processTime(order)+"')";
+                con.query(sql, function (err, result) {
+                    if (err) throw err;
+                    console.log("1 record inserted");
+                });
+
+                query("UPDATE domains set price = '"+bid.substr(1).replaceAll(",","")+"', status = '"+status+"', order_time = '"+processTime(order)+"' where name = '"+domain+"'");
+
+                console.log(domain, bid.substr(1).replaceAll(",",""), status, processTime(order))
                 // arr_data.push(domain);
             }
 
@@ -658,7 +679,21 @@ module.exports = {
               domains = await page.$$('.searchResults tbody tr');
               for (let j = 0; j < domains.length; j++) {
                 const domain = await domains[j].$eval('.left.all', el => el.textContent.trim());
-                console.log(domain)
+                const bid = await domains[j].$eval('.right.all', el => el.textContent.trim());
+                const status = await domains[j].$eval('.status.left', el => el.textContent.trim());
+                const order = await domains[j].$eval('.left.dtOrderBy', el => el.textContent.trim());
+
+                // insert ignore 
+                var sql = "INSERT IGNORE INTO domains (name, price, status, order_time) VALUES ('"+domain+"', '"+bid.substr(1).replaceAll(",","")+"', '"+status+"', '"+processTime(order)+"')";
+                con.query(sql, function (err, result) {
+                    if (err) throw err;
+                    console.log("1 record inserted");
+                });
+
+                query("UPDATE domains set price = '"+bid.substr(1).replaceAll(",","")+"', status = '"+status+"', order_time = '"+processTime(order)+"' where name = '"+domain+"'");
+
+                // update
+                console.log(domain, bid.substr(1).replaceAll(",",""), status, processTime(order))
               }
             }
 
@@ -688,6 +723,58 @@ module.exports = {
 
             // res.json([body_content])
             // await browser.close();
+        }
+
+        var months = [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+        ];
+
+        function processTime(time){
+            // check length to type of time
+            if(time.length > 10){
+                time = time.trim();
+                var monthChar = time.substr(0, 3);
+                time = time.substr(4);
+                var dateChar = time.split(",")[0];
+                time = time.split(",")[1];
+                var yearChar = time.substr(1, 4);
+                time = time.substr(6);
+                var hourChar = time.split(":")[0];
+                time = time.split(":")[1];
+                var minuteChar = time.split(" ")[0];
+                var apmChar = time.split(" ")[1];
+                if(apmChar == 'PM'){
+                    return  yearChar + '-' + pad(parseInt((months.findIndex(x => x == monthChar) + 1))) + '-' + pad(parseInt(dateChar)) + ' ' + (parseInt(hourChar) + 12) + ':' + pad(parseInt(minuteChar)) + ':' + '00';
+                }
+                return  yearChar + '-' + pad(parseInt((months.findIndex(x => x == monthChar) + 1))) + '-' + pad(parseInt(dateChar)) + ' ' + pad(parseInt(hourChar)) + ':' + pad(parseInt(minuteChar)) + ':' + '00';
+            }else{
+                if(time.length > 3){
+                    var hourChar = time.split("h")[0].trim();
+                    var minuteChar = time.split("h")[1].substr(1, 2);
+                    let dt = new Date();
+                    dt.setHours(dt.getHours() + parseInt(hourChar), dt.getMinutes() + parseInt(minuteChar));
+                    return dt.getFullYear() + '-' + pad(dt.getMonth()) + '-' + pad(dt.getDate()) + ' ' + pad(dt.getHours()) + ':' + pad(dt.getMinutes()) + ':' + '00';
+                }else{
+                    let dt = new Date();
+                    return dt.getFullYear() + '-' + pad(dt.getMonth()) + '-' + pad(dt.getDate()) + ' ' + pad(dt.getHours()) + ':' + pad(dt.getMinutes()) + ':' + '00';
+                }
+            }
+            return 0;
+        }
+
+        function pad(d) {
+            return (d < 10) ? '0' + d.toString() : d.toString();
         }
 
         main();
