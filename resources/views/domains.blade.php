@@ -457,10 +457,10 @@
         </div>
     </div>
     <div class="color-in">
-      <span class="btn domain-available-soon">Available Soon</span>
-      <span class="btn domain-available">Buy It Now</span>
-      <span class="btn domain-in-auction">In Auction</span>
-      <span class="btn domain-exp">Expired</span>
+      <span class="btn domain-available-soon ml-3 mr-1">&nbsp;</span>Available Soon
+      <span class="btn domain-available ml-3 mr-1">&nbsp;</span>Buy It Now
+      <span class="btn domain-in-auction ml-3 mr-1">&nbsp;</span>In Auction
+      <span class="btn domain-exp ml-3 mr-1">&nbsp;</span>Expired
     </div>
     <div>
         Toggle column:  <a class="toggle-vis" data-column="0">No</a> - 
