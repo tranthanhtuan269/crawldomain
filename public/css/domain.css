@@ -61,15 +61,15 @@
 }
 
 .domain-available{
-    background-color: #ffb7b2!important;
+    background-color: #ee9a7d!important;
 }
 
 .domain-in-auction{
-    background-color: #079dd9;
+    background-color: #a8d39d;
 }
 
 .domain-exp{
-    background-color: #c7ceea!important;
+    background-color: #83a5d9!important;
 }
 
 .accept-item, .delete-item, .update-item, #filter-clear, #filter-add{
