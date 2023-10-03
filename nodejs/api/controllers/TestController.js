@@ -11,10 +11,10 @@ const cookiesFilePath2 = 'cookiesHammer.json';
 var mysql = require('mysql');
 var i = 1;
 var con = mysql.createConnection({
-    host: "192.168.20.70",
+    host: "104.237.159.237",
     database: "crawldomain",
     user: "tuantt",
-    password: "123456"
+    password: "Maiyeu@123"
 });
 
 var list_domain = null;
@@ -755,7 +755,7 @@ module.exports = {
                 var minuteChar = time.split(" ")[0];
                 var apmChar = time.split(" ")[1];
                 if(apmChar == 'PM'){
-                    return  yearChar + '-' + pad(parseInt((months.findIndex(x => x == monthChar) + 1))) + '-' + pad(parseInt(dateChar)) + ' ' + (parseInt(hourChar) + 12) + ':' + pad(parseInt(minuteChar)) + ':' + '00';
+                    return  yearChar + '-' + pad(parseInt((months.findIndex(x => x == monthChar) + 1))) + '-' + pad(parseInt(dateChar)) + ' ' + pad((parseInt(hourChar) + 12)%24) + ':' + pad(parseInt(minuteChar)) + ':' + '00';
                 }
                 return  yearChar + '-' + pad(parseInt((months.findIndex(x => x == monthChar) + 1))) + '-' + pad(parseInt(dateChar)) + ' ' + pad(parseInt(hourChar)) + ':' + pad(parseInt(minuteChar)) + ':' + '00';
             }else{

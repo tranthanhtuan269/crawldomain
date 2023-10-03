@@ -33,13 +33,34 @@ class DomainController extends Controller
                     // if($filter->pricemin != ''){    $data->where('price', '>=', $filter->pricemin); }
                     // if($filter->pricemax != ''){    $data->where('price', '<=', $filter->pricemax); }
                     // $data->where('name', 'like', '%.com');
-                    return Datatables::of($data)
+
+                    if($request->status){
+                        switch($request->status){
+                            case 'available-soon': $data->where('status', 'like', '%Available Soon%');
+                            case 'available': $data->where('status', 'like', '%Buy It Now%');
+                            case 'in-auction': $data->where('status', 'like', '%In Auction%');
+                            case 'domain-exp': $data->where('status', '!=', 'Available Soon')->where('status', '!=', 'Buy It Now')->where('status', '!=', 'In Auction');
+                        }
+                        return Datatables::of($data->orderBy('id', 'desc'))
                             ->addIndexColumn()
                             ->make(true);
+                    }else{
+                        return Datatables::of($data->orderBy('id', 'desc'))
+                            ->addIndexColumn()
+                            ->make(true);
+                    }
                 }
             }else{
-                $data = Domain::select('*'); //->where('name', 'like', '%.com');
-                return Datatables::of($data)
+                $data = Domain::select('*');
+                if($request->status){
+                    switch($request->status){
+                        case 'available-soon': $data->where('status', 'Available Soon');
+                        case 'available': $data->where('status', 'Buy It Now');
+                        case 'in-auction': $data->where('status', 'In Auction');
+                        case 'domain-exp': $data->where('status', '!=', 'Available Soon')->where('status', '!=', 'Buy It Now')->where('status', '!=', 'In Auction');
+                    }
+                }
+                return Datatables::of($data->orderBy('id', 'desc'))
                         ->addIndexColumn()
                         ->make(true);
             }
@@ -119,6 +140,12 @@ class DomainController extends Controller
             }else{
                 $status = 1;
             }
+        }
+    }
+
+    public function test(){
+        $domains = Domain::get();
+        foreach($domains as $domain){
         }
     }
 }

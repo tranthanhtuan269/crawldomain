@@ -478,7 +478,7 @@
                         <a class="toggle-vis" data-column="12">ACR</a> - 
                         <a class="toggle-vis" data-column="13">ADD DATE</a> - 
                         <a class="toggle-vis" data-column="14">REGISTRAR</a> - 
-                        <a class="toggle-vis" data-column="15">MARKETPLACE</a> - 
+                        <!-- <a class="toggle-vis" data-column="15">MARKETPLACE</a> -  -->
                         <a class="toggle-vis" data-column="16">PRICE</a> - 
                         <a class="toggle-vis" data-column="17">Cate 1</a> - 
                         <a class="toggle-vis" data-column="18">Cate 2</a>
@@ -499,9 +499,9 @@
                 <th>DP</th>
                 <th>ABY</th>
                 <th>ACR</th>
-                <th>ADD Date</th>
+                <th>Order Time</th>
                 <th>REGISTRAR</th>
-                <th>MARKETPLACE</th>
+                <!-- <th>MARKETPLACE</th> -->
                 <th>PRICE</th>
                 <th>Cate 1</th>
                 <th>Cate 2</th>
@@ -543,9 +543,9 @@
             {data: 'dp', name: 'dp'},
             {data: 'aby', name: 'aby'},
             {data: 'acr', name: 'acr'},
-            {data: 'add_date', name: 'add_date'},
+            {data: 'order_time', name: 'order_time'},
             {data: 'registrar', name: 'registrar'},
-            {data: 'market_place', name: 'market_place'},
+            // {data: 'market_place', name: 'market_place'},
             {data: 'price', name: 'price'},
             {data: 'cate1', name: 'cate1'},
             {data: 'cate2', name: 'cate2'},
