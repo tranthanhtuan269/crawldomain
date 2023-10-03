@@ -3,7 +3,6 @@
     cursor: pointer;
 }
 .filter-class{
-    cursor: pointer;
     color: -webkit-link;
     position: relative;
 }
@@ -25,7 +24,6 @@
 }
 .filter-item,
 #filter-clear{
-    cursor: pointer;
     color: -webkit-link;
     border-bottom: 1px solid #333;
     position: relative;
@@ -55,18 +53,25 @@
     cursor: pointer;
 }
 
+.btn.domain-available-soon{
+    border: 1px solid #ddd;
+}
 .domain-available-soon{
-    background-color: #28a745!important;
+    /* background-color: #b5ead7!important; */
 }
 
 .domain-available{
-    background-color: #dc3545!important;
+    background-color: #ffb7b2!important;
 }
 
 .domain-in-auction{
-    background-color: 'red';
+    background-color: #079dd9;
 }
 
 .domain-exp{
-    background-color: #6c757d!important;
+    background-color: #c7ceea!important;
+}
+
+.accept-item, .delete-item, .update-item, #filter-clear, #filter-add{
+    cursor: pointer;
 }

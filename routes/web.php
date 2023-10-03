@@ -28,4 +28,5 @@ Route::resource('domains', DomainController::class);
 Route::resource('filters', FilterController::class);
 Route::get('domains', [DomainController::class, 'index'])->name('domains.index');
 Route::get('/test', [HomeController::class, 'test'])->name('home.test');
+Route::get('/test2', [DomainController::class, 'test'])->name('domain.test');
 Route::get('/remove', [DomainController::class, 'removeDupplicateDomain'])->name('domain.removeDupplicateDomain');
