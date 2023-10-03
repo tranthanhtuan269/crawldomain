@@ -330,4 +330,40 @@ $(document).ready(function(){
             alert( "Request failed: " + textStatus );
         });
     })
+
+    $('.domain-available-soon').click(function(){
+        if(window.location.href.includes("?")){
+            location.href = window.location.href + '&status=available-soon';
+        }else{
+            location.href = window.location.href + '?status=available-soon';
+        }
+        return false;
+    })
+
+    $('.domain-available').click(function(){
+        if(window.location.href.includes("?")){
+            location.href = window.location.href + '&status=available';
+        }else{
+            location.href = window.location.href + '?status=available';
+        }
+        return false;
+    })
+
+    $('.domain-in-auction').click(function(){
+        if(window.location.href.includes("?")){
+            location.href = window.location.href + '&status=in-auction';
+        }else{
+            location.href = window.location.href + '?status=in-auction';
+        }
+        return false;
+    })
+
+    $('.domain-exp').click(function(){
+        if(window.location.href.includes("?")){
+            location.href = window.location.href + '&status=domain-exp';
+        }else{
+            location.href = window.location.href + '?status=domain-exp';
+        }
+        return false;
+    })
 })
