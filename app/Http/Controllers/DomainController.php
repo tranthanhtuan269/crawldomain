@@ -15,7 +15,7 @@ class DomainController extends Controller
             if($request->filter){
                 $filter = Filter::find($request->filter);
                 if($filter){
-                    $data = Domain::select('*');
+                    $data = Domain::where('name', 'like', '%.com');
                     if($filter->damin != ''){   $data->where('da', '>=', $filter->damin); }
                     if($filter->damax != ''){   $data->where('da', '<=', $filter->damax); }
                     if($filter->pamin != ''){   $data->where('pa', '>=', $filter->pamin); }
@@ -51,7 +51,7 @@ class DomainController extends Controller
                     }
                 }
             }else{
-                $data = Domain::select('*');
+                $data = Domain::where('name', 'like', '%.com');
                 if($request->status){
                     switch($request->status){
                         case 'available-soon': $data->where('status', 'Available Soon');
@@ -144,8 +144,24 @@ class DomainController extends Controller
     }
 
     public function test(){
-        $domains = Domain::get();
+        $domains = Domain::where('order_time', 'like', '%Aug%')->get();
+        dd($domains);
         foreach($domains as $domain){
+            $old_time = strtotime($domain->order_time);
+            $new_date = date('Y-m-d H:i:s', $old_time);  
+            $domain->order_time = $new_date;
+            $domain->save();
+        }
+    }
+
+    public function test2(){
+        $domains = Domain::where('order_time', 'like', '%Jul%')->get();
+        dd($domains);
+        foreach($domains as $domain){
+            $old_time = strtotime($domain->order_time);
+            $new_date = date('Y-m-d H:i:s', $old_time);  
+            $domain->order_time = $new_date;
+            $domain->save();
         }
     }
 }
