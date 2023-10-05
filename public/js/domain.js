@@ -40,15 +40,16 @@ $(document).ready(function(){
     })
 
     $('.update-item').click(function(){
-        $('#domain_u').val($(this).data('domain'));
+        $('#filter_name_u').val($(this).data('filter_name'));
+        $('#keyword_u').val($(this).data('keyword'));
         $('#damin_u').val($(this).data('damin'));
         $('#damax_u').val($(this).data('damax'));
         $('#pamin_u').val($(this).data('pamin'));
         $('#pamax_u').val($(this).data('pamax'));
-        $('#drmin_u').val($(this).data('drmin'));
-        $('#drmax_u').val($(this).data('drmax'));
-        $('#urmin_u').val($(this).data('urmin'));
-        $('#urmax_u').val($(this).data('urmax'));
+        $('#tfmin_u').val($(this).data('tfmin'));
+        $('#tfmax_u').val($(this).data('tfmax'));
+        $('#cfmin_u').val($(this).data('cfmin'));
+        $('#cfmax_u').val($(this).data('cfmax'));
         $('#rdmin_u').val($(this).data('rdmin'));
         $('#rdmax_u').val($(this).data('rdmax'));
         $('#blmin_u').val($(this).data('blmin'));
@@ -219,16 +220,17 @@ $(document).ready(function(){
         });
     })
 
-    $('#save-filter').click(function(){
-        var domain = $('#domain').val();
-        var damin = $('#damin').val();
+    $('#save-filter').click(function(e){
+        e.preventDefault();
+        var filter_name = $('#filter_name').val();
+        var keyword = $('#keyword').val();
         var damax = $('#damax').val();
         var pamin = $('#pamin').val();
         var pamax = $('#pamax').val();
-        var drmin = $('#drmin').val();
-        var drmax = $('#drmax').val();
-        var urmin = $('#urmin').val();
-        var urmax = $('#urmax').val();
+        var tfmin = $('#tfmin').val();
+        var tfmax = $('#tfmax').val();
+        var cfmin = $('#cfmin').val();
+        var cfmax = $('#cfmax').val();
         var rdmin = $('#rdmin').val();
         var rdmax = $('#rdmax').val();
         var blmin = $('#blmin').val();
@@ -242,15 +244,16 @@ $(document).ready(function(){
             url: "/filters",
             method: "POST",
             data: {
-                domain : domain,
+                filter_name : filter_name,
+                keyword : keyword,
                 damin : damin,
                 damax : damax,
                 pamin : pamin,
                 pamax : pamax,
-                drmin : drmin,
-                drmax : drmax,
-                urmin : urmin,
-                urmax : urmax,
+                tfmin : tfmin,
+                tfmax : tfmax,
+                cfmin : cfmin,
+                cfmax : cfmax,
                 rdmin : rdmin,
                 rdmax : rdmax,
                 blmin : blmin,
@@ -274,15 +277,16 @@ $(document).ready(function(){
 
     $('#update-filter').click(function(){
         var id = $(this).data('id');
-        var domain = $('#domain_u').val();
+        var filter_name = $('#filter_name_u').val();
+        var keyword = $('#keyword_u').val();
         var damin = $('#damin_u').val();
         var damax = $('#damax_u').val();
         var pamin = $('#pamin_u').val();
         var pamax = $('#pamax_u').val();
-        var drmin = $('#drmin_u').val();
-        var drmax = $('#drmax_u').val();
-        var urmin = $('#urmin_u').val();
-        var urmax = $('#urmax_u').val();
+        var tfmin = $('#tfmin_u').val();
+        var tfmax = $('#tfmax_u').val();
+        var cfmin = $('#cfmin_u').val();
+        var cfmax = $('#cfmax_u').val();
         var rdmin = $('#rdmin_u').val();
         var rdmax = $('#rdmax_u').val();
         var blmin = $('#blmin_u').val();
@@ -297,15 +301,16 @@ $(document).ready(function(){
             method: "POST",
             data: {
                 _method: 'PUT',
-                domain : domain,
+                filter_name : filter_name,
+                keyword : keyword,
                 damin : damin,
                 damax : damax,
                 pamin : pamin,
                 pamax : pamax,
-                drmin : drmin,
-                drmax : drmax,
-                urmin : urmin,
-                urmax : urmax,
+                tfmin : tfmin,
+                tfmax : tfmax,
+                cfmin : cfmin,
+                cfmax : cfmax,
                 rdmin : rdmin,
                 rdmax : rdmax,
                 blmin : blmin,
@@ -346,41 +351,5 @@ $(document).ready(function(){
         request.fail(function( jqXHR, textStatus ) {
             alert( "Request failed: " + textStatus );
         });
-    })
-
-    $('.domain-available-soon').click(function(){
-        if(window.location.href.includes("?")){
-            location.href = window.location.href + '&status=available-soon';
-        }else{
-            location.href = window.location.href + '?status=available-soon';
-        }
-        return false;
-    })
-
-    $('.domain-available').click(function(){
-        if(window.location.href.includes("?")){
-            location.href = window.location.href + '&status=available';
-        }else{
-            location.href = window.location.href + '?status=available';
-        }
-        return false;
-    })
-
-    $('.domain-in-auction').click(function(){
-        if(window.location.href.includes("?")){
-            location.href = window.location.href + '&status=in-auction';
-        }else{
-            location.href = window.location.href + '?status=in-auction';
-        }
-        return false;
-    })
-
-    $('.domain-exp').click(function(){
-        if(window.location.href.includes("?")){
-            location.href = window.location.href + '&status=domain-exp';
-        }else{
-            location.href = window.location.href + '?status=domain-exp';
-        }
-        return false;
     })
 })
