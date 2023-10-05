@@ -288,8 +288,12 @@
       <div class="modal-body">
         <form class="row">
           <div class="col-12">
-            <label for="domain" class="col-form-label">domain:</label>
-            <input type="text" class="form-control" id="domain">
+            <label for="domain" class="col-form-label">Filter Name:</label>
+            <input type="text" class="form-control" id="filter_name">
+          </div>
+          <div class="col-12">
+            <label for="domain" class="col-form-label">Keyword:</label>
+            <input type="text" class="form-control" id="keyword">
           </div>
           <div class="col-6">
             <label for="da" class="col-form-label">DA Min:</label>
@@ -308,20 +312,20 @@
             <input type="number" min="0" class="form-control" id="pamax">
           </div>
           <div class="col-6">
-            <label for="da" class="col-form-label">DR Min:</label>
-            <input type="number" min="0" class="form-control" id="drmin">
+            <label for="pa" class="col-form-label">TF Min:</label>
+            <input type="number" min="0" class="form-control" id="tfmin">
           </div>
           <div class="col-6">
-            <label for="da" class="col-form-label">DR Max:</label>
-            <input type="number" min="0" class="form-control" id="drmax">
+            <label for="pa" class="col-form-label">TF Max:</label>
+            <input type="number" min="0" class="form-control" id="tfmax">
           </div>
           <div class="col-6">
-            <label for="pa" class="col-form-label">UR Min:</label>
-            <input type="number" min="0" class="form-control" id="urmin">
+            <label for="da" class="col-form-label">CF Min:</label>
+            <input type="number" min="0" class="form-control" id="cfmin">
           </div>
           <div class="col-6">
-            <label for="pa" class="col-form-label">UR Max:</label>
-            <input type="number" min="0" class="form-control" id="urmax">
+            <label for="da" class="col-form-label">CF Max:</label>
+            <input type="number" min="0" class="form-control" id="cfmax">
           </div>
           <div class="col-6">
             <label for="da" class="col-form-label">RD Min:</label>
@@ -375,8 +379,12 @@
       <div class="modal-body">
         <form class="row">
           <div class="col-12">
-            <label for="domain_u" class="col-form-label">domain:</label>
-            <input type="text" class="form-control" id="domain_u">
+            <label for="domain_u" class="col-form-label">Filter Name:</label>
+            <input type="text" class="form-control" id="filter_name_u">
+          </div>
+          <div class="col-12">
+            <label for="domain_u" class="col-form-label">Keyword:</label>
+            <input type="text" class="form-control" id="keyword_u">
           </div>
           <div class="col-6">
             <label for="da" class="col-form-label">DA Min:</label>
@@ -395,20 +403,20 @@
             <input type="number" min="0" class="form-control" id="pamax_u">
           </div>
           <div class="col-6">
-            <label for="da" class="col-form-label">DR Min:</label>
-            <input type="number" min="0" class="form-control" id="drmin_u">
+            <label for="da" class="col-form-label">TF Min:</label>
+            <input type="number" min="0" class="form-control" id="tfmin_u">
           </div>
           <div class="col-6">
-            <label for="da" class="col-form-label">DR Max:</label>
-            <input type="number" min="0" class="form-control" id="drmax_u">
+            <label for="da" class="col-form-label">TF Max:</label>
+            <input type="number" min="0" class="form-control" id="tfmax_u">
           </div>
           <div class="col-6">
-            <label for="pa" class="col-form-label">UR Min:</label>
-            <input type="number" min="0" class="form-control" id="urmin_u">
+            <label for="pa" class="col-form-label">CF Min:</label>
+            <input type="number" min="0" class="form-control" id="cfmin_u">
           </div>
           <div class="col-6">
-            <label for="pa" class="col-form-label">UR Max:</label>
-            <input type="number" min="0" class="form-control" id="urmax_u">
+            <label for="pa" class="col-form-label">CF Max:</label>
+            <input type="number" min="0" class="form-control" id="cfmax_u">
           </div>
           <div class="col-6">
             <label for="da" class="col-form-label">RD Min:</label>
@@ -465,11 +473,12 @@
             <ul>
                 @foreach($filters as $filter)
                 <li class="filter-item" value="{{ $filter->id }}">
-                    <a href="#" class="accept-item" data-id="{{ $filter->id }}">{{ $filter->name }}</a>
+                    <a href="#" class="accept-item" data-id="{{ $filter->id }}">{{ $filter->filter_name }}</a>
                     <a href="#" class="delete-item" data-id="{{ $filter->id }}">delete</a>
                     <a href="#" class="update-item" 
                                 data-id="{{ $filter->id }}" 
-                                data-name="{{ $filter->name }}"
+                                data-filter_name="{{ $filter->filter_name }}"
+                                data-keyword="{{ $filter->keyword }}"
                                 data-damin="{{ $filter->damin }}"
                                 data-damax="{{ $filter->damax }}"
                                 data-pamin="{{ $filter->pamin }}"
@@ -478,10 +487,10 @@
                                 data-rdmax="{{ $filter->rdmax }}"
                                 data-blmin="{{ $filter->blmin }}"
                                 data-blmax="{{ $filter->blmax }}"
-                                data-drmin="{{ $filter->drmin }}"
-                                data-drmax="{{ $filter->drmax }}"
-                                data-urmin="{{ $filter->urmin }}"
-                                data-urmax="{{ $filter->urmax }}"
+                                data-tfmin="{{ $filter->tfmin }}"
+                                data-tfmax="{{ $filter->tfmax }}"
+                                data-cfmin="{{ $filter->cfmin }}"
+                                data-cfmax="{{ $filter->cfmax }}"
                                 data-pricemin="{{ $filter->pricemin }}"
                                 data-pricemax="{{ $filter->pricemax }}"
                                 data-agemin="{{ $filter->agemin }}"
@@ -495,34 +504,164 @@
         </div>
     </div>
     <div class="color-in">
-      &nbsp;
+      <!-- <span class="btn domain-available-soon">Available Soon</span>
+      <span class="btn domain-available">Buy It Now</span>
+      <span class="btn domain-in-auction">In Auction</span>
+      <span class="btn domain-exp">Expired</span> -->
     </div>
-    <div>
-        Toggle column:  
-          <a class="toggle-vis" data-column="0">No</a> - 
-          <a class="toggle-vis" data-column="1">domain</a> - 
-          <a class="toggle-vis" data-column="2">source</a> - 
-          <a class="toggle-vis" data-column="3">tf</a> - 
-          <a class="toggle-vis" data-column="4">cf</a> - 
-          <a class="toggle-vis" data-column="5">bl</a> - 
-          <a class="toggle-vis" data-column="6">rd</a> - 
-          <a class="toggle-vis" data-column="7">languages</a> - 
-          <a class="toggle-vis" data-column="8">da</a> - 
-          <a class="toggle-vis" data-column="9">pa</a> - 
-          <a class="toggle-vis" data-column="10">age</a> - 
-          <a class="toggle-vis" data-column="11">score</a> - 
-          <a class="toggle-vis" data-column="12">redirects</a> - 
-          <a class="toggle-vis" data-column="13">history</a> - 
-          <a class="toggle-vis" data-column="14">domain drops</a> - 
-          <a class="toggle-vis" data-column="15">total organic results</a> - 
-          <a class="toggle-vis" data-column="16">semrush traffic</a> - 
-          <a class="toggle-vis" data-column="17">semrush rank</a> - 
-          <a class="toggle-vis" data-column="18">semrush keyword number</a> - 
-          <a class="toggle-vis" data-column="19">date added</a> - 
-          <a class="toggle-vis" data-column="20">price</a> - 
-          <a class="toggle-vis" data-column="21">expiry date</a> - 
-          <a class="toggle-vis" data-column="22">status</a> - 
-          <a class="toggle-vis" data-column="23">status seo</a>
+    <div class="py-4">
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Toggle column:
+      </button>
+      <!-- <span class="btn toggle-column-btn">Toggle column: </span> -->
+      <div class="collapse" id="collapseExample">
+        <div class="d-flex flex-wrap align-items-center g-3">
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="0" type="checkbox" checked id="no_column">
+            <label class="form-check-label" for="no_column">
+              No
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="1" type="checkbox" checked id="domain_column">
+            <label class="form-check-label" for="domain_column">
+              Domain
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="2" type="checkbox" checked id="source_column">
+            <label class="form-check-label" for="source_column">
+              Source
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="3" type="checkbox" checked id="tf_column">
+            <label class="form-check-label" for="tf_column">
+              TF
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="4" type="checkbox" checked id="cf_column">
+            <label class="form-check-label" for="cf_column">
+              CF
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="5" type="checkbox" checked id="bl_column">
+            <label class="form-check-label" for="bl_column">
+              BL
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="6" type="checkbox" checked id="rd_column">
+            <label class="form-check-label" for="rd_column">
+              RD
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="7" type="checkbox" checked id="da_column">
+            <label class="form-check-label" for="da_column">
+              DA
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="8" type="checkbox" checked id="pa_column">
+            <label class="form-check-label" for="pa_column">
+              PA
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="9" type="checkbox" checked id="language_column">
+            <label class="form-check-label" for="language_column">
+              Languages
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="10" type="checkbox" checked id="age_column">
+            <label class="form-check-label" for="age_column">
+              Age
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="11" type="checkbox" checked id="score_column">
+            <label class="form-check-label" for="score_column">
+              Score
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="12" type="checkbox" checked id="redirects_column">
+            <label class="form-check-label" for="redirects_column">
+              Redirects
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="13" type="checkbox" checked id="history_column">
+            <label class="form-check-label" for="history_column">
+              History
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="14" type="checkbox" checked id="domain_drops_column">
+            <label class="form-check-label" for="domain_drops_column">
+              Domain Drops
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="15" type="checkbox" checked id="total_organic_results_column">
+            <label class="form-check-label" for="total_organic_results_column">
+              Total Organic Results
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="16" type="checkbox" checked id="semrush_traffic_column">
+            <label class="form-check-label" for="semrush_traffic_column">
+              Semrush Traffic
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="17" type="checkbox" checked id="semrush_rank_column">
+            <label class="form-check-label" for="semrush_rank_column">
+              Semrush Rank
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="18" type="checkbox" checked id="semrush_keyword_number_column">
+            <label class="form-check-label" for="semrush_keyword_number_column">
+              Semrush Keyword Number
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="19" type="checkbox" checked id="date_added_column">
+            <label class="form-check-label" for="date_added_column">
+              Date Added
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="20" type="checkbox" checked id="price_column">
+            <label class="form-check-label" for="price_column">
+              Price
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="21" type="checkbox" checked id="expiry_date_column">
+            <label class="form-check-label" for="expiry_date_column">
+              Expiry Date
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="22" type="checkbox" checked id="status_column">
+            <label class="form-check-label" for="status_column">
+              Status
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-vis" data-column="23" type="checkbox" checked id="status_seo_column">
+            <label class="form-check-label" for="status_seo_column">
+              Status Seo
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
     <table class="table table-bordered data-table">
         <thead>
@@ -534,9 +673,9 @@
                 <th>cf</th>
                 <th>bl</th>
                 <th>rd</th>
-                <th>languages</th>
                 <th>da</th>
                 <th>pa</th>
+                <th>languages</th>
                 <th>age</th>
                 <th>score</th>
                 <th>redirects</th>
@@ -584,9 +723,9 @@
             {data: 'cf', name: 'cf'},
             {data: 'bl', name: 'bl'},
             {data: 'rd', name: 'rd'},
-            {data: 'languages', name: 'languages'},
             {data: 'da', name: 'da'},
             {data: 'pa', name: 'pa'},
+            {data: 'languages', name: 'languages'},
             {data: 'age', name: 'age'},
             {data: 'score', name: 'score'},
             {data: 'redirects', name: 'redirects'},
@@ -676,9 +815,9 @@
         })
     }
 
-    document.querySelectorAll('a.toggle-vis').forEach((el) => {
+    document.querySelectorAll('input.toggle-vis').forEach((el) => {
         el.addEventListener('click', function (e) {
-            e.preventDefault();
+            // e.preventDefault();
     
             let columnIdx = e.target.getAttribute('data-column');
             let column = table.column(columnIdx);

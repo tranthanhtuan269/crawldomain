@@ -83,7 +83,7 @@ module.exports = {
                 })
             }
 
-            gotoPageNoxtools('https://spamzilla.noxtools.com/domains/?per-page=25&page=', 1397);
+            gotoPageNoxtools('https://spamzilla.noxtools.com/domains/?per-page=25&page=', 3375);
         }
 
         async function gotoPageNoxtools(url, numberpage){
@@ -107,7 +107,12 @@ module.exports = {
                     const da = await domains[i].$eval('.td_moz_da', el => el.textContent.trim());
                     const pa = await domains[i].$eval('.td_moz_pa', el => el.textContent.trim());
                     const age = await domains[i].$eval('.td_age', el => el.textContent.trim());
-                    const score = await domains[i].$eval('.td_sz_score strong', el => el.textContent.trim());
+                    let score = 0;
+                    try{
+                        score = await domains[i].$eval('.td_sz_score strong', el => el.textContent.trim());
+                    }catch(error){
+                        score = await domains[i].$eval('.td_sz_score', el => el.textContent.trim());
+                    }
                     const redirects = await domains[i].$eval('.td_redirects', el => el.textContent.trim());
                     const history = await domains[i].$eval('.td_active_history', el => el.textContent.trim());
                     const domain_drops = await domains[i].$eval('.td_domain_drops', el => el.textContent.trim());
