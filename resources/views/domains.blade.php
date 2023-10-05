@@ -30,21 +30,13 @@
       </div>
       <div class="modal-body">
         <form class="row">
-          <div class="col-12">
-              <label for="name" class="col-form-label">Domain:</label>
-              <input type="text" class="form-control" id="name_du">
+          <div class="col-6">
+              <label for="domain" class="col-form-label">Domain:</label>
+              <input type="text" class="form-control" id="domain_du">
           </div>
           <div class="col-6">
-              <label for="da" class="col-form-label">DA</label>
-              <input type="number" min="0" class="form-control" id="da_du">
-          </div>
-          <div class="col-6">
-              <label for="pa" class="col-form-label">PA</label>
-              <input type="number" min="0" class="form-control" id="pa_du">
-          </div>
-          <div class="col-6">
-              <label for="ref" class="col-form-label">RD</label>
-              <input type="number" min="0" class="form-control" id="ref_du">
+              <label for="da" class="col-form-label">Source</label>
+              <input type="text" min="0" class="form-control" id="source_du">
           </div>
           <div class="col-6">
               <label for="tf" class="col-form-label">TF</label>
@@ -55,34 +47,66 @@
               <input type="number" min="0" class="form-control" id="cf_du">
           </div>
           <div class="col-6">
-              <label for="ree" class="col-form-label">REE</label>
-              <input type="number" min="0" class="form-control" id="ree_du">
+              <label for="bl" class="col-form-label">bl</label>
+              <input type="number" min="0" class="form-control" id="bl_du">
           </div>
           <div class="col-6">
-              <label for="dr" class="col-form-label">DR</label>
-              <input type="number" min="0" class="form-control" id="dr_du">
+              <label for="rd" class="col-form-label">rd</label>
+              <input type="number" min="0" class="form-control" id="rd_du">
           </div>
           <div class="col-6">
-              <label for="ur" class="col-form-label">UR</label>
-              <input type="number" min="0" class="form-control" id="ur_du">
+              <label for="languages" class="col-form-label">languages</label>
+              <input type="text" min="0" class="form-control" id="languages_du">
           </div>
           <div class="col-6">
-              <label for="dp" class="col-form-label">DP</label>
-              <input type="number" min="0" class="form-control" id="dp_du">
+              <label for="da" class="col-form-label">da</label>
+              <input type="number" min="0" class="form-control" id="da_du">
           </div>
           <div class="col-6">
-              <label for="aby" class="col-form-label">ABY</label>
-              <input type="number" min="0" class="form-control" id="aby_du">
+              <label for="pa" class="col-form-label">pa</label>
+              <input type="number" min="0" class="form-control" id="pa_du">
           </div>
           <div class="col-6">
-              <label for="acr" class="col-form-label">ACR</label>
-              <input type="number" min="0" class="form-control" id="acr_du">
+              <label for="age" class="col-form-label">age</label>
+              <input type="number" min="0" class="form-control" id="age_du">
           </div>
           <div class="col-6">
-              <label for="acr" class="col-form-label">Add Date</label>
+              <label for="score" class="col-form-label">score</label>
+              <input type="number" min="0" class="form-control" id="score_du">
+          </div>
+          <div class="col-6">
+              <label for="redirects" class="col-form-label">redirects</label>
+              <input type="number" min="0" class="form-control" id="redirects_du">
+          </div>
+          <div class="col-6">
+              <label for="history" class="col-form-label">history</label>
+              <input type="number" min="0" class="form-control" id="history_du">
+          </div>
+          <div class="col-6">
+              <label for="domain_drops" class="col-form-label">domain drops</label>
+              <input type="number" min="0" class="form-control" id="domain_drops_du">
+          </div>
+          <div class="col-6">
+              <label for="total_organic_results" class="col-form-label">total organic results</label>
+              <input type="number" min="0" class="form-control" id="total_organic_results_du">
+          </div>
+          <div class="col-6">
+              <label for="semrush_traffic" class="col-form-label">semrush traffic</label>
+              <input type="number" min="0" class="form-control" id="semrush_traffic_du">
+          </div>
+          <div class="col-6">
+              <label for="semrush_rank" class="col-form-label">semrush rank</label>
+              <input type="number" min="0" class="form-control" id="semrush_rank_du">
+          </div>
+          <div class="col-6">
+              <label for="semrush_keyword_number" class="col-form-label">semrush keyword number</label>
+              <input type="number" min="0" class="form-control" id="semrush_keyword_number_du">
+          </div>
+          <div class="col-6">
+              <label for="acr" class="col-form-label">expiry date</label>
               <div class="form-group">
                 <div class='input-group date' id='datetimepicker10'>
-                    <input type='text' class="form-control" id="add_date_du" autocomplete="off"/>
+                    <input type='text' class="form-control" id="expiry_date_du" autocomplete="off"/>
                     <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar">
                     </span>
@@ -91,24 +115,8 @@
               </div>
           </div>
           <div class="col-6">
-              <label for="registrar" class="col-form-label">Registrar</label>
-              <input type="text" class="form-control" id="registrar_du">
-          </div>
-          <div class="col-6">
-              <label for="market_place" class="col-form-label">Market Place</label>
-              <input type="text" class="form-control" id="market_place_du">
-          </div>
-          <div class="col-6">
               <label for="price" class="col-form-label">Price</label>
               <input type="number" min="0" class="form-control" id="price_du">
-          </div>
-          <div class="col-6">
-              <label for="cate1" class="col-form-label">Cate1</label>
-              <input type="text" class="form-control" id="cate1_du">
-          </div>
-          <div class="col-6">
-              <label for="cate2" class="col-form-label">Cate2</label>
-              <input type="text" class="form-control" id="cate2_du">
           </div>
           <div class="col-6">
               <label for="cate2" class="col-form-label">Status</label>
@@ -118,6 +126,17 @@
                 'In Auction' => 'In Auction',
                 'Expired' => 'Expired'
                 ), NULL, ['class' => 'form-control', 'id' => 'status_du']); 
+              !!}
+          </div>
+          <div class="col-6">
+              <label for="cate2" class="col-form-label">Status SEO</label>
+              {!! Form::select('status_seo', array(
+                '0' => 'Chưa check', 
+                '1' => 'Đang Check', 
+                '2' => 'Đã check',
+                '3' => 'Chốt mua',
+                '4' => 'Đã mua'
+                ), NULL, ['class' => 'form-control', 'id' => 'status_seo_du']); 
               !!}
           </div>
         </form>
@@ -140,21 +159,13 @@
       </div>
       <div class="modal-body">
         <form class="row">
-          <div class="col-12">
-              <label for="name" class="col-form-label">Domain:</label>
-              <input type="text" class="form-control" id="name_d">
+          <div class="col-6">
+              <label for="domain" class="col-form-label">Domain:</label>
+              <input type="text" class="form-control" id="domain_d">
           </div>
           <div class="col-6">
-              <label for="da" class="col-form-label">DA</label>
-              <input type="number" min="0" class="form-control" id="da_d">
-          </div>
-          <div class="col-6">
-              <label for="pa" class="col-form-label">PA</label>
-              <input type="number" min="0" class="form-control" id="pa_d">
-          </div>
-          <div class="col-6">
-              <label for="ref" class="col-form-label">RD</label>
-              <input type="number" min="0" class="form-control" id="ref_d">
+              <label for="da" class="col-form-label">Source</label>
+              <input type="text" min="0" class="form-control" id="source_d">
           </div>
           <div class="col-6">
               <label for="tf" class="col-form-label">TF</label>
@@ -165,34 +176,66 @@
               <input type="number" min="0" class="form-control" id="cf_d">
           </div>
           <div class="col-6">
-              <label for="ree" class="col-form-label">REE</label>
-              <input type="number" min="0" class="form-control" id="ree_d">
+              <label for="bl" class="col-form-label">bl</label>
+              <input type="number" min="0" class="form-control" id="bl_d">
           </div>
           <div class="col-6">
-              <label for="dr" class="col-form-label">DR</label>
-              <input type="number" min="0" class="form-control" id="dr_d">
+              <label for="rd" class="col-form-label">rd</label>
+              <input type="number" min="0" class="form-control" id="rd_d">
           </div>
           <div class="col-6">
-              <label for="ur" class="col-form-label">UR</label>
-              <input type="number" min="0" class="form-control" id="ur_d">
+              <label for="languages" class="col-form-label">languages</label>
+              <input type="text" min="0" class="form-control" id="languages_d">
           </div>
           <div class="col-6">
-              <label for="dp" class="col-form-label">DP</label>
-              <input type="number" min="0" class="form-control" id="dp_d">
+              <label for="da" class="col-form-label">da</label>
+              <input type="number" min="0" class="form-control" id="da_d">
           </div>
           <div class="col-6">
-              <label for="aby" class="col-form-label">ABY</label>
-              <input type="number" min="0" class="form-control" id="aby_d">
+              <label for="pa" class="col-form-label">pa</label>
+              <input type="number" min="0" class="form-control" id="pa_d">
           </div>
           <div class="col-6">
-              <label for="acr" class="col-form-label">ACR</label>
-              <input type="number" min="0" class="form-control" id="acr_d">
+              <label for="age" class="col-form-label">age</label>
+              <input type="number" min="0" class="form-control" id="age_d">
           </div>
           <div class="col-6">
-              <label for="acr" class="col-form-label">Add Date</label>
+              <label for="score" class="col-form-label">score</label>
+              <input type="number" min="0" class="form-control" id="score_d">
+          </div>
+          <div class="col-6">
+              <label for="redirects" class="col-form-label">redirects</label>
+              <input type="number" min="0" class="form-control" id="redirects_d">
+          </div>
+          <div class="col-6">
+              <label for="history" class="col-form-label">history</label>
+              <input type="number" min="0" class="form-control" id="history_d">
+          </div>
+          <div class="col-6">
+              <label for="domain_drops" class="col-form-label">domain drops</label>
+              <input type="number" min="0" class="form-control" id="domain_drops_d">
+          </div>
+          <div class="col-6">
+              <label for="total_organic_results" class="col-form-label">total organic results</label>
+              <input type="number" min="0" class="form-control" id="total_organic_results_d">
+          </div>
+          <div class="col-6">
+              <label for="semrush_traffic" class="col-form-label">semrush traffic</label>
+              <input type="number" min="0" class="form-control" id="semrush_traffic_d">
+          </div>
+          <div class="col-6">
+              <label for="semrush_rank" class="col-form-label">semrush rank</label>
+              <input type="number" min="0" class="form-control" id="semrush_rank_d">
+          </div>
+          <div class="col-6">
+              <label for="semrush_keyword_number" class="col-form-label">semrush keyword number</label>
+              <input type="number" min="0" class="form-control" id="semrush_keyword_number_d">
+          </div>
+          <div class="col-6">
+              <label for="acr" class="col-form-label">expiry date</label>
               <div class="form-group">
-                <div class='input-group date' id='datetimepickerd'>
-                    <input type='text' class="form-control" id="add_date_d" autocomplete="off"/>
+                <div class='input-group date' id='datetimepicker10'>
+                    <input type='text' class="form-control" id="expiry_date_d" autocomplete="off"/>
                     <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar">
                     </span>
@@ -201,24 +244,8 @@
               </div>
           </div>
           <div class="col-6">
-              <label for="registrar" class="col-form-label">Registrar</label>
-              <input type="text" class="form-control" id="registrar_d">
-          </div>
-          <div class="col-6">
-              <label for="market_place" class="col-form-label">Market Place</label>
-              <input type="text" class="form-control" id="market_place_d">
-          </div>
-          <div class="col-6">
               <label for="price" class="col-form-label">Price</label>
               <input type="number" min="0" class="form-control" id="price_d">
-          </div>
-          <div class="col-6">
-              <label for="cate1" class="col-form-label">Cate1</label>
-              <input type="text" class="form-control" id="cate1_d">
-          </div>
-          <div class="col-6">
-              <label for="cate2" class="col-form-label">Cate2</label>
-              <input type="text" class="form-control" id="cate2_d">
           </div>
           <div class="col-6">
               <label for="cate2" class="col-form-label">Status</label>
@@ -228,6 +255,17 @@
                 'In Auction' => 'In Auction',
                 'Expired' => 'Expired'
                 ), NULL, ['class' => 'form-control', 'id' => 'status_d']); 
+              !!}
+          </div>
+          <div class="col-6">
+              <label for="cate2" class="col-form-label">Status SEO</label>
+              {!! Form::select('status_seo', array(
+                '0' => 'Chưa check', 
+                '1' => 'Đang Check', 
+                '2' => 'Đã check',
+                '3' => 'Chốt mua',
+                '4' => 'Đã mua'
+                ), NULL, ['class' => 'form-control', 'id' => 'status_seo_d']); 
               !!}
           </div>
         </form>
@@ -250,8 +288,8 @@
       <div class="modal-body">
         <form class="row">
           <div class="col-12">
-            <label for="name" class="col-form-label">Name:</label>
-            <input type="text" class="form-control" id="name">
+            <label for="domain" class="col-form-label">domain:</label>
+            <input type="text" class="form-control" id="domain">
           </div>
           <div class="col-6">
             <label for="da" class="col-form-label">DA Min:</label>
@@ -337,8 +375,8 @@
       <div class="modal-body">
         <form class="row">
           <div class="col-12">
-            <label for="name_u" class="col-form-label">Name:</label>
-            <input type="text" class="form-control" id="name_u">
+            <label for="domain_u" class="col-form-label">domain:</label>
+            <input type="text" class="form-control" id="domain_u">
           </div>
           <div class="col-6">
             <label for="da" class="col-form-label">DA Min:</label>
@@ -457,54 +495,63 @@
         </div>
     </div>
     <div class="color-in">
-      <span class="btn domain-available-soon ml-3 mr-1">&nbsp;</span>Available Soon
-      <span class="btn domain-available ml-3 mr-1">&nbsp;</span>Buy It Now
-      <span class="btn domain-in-auction ml-3 mr-1">&nbsp;</span>In Auction
-      <span class="btn domain-exp ml-3 mr-1">&nbsp;</span>Expired
+      &nbsp;
     </div>
     <div>
-        Toggle column:  <a class="toggle-vis" data-column="0">No</a> - 
-                        <a class="toggle-vis" data-column="1">Name</a> - 
-                        <a class="toggle-vis" data-column="2">DA</a> - 
-                        <a class="toggle-vis" data-column="3">PA</a> - 
-                        <a class="toggle-vis" data-column="4">Ref</a> - 
-                        <a class="toggle-vis" data-column="5">TF</a> - 
-                        <a class="toggle-vis" data-column="6">CF</a> - 
-                        <a class="toggle-vis" data-column="7">REE</a> - 
-                        <a class="toggle-vis" data-column="8">DR</a> - 
-                        <a class="toggle-vis" data-column="9">UR</a> - 
-                        <a class="toggle-vis" data-column="10">DP</a> - 
-                        <a class="toggle-vis" data-column="11">ABY</a> - 
-                        <a class="toggle-vis" data-column="12">ACR</a> - 
-                        <a class="toggle-vis" data-column="13">ADD DATE</a> - 
-                        <a class="toggle-vis" data-column="14">REGISTRAR</a> - 
-                        <!-- <a class="toggle-vis" data-column="15">MARKETPLACE</a> -  -->
-                        <a class="toggle-vis" data-column="16">PRICE</a> - 
-                        <a class="toggle-vis" data-column="17">Cate 1</a> - 
-                        <a class="toggle-vis" data-column="18">Cate 2</a>
+        Toggle column:  
+          <a class="toggle-vis" data-column="0">No</a> - 
+          <a class="toggle-vis" data-column="1">domain</a> - 
+          <a class="toggle-vis" data-column="2">source</a> - 
+          <a class="toggle-vis" data-column="3">tf</a> - 
+          <a class="toggle-vis" data-column="4">cf</a> - 
+          <a class="toggle-vis" data-column="5">bl</a> - 
+          <a class="toggle-vis" data-column="6">rd</a> - 
+          <a class="toggle-vis" data-column="7">languages</a> - 
+          <a class="toggle-vis" data-column="8">da</a> - 
+          <a class="toggle-vis" data-column="9">pa</a> - 
+          <a class="toggle-vis" data-column="10">age</a> - 
+          <a class="toggle-vis" data-column="11">score</a> - 
+          <a class="toggle-vis" data-column="12">redirects</a> - 
+          <a class="toggle-vis" data-column="13">history</a> - 
+          <a class="toggle-vis" data-column="14">domain drops</a> - 
+          <a class="toggle-vis" data-column="15">total organic results</a> - 
+          <a class="toggle-vis" data-column="16">semrush traffic</a> - 
+          <a class="toggle-vis" data-column="17">semrush rank</a> - 
+          <a class="toggle-vis" data-column="18">semrush keyword number</a> - 
+          <a class="toggle-vis" data-column="19">date added</a> - 
+          <a class="toggle-vis" data-column="20">price</a> - 
+          <a class="toggle-vis" data-column="21">expiry date</a> - 
+          <a class="toggle-vis" data-column="22">status</a> - 
+          <a class="toggle-vis" data-column="23">status seo</a>
     </div>
     <table class="table table-bordered data-table">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Name</th>
-                <th>DA</th>
-                <th>PA</th>
-                <th>RD</th>
-                <th>TF</th>
-                <th>CF</th>
-                <th>REE</th>
-                <th>DR</th>
-                <th>UR</th>
-                <th>DP</th>
-                <th>ABY</th>
-                <th>ACR</th>
-                <th>Order Time</th>
-                <th>REGISTRAR</th>
-                <!-- <th>MARKETPLACE</th> -->
-                <th>PRICE</th>
-                <th>Cate 1</th>
-                <th>Cate 2</th>
+                <th>domain</th>
+                <th>source</th>
+                <th>tf</th>
+                <th>cf</th>
+                <th>bl</th>
+                <th>rd</th>
+                <th>languages</th>
+                <th>da</th>
+                <th>pa</th>
+                <th>age</th>
+                <th>score</th>
+                <th>redirects</th>
+                <th>history</th>
+                <th>domain drops</th>
+                <th>total organic results</th>
+                <th>semrush traffic</th>
+                <th>semrush rank</th>
+                <th>semrush keyword number</th>
+                <th>date added</th>
+                <th>price</th>
+                <th>expiry date</th>
+                <th>status</th>
+                <th>status seo</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -515,10 +562,10 @@
      
 <script type="text/javascript">
   $(function () {
-    $('#add_date_d').datetimepicker({
+    $('#expiry_date_d').datetimepicker({
                       format: 'Y-m-d H:i:00'
                   });
-    $('#add_date_du').datetimepicker({
+    $('#expiry_date_du').datetimepicker({
                       format: 'Y-m-d H:i:00'
                   });
 
@@ -531,57 +578,56 @@
         ajax: "{{ route('domains.index', ['filter' => isset($_GET['filter']) ? $_GET['filter'] : null]) }}",
         columns: [
             {data: 'id', name: 'id'},
-            {data: 'name', name: 'name'},
-            {data: 'da', name: 'da'},
-            {data: 'pa', name: 'pa'},
-            {data: 'ref', name: 'ref'},
+            {data: 'domain', name: 'domain'},
+            {data: 'source', name: 'source'},
             {data: 'tf', name: 'tf'},
             {data: 'cf', name: 'cf'},
-            {data: 'ree', name: 'ree'},
-            {data: 'dr', name: 'dr'},
-            {data: 'ur', name: 'ur'},
-            {data: 'dp', name: 'dp'},
-            {data: 'aby', name: 'aby'},
-            {data: 'acr', name: 'acr'},
-            {data: 'order_time', name: 'order_time'},
-            {data: 'registrar', name: 'registrar'},
-            // {data: 'market_place', name: 'market_place'},
+            {data: 'bl', name: 'bl'},
+            {data: 'rd', name: 'rd'},
+            {data: 'languages', name: 'languages'},
+            {data: 'da', name: 'da'},
+            {data: 'pa', name: 'pa'},
+            {data: 'age', name: 'age'},
+            {data: 'score', name: 'score'},
+            {data: 'redirects', name: 'redirects'},
+            {data: 'history', name: 'history'},
+            {data: 'domain_drops', name: 'domain_drops'},
+            {data: 'total_organic_results', name: 'total_organic_results'},
+            {data: 'semrush_traffic', name: 'semrush_traffic'},
+            {data: 'semrush_rank', name: 'semrush_rank'},
+            {data: 'semrush_keyword_number', name: 'semrush_keyword_number'},
+            {data: 'date_added', name: 'date_added'},
             {data: 'price', name: 'price'},
-            {data: 'cate1', name: 'cate1'},
-            {data: 'cate2', name: 'cate2'},
+            {data: 'expiry_date', name: 'expiry_date'},
+            {data: 'status', name: 'status'},
+            {data: 'status_seo', name: 'status_seo'},
         ],
         'createdRow': function( row, data, dataIndex ) {
             $(row).addClass( 'domain-row' );
-
-            if(data.status == 'Available Soon'){
-              $(row).addClass( 'domain-available-soon' );
-            }else if(data.status == 'Buy It Now'){
-              $(row).addClass( 'domain-available' );
-            }else if(data.status == 'In Auction'){
-              $(row).addClass( 'domain-in-auction' );
-            }else {
-              $(row).addClass( 'domain-exp' );
-            }
             $(row).data('id', data.id);
-            $(row).data('name', data.name);
-            $(row).data('da', data.da);
-            $(row).data('pa', data.pa);
-            $(row).data('ref', data.ref);
+            $(row).data('domain', data.domain);
+            $(row).data('source', data.source);
             $(row).data('tf', data.tf);
             $(row).data('cf', data.cf);
-            $(row).data('ree', data.ree);
-            $(row).data('dr', data.dr);
-            $(row).data('ur', data.ur);
-            $(row).data('dp', data.dp);
-            $(row).data('aby', data.aby);
-            $(row).data('acr', data.acr);
-            $(row).data('add_date', data.add_date);
-            $(row).data('registrar', data.registrar);
-            $(row).data('market_place', data.market_place);
+            $(row).data('bl', data.bl);
+            $(row).data('rd', data.rd);
+            $(row).data('languages', data.languages);
+            $(row).data('da', data.da);
+            $(row).data('pa', data.pa);
+            $(row).data('age', data.age);
+            $(row).data('score', data.score);
+            $(row).data('redirects', data.redirects);
+            $(row).data('history', data.history);
+            $(row).data('domain_drops', data.domain_drops);
+            $(row).data('total_organic_results', data.total_organic_results);
+            $(row).data('semrush_traffic', data.semrush_traffic);
+            $(row).data('semrush_rank', data.semrush_rank);
+            $(row).data('semrush_keyword_number', data.semrush_keyword_number);
+            $(row).data('date_added', data.date_added);
             $(row).data('price', data.price);
-            $(row).data('cate1', data.cate1);
-            $(row).data('cate2', data.cate2);
+            $(row).data('expiry_date', data.expiry_date);
             $(row).data('status', data.status);
+            $(row).data('status_seo', data.status_seo);
             console.log(data)
         },
         'initComplete': function(settings, json) {
@@ -597,25 +643,30 @@
         $('.domain-row').click(function(){
             $('#update-domain').data('id', $(this).data('id'));
             $('#delete-domain').data('id', $(this).data('id'));
-            $('#name_du').val($(this).data('name'));
-            $('#da_du').val($(this).data('da'));
-            $('#pa_du').val($(this).data('pa'));
-            $('#ref_du').val($(this).data('ref'));
+
+            $('#domain_du').val($(this).data('domain'));
+            $('#source_du').val($(this).data('source'));
             $('#tf_du').val($(this).data('tf'));
             $('#cf_du').val($(this).data('cf'));
-            $('#ree_du').val($(this).data('ree'));
-            $('#dr_du').val($(this).data('dr'));
-            $('#ur_du').val($(this).data('ur'));
-            $('#dp_du').val($(this).data('dp'));
-            $('#aby_du').val($(this).data('aby'));
-            $('#acr_du').val($(this).data('acr'));
-            $('#add_date_du').val($(this).data('add_date'));
-            $('#registrar_du').val($(this).data('registrar'));
-            $('#market_place_du').val($(this).data('market_place'));
+            $('#bl_du').val($(this).data('bl'));
+            $('#rd_du').val($(this).data('rd'));
+            $('#languages_du').val($(this).data('languages'));
+            $('#da_du').val($(this).data('da'));
+            $('#pa_du').val($(this).data('pa'));
+            $('#age_du').val($(this).data('age'));
+            $('#score_du').val($(this).data('score'));
+            $('#redirects_du').val($(this).data('redirects'));
+            $('#history_du').val($(this).data('history'));
+            $('#domain_drops_du').val($(this).data('domain_drops'));
+            $('#total_organic_results_du').val($(this).data('total_organic_results'));
+            $('#semrush_traffic_du').val($(this).data('semrush_traffic'));
+            $('#semrush_rank_du').val($(this).data('semrush_rank'));
+            $('#semrush_keyword_number_du').val($(this).data('semrush_keyword_number'));
+            $('#date_added_du').val($(this).data('date_added'));
             $('#price_du').val($(this).data('price'));
-            $('#cate1_du').val($(this).data('cate1'));
-            $('#cate2_du').val($(this).data('cate2'));
+            $('#expiry_date_du').val($(this).data('expiry_date'));
             $('#status_du').val($(this).data('status'));
+            $('#status_seo_du').val($(this).data('status_seo'));
 
             if($('#updateDomain').hasClass('show')){
                 $('#updateDomain').modal('hidden');

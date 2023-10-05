@@ -15,24 +15,23 @@ class DomainController extends Controller
             if($request->filter){
                 $filter = Filter::find($request->filter);
                 if($filter){
-                    $data = Domain::where('name', 'like', '%.com');
+                    $data = Domain::where('domain', 'like', '%.com');
                     if($filter->damin != ''){   $data->where('da', '>=', $filter->damin); }
                     if($filter->damax != ''){   $data->where('da', '<=', $filter->damax); }
                     if($filter->pamin != ''){   $data->where('pa', '>=', $filter->pamin); }
                     if($filter->pamax != ''){   $data->where('pa', '<=', $filter->pamax); }
-                    // if($filter->drmin != ''){   $data->where('dr', '>=', $filter->drmin); }
-                    // if($filter->drmax != ''){   $data->where('dr', '<=', $filter->drmax); }
-                    // if($filter->urmin != ''){   $data->where('ur', '>=', $filter->urmin); }
-                    // if($filter->urmax != ''){   $data->where('ur', '<=', $filter->urmax); }
-                    // if($filter->rdmin != ''){   $data->where('ref', '>=', $filter->rdmin); }
-                    // if($filter->rdmax != ''){   $data->where('ref', '<=', $filter->rdmax); }
-                    // if($filter->blmin != ''){   $data->where('backlinks', '>=', $filter->blmin); }
-                    // if($filter->blmax != ''){   $data->where('backlinks', '<=', $filter->blmax); }
-                    // if($filter->agemin != ''){  $data->where('age', '>=', $filter->agemin); }
-                    // if($filter->agemax != ''){  $data->where('age', '<=', $filter->agemax); }
-                    // if($filter->pricemin != ''){    $data->where('price', '>=', $filter->pricemin); }
-                    // if($filter->pricemax != ''){    $data->where('price', '<=', $filter->pricemax); }
-                    // $data->where('name', 'like', '%.com');
+                    if($filter->drmin != ''){   $data->where('dr', '>=', $filter->drmin); }
+                    if($filter->drmax != ''){   $data->where('dr', '<=', $filter->drmax); }
+                    if($filter->urmin != ''){   $data->where('ur', '>=', $filter->urmin); }
+                    if($filter->urmax != ''){   $data->where('ur', '<=', $filter->urmax); }
+                    if($filter->rdmin != ''){   $data->where('rd', '>=', $filter->rdmin); }
+                    if($filter->rdmax != ''){   $data->where('rd', '<=', $filter->rdmax); }
+                    if($filter->blmin != ''){   $data->where('backlinks', '>=', $filter->blmin); }
+                    if($filter->blmax != ''){   $data->where('backlinks', '<=', $filter->blmax); }
+                    if($filter->agemin != ''){  $data->where('age', '>=', $filter->agemin); }
+                    if($filter->agemax != ''){  $data->where('age', '<=', $filter->agemax); }
+                    if($filter->pricemin != ''){    $data->where('price', '>=', $filter->pricemin); }
+                    if($filter->pricemax != ''){    $data->where('price', '<=', $filter->pricemax); }
 
                     if($request->status){
                         switch($request->status){
@@ -51,7 +50,7 @@ class DomainController extends Controller
                     }
                 }
             }else{
-                $data = Domain::where('name', 'like', '%.com');
+                $data = Domain::where('domain', 'like', '%.com');
                 if($request->status){
                     switch($request->status){
                         case 'available-soon': $data->where('status', 'Available Soon');
@@ -73,50 +72,58 @@ class DomainController extends Controller
 
     public function store(Request $request){
         $domain = new Domain;
-        $domain->name = $request->name;
-        $domain->da = $request->da;
-        $domain->pa = $request->pa;
-        $domain->ref = $request->ref;
+        $domain->domain = $request->domain;
+        $domain->source = $request->source;
         $domain->tf = $request->tf;
         $domain->cf = $request->cf;
-        $domain->ree = $request->ree;
-        $domain->dr = $request->dr;
-        $domain->ur = $request->ur;
-        $domain->dp = $request->dp;
-        $domain->aby = $request->aby;
-        $domain->acr = $request->acr;
-        $domain->add_date = $request->add_date;
-        $domain->registrar = $request->registrar;
-        $domain->market_place = $request->market_place;
+        $domain->bl = $request->bl;
+        $domain->rd = $request->rd;
+        $domain->languages = $request->languages;
+        $domain->da = $request->da;
+        $domain->pa = $request->pa;
+        $domain->age = $request->age;
+        $domain->score = $request->score;
+        $domain->redirects = $request->redirects;
+        $domain->history = $request->history;
+        $domain->domain_drops = $request->domain_drops;
+        $domain->total_organic_results = $request->total_organic_results;
+        $domain->semrush_traffic = $request->semrush_traffic;
+        $domain->semrush_rank = $request->semrush_rank;
+        $domain->semrush_keyword_number = $request->semrush_keyword_number;
+        $domain->date_added = $request->date_added;
         $domain->price = $request->price;
-        $domain->cate1 = $request->cate1;
-        $domain->cate2 = $request->cate2;
+        $domain->expiry_date = $request->expiry_date;
         $domain->status = $request->status;
+        $domain->status_seo = $request->status_seo;
         $domain->save();
         
         return response()->json(['message' => 'Lưu thông tin thành công!', 'status' => 200]); 
     }
     
     public function update(Request $request, Domain $domain){
-        $domain->name = $request->name;
-        $domain->da = $request->da;
-        $domain->pa = $request->pa;
-        $domain->ref = $request->ref;
+        $domain->domain = $request->domain;
+        $domain->source = $request->source;
         $domain->tf = $request->tf;
         $domain->cf = $request->cf;
-        $domain->ree = $request->ree;
-        $domain->dr = $request->dr;
-        $domain->ur = $request->ur;
-        $domain->dp = $request->dp;
-        $domain->aby = $request->aby;
-        $domain->acr = $request->acr;
-        $domain->add_date = $request->add_date;
-        $domain->registrar = $request->registrar;
-        $domain->market_place = $request->market_place;
+        $domain->bl = $request->bl;
+        $domain->rd = $request->rd;
+        $domain->languages = $request->languages;
+        $domain->da = $request->da;
+        $domain->pa = $request->pa;
+        $domain->age = $request->age;
+        $domain->score = $request->score;
+        $domain->redirects = $request->redirects;
+        $domain->history = $request->history;
+        $domain->domain_drops = $request->domain_drops;
+        $domain->total_organic_results = $request->total_organic_results;
+        $domain->semrush_traffic = $request->semrush_traffic;
+        $domain->semrush_rank = $request->semrush_rank;
+        $domain->semrush_keyword_number = $request->semrush_keyword_number;
+        $domain->date_added = $request->date_added;
         $domain->price = $request->price;
-        $domain->cate1 = $request->cate1;
-        $domain->cate2 = $request->cate2;
+        $domain->expiry_date = $request->expiry_date;
         $domain->status = $request->status;
+        $domain->status_seo = $request->status_seo;
         $domain->save();
         
         return response()->json(['message' => 'Lưu thông tin thành công!', 'status' => 200]); 
@@ -136,7 +143,7 @@ class DomainController extends Controller
                 $domain->delet = 1;
                 $domain->save();
                 
-                Domain::where('name', $domain->name)->where('delet', 0)->delete();
+                Domain::where('domain', $domain->domain)->where('delet', 0)->delete();
             }else{
                 $status = 1;
             }

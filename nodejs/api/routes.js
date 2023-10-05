@@ -20,12 +20,16 @@ module.exports = function (app) {
     .get(testCtrl.getDomain4)
 
     // todoList Routes
+    app.route('/test/getDomain5')
+    .get(testCtrl.getDomain5)
+
+    // todoList Routes
     app.route('/getDomainBuyPr')
     .get(testCtrl.getDomainBuyPr)
 
     // todoList Routes
-    app.route('/getDomainHammer')
-    .get(testCtrl.getDomainHammer)
+    app.route('/noxtools')
+    .get(testCtrl.noxtools)
 
     // todoList Routes
     app.route('/dapachecker')
@@ -34,5 +38,9 @@ module.exports = function (app) {
     // todoList Routes
     app.route('/snapnames')
     .get(testCtrl.snapnames)
+
+    // todoList Routes
+    app.route('/spamzilla')
+    .get(testCtrl.spamzilla)
 
 };

@@ -40,7 +40,7 @@ $(document).ready(function(){
     })
 
     $('.update-item').click(function(){
-        $('#name_u').val($(this).data('name'));
+        $('#domain_u').val($(this).data('domain'));
         $('#damin_u').val($(this).data('damin'));
         $('#damax_u').val($(this).data('damax'));
         $('#pamin_u').val($(this).data('pamin'));
@@ -66,49 +66,57 @@ $(document).ready(function(){
     })
 
     $('#save-domain').click(function(){
-        var name = $('#name_d').val();
-        var da = $('#da_d').val();
-        var pa = $('#pa_d').val();
-        var ref = $('#ref_d').val();
+        var domain = $('#domain_d').val();
+        var source = $('#source_d').val();
         var tf = $('#tf_d').val();
         var cf = $('#cf_d').val();
-        var ree = $('#ree_d').val();
-        var dr = $('#dr_d').val();
-        var ur = $('#ur_d').val();
-        var dp = $('#dp_d').val();
-        var aby = $('#aby_d').val();
-        var acr = $('#acr_d').val();
-        var add_date = $('#add_date_d').val();
-        var registrar = $('#registrar_d').val();
-        var market_place = $('#market_place_d').val();
+        var bl = $('#bl_d').val();
+        var rd = $('#rd_d').val();
+        var languages = $('#languages_d').val();
+        var da = $('#da_d').val();
+        var pa = $('#pa_d').val();
+        var age = $('#age_d').val();
+        var score = $('#score_d').val();
+        var redirects = $('#redirects_d').val();
+        var history = $('#history_d').val();
+        var domain_drops = $('#domain_drops_d').val();
+        var total_organic_results = $('#total_organic_results_d').val();
+        var semrush_traffic = $('#semrush_traffic_d').val();
+        var semrush_rank = $('#semrush_rank_d').val();
+        var semrush_keyword_number = $('#semrush_keyword_number_d').val();
+        var date_added = $('#date_added_d').val();
         var price = $('#price_d').val();
-        var cate1 = $('#cate1_d').val();
-        var cate2 = $('#cate2_d').val();
+        var expiry_date = $('#expiry_date_d').val();
         var status = $('#status_d').val();
+        var status_seo = $('#status_seo_d').val();
 
         var request = $.ajax({
             url: "/domains",
             method: "POST",
             data: {
-                name : name,
-                da : da,
-                pa : pa,
-                ref : ref,
-                tf : tf,
-                cf : cf,
-                ree : ree,
-                dr : dr,
-                ur : ur,
-                dp : dp,
-                aby : aby,
-                acr : acr,
-                add_date : add_date,
-                registrar : registrar,
-                market_place : market_place,
-                price : price,
-                cate1 : cate1,
-                cate2 : cate2,
-                status: status
+                domain: domain,
+                source: source,
+                tf: tf,
+                cf: cf,
+                bl: bl,
+                rd: rd,
+                languages: languages,
+                da: da,
+                pa: pa,
+                age: age,
+                score: score,
+                redirects: redirects,
+                history: history,
+                domain_drops: domain_drops,
+                total_organic_results: total_organic_results,
+                semrush_traffic: semrush_traffic,
+                semrush_rank: semrush_rank,
+                semrush_keyword_number: semrush_keyword_number,
+                date_added: date_added,
+                price: price,
+                expiry_date: expiry_date,
+                status: status,
+                status_seo: status_seo
             },
             dataType: "json"
         });
@@ -124,50 +132,59 @@ $(document).ready(function(){
 
     $('#update-domain').click(function(){
         var id = $(this).data('id');
-        var name = $('#name_du').val();
-        var da = $('#da_du').val();
-        var pa = $('#pa_du').val();
-        var ref = $('#ref_du').val();
+
+        var domain = $('#domain_du').val();
+        var source = $('#source_du').val();
         var tf = $('#tf_du').val();
         var cf = $('#cf_du').val();
-        var ree = $('#ree_du').val();
-        var dr = $('#dr_du').val();
-        var ur = $('#ur_du').val();
-        var dp = $('#dp_du').val();
-        var aby = $('#aby_du').val();
-        var acr = $('#acr_du').val();
-        var add_date = $('#add_date_du').val();
-        var registrar = $('#registrar_du').val();
-        var market_place = $('#market_place_du').val();
+        var bl = $('#bl_du').val();
+        var rd = $('#rd_du').val();
+        var languages = $('#languages_du').val();
+        var da = $('#da_du').val();
+        var pa = $('#pa_du').val();
+        var age = $('#age_du').val();
+        var score = $('#score_du').val();
+        var redirects = $('#redirects_du').val();
+        var history = $('#history_du').val();
+        var domain_drops = $('#domain_drops_du').val();
+        var total_organic_results = $('#total_organic_results_du').val();
+        var semrush_traffic = $('#semrush_traffic_du').val();
+        var semrush_rank = $('#semrush_rank_du').val();
+        var semrush_keyword_number = $('#semrush_keyword_number_du').val();
+        var date_added = $('#date_added_du').val();
         var price = $('#price_du').val();
-        var cate1 = $('#cate1_du').val();
-        var cate2 = $('#cate2_du').val();
+        var expiry_date = $('#expiry_date_du').val();
         var status = $('#status_du').val();
+        var status_seo = $('#status_seo_du').val();
 
         var request = $.ajax({
             url: "/domains/"+id,
             method: "POST",
             data: {
                 _method: 'PUT',
-                name : name,
-                da : da,
-                pa : pa,
-                ref : ref,
-                tf : tf,
-                cf : cf,
-                ree : ree,
-                dr : dr,
-                ur : ur,
-                dp : dp,
-                aby : aby,
-                acr : acr,
-                add_date : add_date,
-                registrar : registrar,
-                market_place : market_place,
-                price : price,
-                cate1 : cate1,
-                cate2 : cate2,
-                status: status
+                domain: domain,
+                source: source,
+                tf: tf,
+                cf: cf,
+                bl: bl,
+                rd: rd,
+                languages: languages,
+                da: da,
+                pa: pa,
+                age: age,
+                score: score,
+                redirects: redirects,
+                history: history,
+                domain_drops: domain_drops,
+                total_organic_results: total_organic_results,
+                semrush_traffic: semrush_traffic,
+                semrush_rank: semrush_rank,
+                semrush_keyword_number: semrush_keyword_number,
+                date_added: date_added,
+                price: price,
+                expiry_date: expiry_date,
+                status: status,
+                status_seo: status_seo
             },
             dataType: "json"
         });
@@ -203,7 +220,7 @@ $(document).ready(function(){
     })
 
     $('#save-filter').click(function(){
-        var name = $('#name').val();
+        var domain = $('#domain').val();
         var damin = $('#damin').val();
         var damax = $('#damax').val();
         var pamin = $('#pamin').val();
@@ -225,7 +242,7 @@ $(document).ready(function(){
             url: "/filters",
             method: "POST",
             data: {
-                name : name,
+                domain : domain,
                 damin : damin,
                 damax : damax,
                 pamin : pamin,
@@ -257,7 +274,7 @@ $(document).ready(function(){
 
     $('#update-filter').click(function(){
         var id = $(this).data('id');
-        var name = $('#name_u').val();
+        var domain = $('#domain_u').val();
         var damin = $('#damin_u').val();
         var damax = $('#damax_u').val();
         var pamin = $('#pamin_u').val();
@@ -280,7 +297,7 @@ $(document).ready(function(){
             method: "POST",
             data: {
                 _method: 'PUT',
-                name : name,
+                domain : domain,
                 damin : damin,
                 damax : damax,
                 pamin : pamin,
