@@ -220,48 +220,29 @@ $(document).ready(function(){
         });
     })
 
-    $('#save-filter').click(function(e){
-        e.preventDefault();
-        var filter_name = $('#filter_name').val();
-        var keyword = $('#keyword').val();
-        var damax = $('#damax').val();
-        var pamin = $('#pamin').val();
-        var pamax = $('#pamax').val();
-        var tfmin = $('#tfmin').val();
-        var tfmax = $('#tfmax').val();
-        var cfmin = $('#cfmin').val();
-        var cfmax = $('#cfmax').val();
-        var rdmin = $('#rdmin').val();
-        var rdmax = $('#rdmax').val();
-        var blmin = $('#blmin').val();
-        var blmax = $('#blmax').val();
-        var agemin = $('#agemin').val();
-        var agemax = $('#agemax').val();
-        var pricemin = $('#pricemin').val();
-        var pricemax = $('#pricemax').val();
-
+    $('#save-filter').click(function(){
         var request = $.ajax({
             url: "/filters",
             method: "POST",
             data: {
-                filter_name : filter_name,
-                keyword : keyword,
-                damin : damin,
-                damax : damax,
-                pamin : pamin,
-                pamax : pamax,
-                tfmin : tfmin,
-                tfmax : tfmax,
-                cfmin : cfmin,
-                cfmax : cfmax,
-                rdmin : rdmin,
-                rdmax : rdmax,
-                blmin : blmin,
-                blmax : blmax,
-                agemin : agemin,
-                agemax : agemax,
-                pricemin : pricemin,
-                pricemax  : pricemax
+                filter_name: $('#filter_name').val(),
+                keyword: $('#keyword').val(),
+                damin: $('#damin').val(),
+                damax: $('#damax').val(),
+                pamin: $('#pamin').val(),
+                pamax: $('#pamax').val(),
+                tfmin: $('#tfmin').val(),
+                tfmax: $('#tfmax').val(),
+                cfmin: $('#cfmin').val(),
+                cfmax: $('#cfmax').val(),
+                rdmin: $('#rdmin').val(),
+                rdmax: $('#rdmax').val(),
+                blmin: $('#blmin').val(),
+                blmax: $('#blmax').val(),
+                agemin: $('#agemin').val(),
+                agemax: $('#agemax').val(),
+                pricemin: $('#pricemin').val(),
+                pricemax: $('#pricemax').val()
             },
             dataType: "json"
         });
@@ -277,48 +258,30 @@ $(document).ready(function(){
 
     $('#update-filter').click(function(){
         var id = $(this).data('id');
-        var filter_name = $('#filter_name_u').val();
-        var keyword = $('#keyword_u').val();
-        var damin = $('#damin_u').val();
-        var damax = $('#damax_u').val();
-        var pamin = $('#pamin_u').val();
-        var pamax = $('#pamax_u').val();
-        var tfmin = $('#tfmin_u').val();
-        var tfmax = $('#tfmax_u').val();
-        var cfmin = $('#cfmin_u').val();
-        var cfmax = $('#cfmax_u').val();
-        var rdmin = $('#rdmin_u').val();
-        var rdmax = $('#rdmax_u').val();
-        var blmin = $('#blmin_u').val();
-        var blmax = $('#blmax_u').val();
-        var agemin = $('#agemin_u').val();
-        var agemax = $('#agemax_u').val();
-        var pricemin = $('#pricemin_u').val();
-        var pricemax = $('#pricemax_u').val();
 
         var request = $.ajax({
             url: "/filters/" + id,
             method: "POST",
             data: {
                 _method: 'PUT',
-                filter_name : filter_name,
-                keyword : keyword,
-                damin : damin,
-                damax : damax,
-                pamin : pamin,
-                pamax : pamax,
-                tfmin : tfmin,
-                tfmax : tfmax,
-                cfmin : cfmin,
-                cfmax : cfmax,
-                rdmin : rdmin,
-                rdmax : rdmax,
-                blmin : blmin,
-                blmax : blmax,
-                agemin : agemin,
-                agemax : agemax,
-                pricemin : pricemin,
-                pricemax  : pricemax
+                filter_name : $('#filter_name_u').val(),
+                keyword : $('#keyword_u').val(),
+                damin : $('#damin_u').val(),
+                damax : $('#damax_u').val(),
+                pamin : $('#pamin_u').val(),
+                pamax : $('#pamax_u').val(),
+                tfmin : $('#tfmin_u').val(),
+                tfmax : $('#tfmax_u').val(),
+                cfmin : $('#cfmin_u').val(),
+                cfmax : $('#cfmax_u').val(),
+                rdmin : $('#rdmin_u').val(),
+                rdmax : $('#rdmax_u').val(),
+                blmin : $('#blmin_u').val(),
+                blmax : $('#blmax_u').val(),
+                agemin : $('#agemin_u').val(),
+                agemax : $('#agemax_u').val(),
+                pricemin : $('#pricemin_u').val(),
+                pricemax : $('#pricemax_u').val()
             },
             dataType: "json"
         });

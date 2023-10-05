@@ -514,7 +514,7 @@
         Toggle column:
       </button>
       <!-- <span class="btn toggle-column-btn">Toggle column: </span> -->
-      <div class="collapse" id="collapseExample">
+      <!-- <div class="collapse" id="collapseExample">
         <div class="d-flex flex-wrap align-items-center g-3">
           <div class="form-check me-4 mt-2 ">
             <input class="form-check-input toggle-vis" data-column="0" type="checkbox" checked id="no_column">
@@ -661,7 +661,7 @@
             </label>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <table class="table table-bordered data-table">
         <thead>
@@ -713,7 +713,7 @@
         processing: true,
         serverSide: true,
         stateSave: true,
-        pageLength: 50,
+        pageLength: 25,
         ajax: "{{ route('domains.index', ['filter' => isset($_GET['filter']) ? $_GET['filter'] : null]) }}",
         columns: [
             {data: 'id', name: 'id'},
@@ -767,7 +767,6 @@
             $(row).data('expiry_date', data.expiry_date);
             $(row).data('status', data.status);
             $(row).data('status_seo', data.status_seo);
-            console.log(data)
         },
         'initComplete': function(settings, json) {
           addEvent();
