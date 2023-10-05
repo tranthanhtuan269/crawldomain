@@ -20,14 +20,14 @@ class DomainController extends Controller
                     if($filter->damax != ''){   $data->where('da', '<=', $filter->damax); }
                     if($filter->pamin != ''){   $data->where('pa', '>=', $filter->pamin); }
                     if($filter->pamax != ''){   $data->where('pa', '<=', $filter->pamax); }
-                    if($filter->drmin != ''){   $data->where('dr', '>=', $filter->drmin); }
-                    if($filter->drmax != ''){   $data->where('dr', '<=', $filter->drmax); }
-                    if($filter->urmin != ''){   $data->where('ur', '>=', $filter->urmin); }
-                    if($filter->urmax != ''){   $data->where('ur', '<=', $filter->urmax); }
+                    if($filter->tfmin != ''){   $data->where('tf', '>=', $filter->tfmin); }
+                    if($filter->tfmax != ''){   $data->where('tf', '<=', $filter->tfmax); }
+                    if($filter->cfmin != ''){   $data->where('cf', '>=', $filter->cfmin); }
+                    if($filter->cfmax != ''){   $data->where('cf', '<=', $filter->cfmax); }
                     if($filter->rdmin != ''){   $data->where('rd', '>=', $filter->rdmin); }
                     if($filter->rdmax != ''){   $data->where('rd', '<=', $filter->rdmax); }
-                    if($filter->blmin != ''){   $data->where('backlinks', '>=', $filter->blmin); }
-                    if($filter->blmax != ''){   $data->where('backlinks', '<=', $filter->blmax); }
+                    if($filter->blmin != ''){   $data->where('bl', '>=', $filter->blmin); }
+                    if($filter->blmax != ''){   $data->where('bl', '<=', $filter->blmax); }
                     if($filter->agemin != ''){  $data->where('age', '>=', $filter->agemin); }
                     if($filter->agemax != ''){  $data->where('age', '<=', $filter->agemax); }
                     if($filter->pricemin != ''){    $data->where('price', '>=', $filter->pricemin); }
