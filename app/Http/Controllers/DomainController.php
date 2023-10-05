@@ -15,7 +15,8 @@ class DomainController extends Controller
             if($request->filter){
                 $filter = Filter::find($request->filter);
                 if($filter){
-                    $data = Domain::where('domain', 'like', '%.com');
+                    $data = Domain::select('*');
+                    if($filter->keyword != ''){   $data->where('domain', 'like', '%'.$filter->keyword.'%');; }
                     if($filter->damin != ''){   $data->where('da', '>=', $filter->damin); }
                     if($filter->damax != ''){   $data->where('da', '<=', $filter->damax); }
                     if($filter->pamin != ''){   $data->where('pa', '>=', $filter->pamin); }
@@ -50,7 +51,7 @@ class DomainController extends Controller
                     }
                 }
             }else{
-                $data = Domain::where('domain', 'like', '%.com');
+                $data = Domain::select('*');
                 if($request->status){
                     switch($request->status){
                         case 'available-soon': $data->where('status', 'Available Soon');

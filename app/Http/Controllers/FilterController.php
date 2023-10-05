@@ -11,7 +11,8 @@ class FilterController extends Controller
 
     public function store(Request $request){
         $filter = new Filter;
-        $filter->name = $request->name;
+        $filter->filter_name = $request->filter_name;
+        $filter->keyword = $request->keyword;
         $filter->damin = $request->damin;
         $filter->damax = $request->damax;
         $filter->pamin = $request->pamin;
@@ -34,7 +35,8 @@ class FilterController extends Controller
     }
 
     public function update(Request $request, Filter $filter){
-        $filter->name = $request->name;
+        $filter->filter_name = $request->filter_name;
+        $filter->keyword = $request->keyword;
         $filter->damin = $request->damin;
         $filter->damax = $request->damax;
         $filter->pamin = $request->pamin;
