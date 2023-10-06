@@ -465,7 +465,7 @@
   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 </svg> Add Domain</span></h1>
     <div class="float-end filter-class">
-      <a href="#"  id="filter-clear">Clear Filter</a>
+      <a href="#"  id="filter-clear">All data</a>
     </div>
     <div class="float-end filter-class pe-2">
       <a href="#">
