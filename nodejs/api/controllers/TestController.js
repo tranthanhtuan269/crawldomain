@@ -83,7 +83,7 @@ module.exports = {
                 })
             }
 
-            gotoPageNoxtools('https://spamzilla.noxtools.com/domains/?per-page=25&page=', 3375);
+            gotoPageNoxtools('https://spamzilla.noxtools.com/domains/?per-page=25&page=', 4500);
         }
 
         async function gotoPageNoxtools(url, numberpage){

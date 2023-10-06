@@ -20,6 +20,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 <body>
+<div class="ajax_waiting"></div>
 <!-- Modal -->
 <div class="modal" id="updateDomain" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
@@ -464,50 +465,48 @@
   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 </svg> Add Domain</span></h1>
     <div class="float-end filter-class">
+      <a href="#"  id="filter-clear">Clear Filter</a>
+    </div>
+    <div class="float-end filter-class pe-2">
       <a href="#">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
             <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
         </svg> Filter
       </a>
-        <div class="filter-model">
-            <ul>
-                @foreach($filters as $filter)
-                <li class="filter-item" value="{{ $filter->id }}">
-                    <a href="#" class="accept-item" data-id="{{ $filter->id }}">{{ $filter->filter_name }}</a>
-                    <a href="#" class="delete-item" data-id="{{ $filter->id }}">delete</a>
-                    <a href="#" class="update-item" 
-                                data-id="{{ $filter->id }}" 
-                                data-filter_name="{{ $filter->filter_name }}"
-                                data-keyword="{{ $filter->keyword }}"
-                                data-damin="{{ $filter->damin }}"
-                                data-damax="{{ $filter->damax }}"
-                                data-pamin="{{ $filter->pamin }}"
-                                data-pamax="{{ $filter->pamax }}"
-                                data-rdmin="{{ $filter->rdmin }}"
-                                data-rdmax="{{ $filter->rdmax }}"
-                                data-blmin="{{ $filter->blmin }}"
-                                data-blmax="{{ $filter->blmax }}"
-                                data-tfmin="{{ $filter->tfmin }}"
-                                data-tfmax="{{ $filter->tfmax }}"
-                                data-cfmin="{{ $filter->cfmin }}"
-                                data-cfmax="{{ $filter->cfmax }}"
-                                data-pricemin="{{ $filter->pricemin }}"
-                                data-pricemax="{{ $filter->pricemax }}"
-                                data-agemin="{{ $filter->agemin }}"
-                                data-agemax="{{ $filter->agemax }}"
-                            >update</a>
-                </li>
-                @endforeach
-                <li id="filter-clear"><a href="#">Clear Filter</a></li>
-                <li id="filter-add"><a href="#">Add Filter</a></li>
-            </ul>
-        </div>
     </div>
-    <div class="color-in">
-      <!-- <span class="btn domain-available-soon">Available Soon</span>
-      <span class="btn domain-available">Buy It Now</span>
-      <span class="btn domain-in-auction">In Auction</span>
-      <span class="btn domain-exp">Expired</span> -->
+    <div class="filter-class">
+      <div class="filter-model">
+          <ul>
+              @foreach($filters as $filter)
+              <li class="filter-item" value="{{ $filter->id }}">
+                  <a href="#" class="accept-item" data-id="{{ $filter->id }}">{{ $filter->filter_name }}</a>
+                  <a href="#" class="delete-item" data-id="{{ $filter->id }}">delete</a>
+                  <a href="#" class="update-item" 
+                              data-id="{{ $filter->id }}" 
+                              data-filter_name="{{ $filter->filter_name }}"
+                              data-keyword="{{ $filter->keyword }}"
+                              data-damin="{{ $filter->damin }}"
+                              data-damax="{{ $filter->damax }}"
+                              data-pamin="{{ $filter->pamin }}"
+                              data-pamax="{{ $filter->pamax }}"
+                              data-rdmin="{{ $filter->rdmin }}"
+                              data-rdmax="{{ $filter->rdmax }}"
+                              data-blmin="{{ $filter->blmin }}"
+                              data-blmax="{{ $filter->blmax }}"
+                              data-tfmin="{{ $filter->tfmin }}"
+                              data-tfmax="{{ $filter->tfmax }}"
+                              data-cfmin="{{ $filter->cfmin }}"
+                              data-cfmax="{{ $filter->cfmax }}"
+                              data-pricemin="{{ $filter->pricemin }}"
+                              data-pricemax="{{ $filter->pricemax }}"
+                              data-agemin="{{ $filter->agemin }}"
+                              data-agemax="{{ $filter->agemax }}"
+                          >edit</a>
+              </li>
+              @endforeach
+              <li id="filter-add"><a href="#">Add Filter</a></li>
+          </ul>
+      </div>
     </div>
     <div class="py-4">
       <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -663,6 +662,11 @@
         </div>
       </div> -->
     </div>
+    <div class="info-table">
+      @if(isset($fil))
+      Filter: <span class="filter-info"><b>{{ isset($fil) ? $fil->filter_name: 'null'; }}</b></span> với <b><span class="number-result">...</span></b> kết quả
+      @endif
+    </div>
     <table class="table table-bordered data-table">
         <thead>
             <tr>
@@ -771,8 +775,9 @@
         'initComplete': function(settings, json) {
           addEvent();
         },
-        'drawCallback': function(){
+        'drawCallback': function(settings, start, end, max, total, pre){
           addEvent();
+          $('.number-result').text(this.fnSettings().json.recordsTotal);
         }
     });
 

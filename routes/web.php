@@ -26,6 +26,8 @@ Route::get('/listen3', [HomeController::class, 'index3']);
 
 Route::resource('domains', DomainController::class);
 Route::resource('filters', FilterController::class);
+
+Route::get('filters', [FilterController::class, 'index'])->name('filters.index');
 Route::get('domains', [DomainController::class, 'index'])->name('domains.index');
 Route::get('/test', [HomeController::class, 'test'])->name('home.test');
 Route::get('/test2', [DomainController::class, 'test'])->name('domain.test');

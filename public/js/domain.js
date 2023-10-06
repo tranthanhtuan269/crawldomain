@@ -14,14 +14,6 @@ $(document).ready(function(){
         }
     })
 
-    $('#filter-add').click(function(){
-        if($('#addModel').hasClass('show')){
-            $('#addModel').modal('hidden');
-        }else{
-            $('#addModel').modal('show');
-        }
-    })
-
     $('.add-domain').click(function(){
         if($('#addDomain').hasClass('show')){
             $('#addDomain').modal('hidden');
@@ -33,37 +25,6 @@ $(document).ready(function(){
 
     $('#filter-clear').click(function(){
         window.location.href = '/';
-    })
-
-    $('.accept-item').click(function(){
-        window.location.href = '/?filter='+$(this).data('id');
-    })
-
-    $('.update-item').click(function(){
-        $('#filter_name_u').val($(this).data('filter_name'));
-        $('#keyword_u').val($(this).data('keyword'));
-        $('#damin_u').val($(this).data('damin'));
-        $('#damax_u').val($(this).data('damax'));
-        $('#pamin_u').val($(this).data('pamin'));
-        $('#pamax_u').val($(this).data('pamax'));
-        $('#tfmin_u').val($(this).data('tfmin'));
-        $('#tfmax_u').val($(this).data('tfmax'));
-        $('#cfmin_u').val($(this).data('cfmin'));
-        $('#cfmax_u').val($(this).data('cfmax'));
-        $('#rdmin_u').val($(this).data('rdmin'));
-        $('#rdmax_u').val($(this).data('rdmax'));
-        $('#blmin_u').val($(this).data('blmin'));
-        $('#blmax_u').val($(this).data('blmax'));
-        $('#agemin_u').val($(this).data('agemin'));
-        $('#agemax_u').val($(this).data('agemax'));
-        $('#pricemin_u').val($(this).data('pricemin'));
-        $('#pricemax_u').val($(this).data('pricemax'));
-        $('#update-filter').data('id', $(this).data('id'));
-        if($('#editMode').hasClass('show')){
-            $('#editMode').modal('hidden');
-        }else{
-            $('#editMode').modal('show');
-        }
     })
 
     $('#save-domain').click(function(){
@@ -221,6 +182,7 @@ $(document).ready(function(){
     })
 
     $('#save-filter').click(function(){
+        $('#addModel').modal('hide');
         var request = $.ajax({
             url: "/filters",
             method: "POST",
@@ -248,7 +210,8 @@ $(document).ready(function(){
         });
 
         request.done(function( msg ) {
-            location.reload();
+
+            updateFilter();
         });
 
         request.fail(function( jqXHR, textStatus ) {
@@ -256,7 +219,9 @@ $(document).ready(function(){
         });
     })
 
+    
     $('#update-filter').click(function(){
+        $('#editMode').modal('hide');
         var id = $(this).data('id');
 
         var request = $.ajax({
@@ -287,7 +252,7 @@ $(document).ready(function(){
         });
 
         request.done(function( msg ) {
-            location.reload();
+            updateFilter();
         });
 
         request.fail(function( jqXHR, textStatus ) {
@@ -295,24 +260,95 @@ $(document).ready(function(){
         });
     })
 
-    $('.delete-item').click(function(){
-        var id = $(this).data('id');
+    function addEventFilter(){
+        $('#filter-add').off('click');
+        $('#filter-add').click(function(){
+            if($('#addModel').hasClass('show')){
+                $('#addModel').modal('hidden');
+            }else{
+                $('#addModel').modal('show');
+            }
+        })
 
+        $('.accept-item').off('click');
+        $('.accept-item').click(function(){
+            window.location.href = '/?filter='+$(this).data('id');
+        })
+        $('.update-item').off('click');
+        $('.update-item').click(function(){
+            $('#filter_name_u').val($(this).data('filter_name'));
+            $('#keyword_u').val($(this).data('keyword'));
+            $('#damin_u').val($(this).data('damin'));
+            $('#damax_u').val($(this).data('damax'));
+            $('#pamin_u').val($(this).data('pamin'));
+            $('#pamax_u').val($(this).data('pamax'));
+            $('#tfmin_u').val($(this).data('tfmin'));
+            $('#tfmax_u').val($(this).data('tfmax'));
+            $('#cfmin_u').val($(this).data('cfmin'));
+            $('#cfmax_u').val($(this).data('cfmax'));
+            $('#rdmin_u').val($(this).data('rdmin'));
+            $('#rdmax_u').val($(this).data('rdmax'));
+            $('#blmin_u').val($(this).data('blmin'));
+            $('#blmax_u').val($(this).data('blmax'));
+            $('#agemin_u').val($(this).data('agemin'));
+            $('#agemax_u').val($(this).data('agemax'));
+            $('#pricemin_u').val($(this).data('pricemin'));
+            $('#pricemax_u').val($(this).data('pricemax'));
+            $('#update-filter').data('id', $(this).data('id'));
+            if($('#editMode').hasClass('show')){
+                $('#editMode').modal('hidden');
+            }else{
+                $('#editMode').modal('show');
+            }
+        })
+        $('.delete-item').off('click');
+        $('.delete-item').click(function(){
+            var id = $(this).data('id');
+            $(this).parent().hide();
+    
+            var request = $.ajax({
+                url: "/filters/" + id,
+                method: "POST",
+                data: {
+                    _method: 'DELETE'
+                },
+                dataType: "json"
+            });
+    
+            request.done(function( msg ) {
+                updateFilter();
+            });
+    
+            request.fail(function( jqXHR, textStatus ) {
+                alert( "Request failed: " + textStatus );
+            });
+        })
+    }
+
+    function updateFilter(){
+        $('.ajax_waiting').addClass('loading');
         var request = $.ajax({
-            url: "/filters/" + id,
-            method: "POST",
-            data: {
-                _method: 'DELETE'
-            },
+            url: "/filters",
+            method: "GET",
             dataType: "json"
         });
 
         request.done(function( msg ) {
-            location.reload();
+            $('.ajax_waiting').removeClass('loading');
+            $('.filter-model ul').html('');
+            var html = '';
+            $( msg.filters ).each(function( index ) {
+                html += '<li class="filter-item" value="'+this.id+'"><a href="#" class="accept-item" data-id="'+this.id+'">'+this.filter_name+'</a><a href="#" class="delete-item" data-id="'+this.id+'">delete</a><a href="#" class="update-item" data-id="'+this.id+'" data-filter_name="'+this.filter_name+'" data-keyword="'+this.keyword+'" data-damin="'+this.damin+'" data-damax="'+this.damax+'" data-pamin="'+this.pamin+'" data-pamax="'+this.pamax+'" data-rdmin="'+this.rdmin+'" data-rdmax="'+this.rdmax+'" data-blmin="'+this.blmin+'" data-blmax="'+this.blmax+'" data-tfmin="'+this.tfmin+'" data-tfmax="'+this.tfmax+'" data-cfmin="'+this.cfmin+'" data-cfmax="'+this.cfmax+'" data-pricemin="'+this.pricemin+'" data-pricemax="'+this.pricemax+'" data-agemin="'+this.agemin+'" data-agemax="'+this.agemax+'">edit</a></li>';
+            });
+            html += '<li id="filter-add"><a href="#">Add Filter</a></li>';
+            $('.filter-model ul').html(html);
+            addEventFilter();
         });
 
         request.fail(function( jqXHR, textStatus ) {
             alert( "Request failed: " + textStatus );
         });
-    })
+    }
+
+    addEventFilter();
 })

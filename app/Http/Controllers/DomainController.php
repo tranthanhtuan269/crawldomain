@@ -67,8 +67,15 @@ class DomainController extends Controller
         }
 
         $filters = Filter::get();
-          
-        return view('domains', ['filters' => $filters]);
+
+        if($request->filter){
+            $filter = Filter::find($request->filter);
+            if($filter){
+                return view('domains', ['filters' => $filters, 'fil'=>$filter]);
+            }
+        }
+        
+        return view('domains', ['filters' => $filters, 'fil'=> null]);
     }
 
     public function store(Request $request){

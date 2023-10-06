@@ -7,7 +7,11 @@ use App\Models\Filter;
 
 class FilterController extends Controller
 {
-    //
+    public function index(){
+        $filters = Filter::get();
+
+        return response()->json(['message' => 'Lấy thông tin thành công!', 'status' => 200, 'filters' => $filters]); 
+    }
 
     public function store(Request $request){
         $filter = new Filter;
