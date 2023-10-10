@@ -34,13 +34,9 @@ class DomainController extends Controller
                     if($filter->pricemin != ''){    $data->where('price', '>=', $filter->pricemin); }
                     if($filter->pricemax != ''){    $data->where('price', '<=', $filter->pricemax); }
 
-                    if($request->status){
-                        switch($request->status){
-                            case 'available-soon': $data->where('status', 'like', '%Available Soon%');
-                            case 'available': $data->where('status', 'like', '%Buy It Now%');
-                            case 'in-auction': $data->where('status', 'like', '%In Auction%');
-                            case 'domain-exp': $data->where('status', '!=', 'Available Soon')->where('status', '!=', 'Buy It Now')->where('status', '!=', 'In Auction');
-                        }
+                    if($request->status_seo){
+                        $data->where('status_seo', $request->status_seo);
+
                         return Datatables::of($data->orderBy('id', 'desc'))
                             ->addIndexColumn()
                             ->make(true);
@@ -52,13 +48,8 @@ class DomainController extends Controller
                 }
             }else{
                 $data = Domain::select('*');
-                if($request->status){
-                    switch($request->status){
-                        case 'available-soon': $data->where('status', 'Available Soon');
-                        case 'available': $data->where('status', 'Buy It Now');
-                        case 'in-auction': $data->where('status', 'In Auction');
-                        case 'domain-exp': $data->where('status', '!=', 'Available Soon')->where('status', '!=', 'Buy It Now')->where('status', '!=', 'In Auction');
-                    }
+                if($request->status_seo){
+                    $data->where('status_seo', $request->status_seo);
                 }
                 return Datatables::of($data->orderBy('id', 'desc'))
                         ->addIndexColumn()
