@@ -10,7 +10,7 @@
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
-
+    <script src="https://cdn.datatables.net/fixedheader/3.4.0/js/dataTables.fixedHeader.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/build/jquery.datetimepicker.min.css" />
     <script src="/build/jquery.datetimepicker.full.min.js"></script>
@@ -118,16 +118,6 @@
           <div class="col-6">
               <label for="price" class="col-form-label">Price</label>
               <input type="number" min="0" class="form-control" id="price_du">
-          </div>
-          <div class="col-6">
-              <label for="cate2" class="col-form-label">Status</label>
-              {!! Form::select('status', array(
-                'Available Soon' => 'Available Soon', 
-                'Buy It Now' => 'Buy It Now', 
-                'In Auction' => 'In Auction',
-                'Expired' => 'Expired'
-                ), NULL, ['class' => 'form-control', 'id' => 'status_du']); 
-              !!}
           </div>
           <div class="col-6">
               <label for="cate2" class="col-form-label">Status SEO</label>
@@ -247,16 +237,6 @@
           <div class="col-6">
               <label for="price" class="col-form-label">Price</label>
               <input type="number" min="0" class="form-control" id="price_d">
-          </div>
-          <div class="col-6">
-              <label for="cate2" class="col-form-label">Status</label>
-              {!! Form::select('status', array(
-                'Available Soon' => 'Available Soon', 
-                'Buy It Now' => 'Buy It Now', 
-                'In Auction' => 'In Auction',
-                'Expired' => 'Expired'
-                ), NULL, ['class' => 'form-control', 'id' => 'status_d']); 
-              !!}
           </div>
           <div class="col-6">
               <label for="cate2" class="col-form-label">Status SEO</label>
@@ -461,14 +441,15 @@
   </div>
 </div>
 <div class="container-fluid">
+  <div class="sticky-option2">
     <h1>Domains <span class="float-end add-domain"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-</svg> Add Domain</span></h1>
+      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+  </svg> Add Domain</span></h1>
     <div class="float-end filter-class">
-      <a href="#"  id="filter-clear">All data</a>
+      <a href="javascript:void(0)"  id="filter-clear">All data</a>
     </div>
     <div class="float-end filter-class pe-2">
-      <a href="#">
+      <a href="javascript:void(0)">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
             <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
         </svg> Filter
@@ -479,9 +460,9 @@
           <ul>
               @foreach($filters as $filter)
               <li class="filter-item" value="{{ $filter->id }}">
-                  <a href="#" class="accept-item" data-id="{{ $filter->id }}">{{ $filter->filter_name }}</a>
-                  <a href="#" class="delete-item" data-id="{{ $filter->id }}">delete</a>
-                  <a href="#" class="update-item" 
+                  <a href="javascript:void(0)" class="accept-item" data-id="{{ $filter->id }}">{{ $filter->filter_name }}</a>
+                  <a href="javascript:void(0)" class="delete-item" data-id="{{ $filter->id }}">delete</a>
+                  <a href="javascript:void(0)" class="update-item" 
                               data-id="{{ $filter->id }}" 
                               data-filter_name="{{ $filter->filter_name }}"
                               data-keyword="{{ $filter->keyword }}"
@@ -504,7 +485,7 @@
                           >edit</a>
               </li>
               @endforeach
-              <li id="filter-add"><a href="#">Add Filter</a></li>
+              <li id="filter-add"><a href="javascript:void(0)">Add Filter</a></li>
           </ul>
       </div>
     </div>
@@ -513,198 +494,193 @@
         Toggle column:
       </button>
       <!-- <span class="btn toggle-column-btn">Toggle column: </span> -->
-      <!-- <div class="collapse" id="collapseExample">
+      <div class="collapse" id="collapseExample">
         <div class="d-flex flex-wrap align-items-center g-3">
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="0" type="checkbox" checked id="no_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="0" type="checkbox" checked data-id="no" id="no_column">
             <label class="form-check-label" for="no_column">
               No
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="1" type="checkbox" checked id="domain_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="1" type="checkbox" checked data-id="domain" id="domain_column">
             <label class="form-check-label" for="domain_column">
               Domain
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="2" type="checkbox" checked id="source_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="2" type="checkbox" checked data-id="source" id="source_column">
             <label class="form-check-label" for="source_column">
               Source
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="3" type="checkbox" checked id="tf_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="3" type="checkbox" checked data-id="tf" id="tf_column">
             <label class="form-check-label" for="tf_column">
               TF
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="4" type="checkbox" checked id="cf_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="4" type="checkbox" checked data-id="cf" id="cf_column">
             <label class="form-check-label" for="cf_column">
               CF
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="5" type="checkbox" checked id="bl_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="5" type="checkbox" checked data-id="bl" id="bl_column">
             <label class="form-check-label" for="bl_column">
               BL
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="6" type="checkbox" checked id="rd_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="6" type="checkbox" checked data-id="rd" id="rd_column">
             <label class="form-check-label" for="rd_column">
               RD
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="7" type="checkbox" checked id="da_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="7" type="checkbox" checked data-id="da" id="da_column">
             <label class="form-check-label" for="da_column">
               DA
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="8" type="checkbox" checked id="pa_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="8" type="checkbox" checked data-id="pa" id="pa_column">
             <label class="form-check-label" for="pa_column">
               PA
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="9" type="checkbox" checked id="language_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="9" type="checkbox" checked data-id="language" id="language_column">
             <label class="form-check-label" for="language_column">
               Languages
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="10" type="checkbox" checked id="age_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="10" type="checkbox" checked data-id="age" id="age_column">
             <label class="form-check-label" for="age_column">
               Age
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="11" type="checkbox" checked id="score_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="11" type="checkbox" checked data-id="score" id="score_column">
             <label class="form-check-label" for="score_column">
               Score
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="12" type="checkbox" checked id="redirects_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="12" type="checkbox" checked data-id="redirects" id="redirects_column">
             <label class="form-check-label" for="redirects_column">
               Redirects
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="13" type="checkbox" checked id="history_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="13" type="checkbox" checked data-id="history" id="history_column">
             <label class="form-check-label" for="history_column">
               History
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="14" type="checkbox" checked id="domain_drops_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="14" type="checkbox" checked data-id="domain_drops" id="domain_drops_column">
             <label class="form-check-label" for="domain_drops_column">
               Domain Drops
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="15" type="checkbox" checked id="total_organic_results_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="15" type="checkbox" checked data-id="total_organic_results" id="total_organic_results_column">
             <label class="form-check-label" for="total_organic_results_column">
               Total Organic Results
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="16" type="checkbox" checked id="semrush_traffic_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="16" type="checkbox" checked data-id="semrush_traffic" id="semrush_traffic_column">
             <label class="form-check-label" for="semrush_traffic_column">
               Semrush Traffic
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="17" type="checkbox" checked id="semrush_rank_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="17" type="checkbox" checked data-id="semrush_rank" id="semrush_rank_column">
             <label class="form-check-label" for="semrush_rank_column">
               Semrush Rank
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="18" type="checkbox" checked id="semrush_keyword_number_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="18" type="checkbox" checked data-id="semrush_keyword_number" id="semrush_keyword_number_column">
             <label class="form-check-label" for="semrush_keyword_number_column">
               Semrush Keyword Number
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="19" type="checkbox" checked id="date_added_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="19" type="checkbox" checked data-id="date_added" id="date_added_column">
             <label class="form-check-label" for="date_added_column">
               Date Added
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="20" type="checkbox" checked id="price_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="20" type="checkbox" checked data-id="price" id="price_column">
             <label class="form-check-label" for="price_column">
               Price
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="21" type="checkbox" checked id="expiry_date_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="21" type="checkbox" checked data-id="expiry_date" id="expiry_date_column">
             <label class="form-check-label" for="expiry_date_column">
               Expiry Date
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="22" type="checkbox" checked id="status_column">
-            <label class="form-check-label" for="status_column">
-              Status
-            </label>
-          </div>
-          <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-vis" data-column="23" type="checkbox" checked id="status_seo_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="22" type="checkbox" checked data-id="status_seo" id="status_seo_column">
             <label class="form-check-label" for="status_seo_column">
               Status Seo
             </label>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
+  </div>
     <div class="info-table">
       @if(isset($fil))
       Filter: <span class="filter-info"><b>{{ isset($fil) ? $fil->filter_name: 'null'; }}</b></span> với <b><span class="number-result">...</span></b> kết quả
       @endif
     </div>
-    <table class="table table-bordered data-table">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>domain</th>
-                <th>source</th>
-                <th>tf</th>
-                <th>cf</th>
-                <th>bl</th>
-                <th>rd</th>
-                <th>da</th>
-                <th>pa</th>
-                <th>languages</th>
-                <th>age</th>
-                <th>score</th>
-                <th>redirects</th>
-                <th>history</th>
-                <th>domain drops</th>
-                <th>total organic results</th>
-                <th>semrush traffic</th>
-                <th>semrush rank</th>
-                <th>semrush keyword number</th>
-                <th>date added</th>
-                <th>price</th>
-                <th>expiry date</th>
-                <th>status</th>
-                <th>status seo</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div class="wrap-table">
+      <table class="table table-bordered data-table table-fixed" >
+          <thead class="table-dark">
+              <tr>
+                  <th>No</th>
+                  <th>domain</th>
+                  <th>source</th>
+                  <th>tf</th>
+                  <th>cf</th>
+                  <th>bl</th>
+                  <th>rd</th>
+                  <th>da</th>
+                  <th>pa</th>
+                  <th>lang</th>
+                  <th>age</th>
+                  <th>score</th>
+                  <th>redirects</th>
+                  <th>history</th>
+                  <th>drops</th>
+                  <th>total organic results</th>
+                  <th>sem traffic</th>
+                  <th>sem rank</th>
+                  <th>sem keyword number</th>
+                  <th>date added</th>
+                  <th>price</th>
+                  <th>expiry date</th>
+                  <th>status seo</th>
+              </tr>
+          </thead>
+          <tbody>
+          </tbody>
+      </table>
+    </div>
 </div>
 </body>
      
 <script type="text/javascript">
-  $(function () {
+  $(document).ready(function(){
     $('#expiry_date_d').datetimepicker({
                       format: 'Y-m-d H:i:00'
                   });
@@ -717,12 +693,15 @@
         processing: true,
         serverSide: true,
         stateSave: true,
+        fixedHeader: true,
         pageLength: 25,
         ajax: "{{ route('domains.index', ['filter' => isset($_GET['filter']) ? $_GET['filter'] : null]) }}",
         columns: [
             {data: 'id', name: 'id'},
             {data: 'domain', name: 'domain'},
-            {data: 'source', name: 'source'},
+            {data: 'source', name: 'source', render: function(data, type, row) {
+              return '<a href="'+data+'" target="_blank">source</a>';                                            
+            }},
             {data: 'tf', name: 'tf'},
             {data: 'cf', name: 'cf'},
             {data: 'bl', name: 'bl'},
@@ -742,8 +721,7 @@
             {data: 'date_added', name: 'date_added'},
             {data: 'price', name: 'price'},
             {data: 'expiry_date', name: 'expiry_date'},
-            {data: 'status', name: 'status'},
-            {data: 'status_seo', name: 'status_seo'},
+            {data: 'status_seo', name: 'status_seo', class: 'status_seo'},
         ],
         'createdRow': function( row, data, dataIndex ) {
             $(row).addClass( 'domain-row' );
@@ -769,8 +747,18 @@
             $(row).data('date_added', data.date_added);
             $(row).data('price', data.price);
             $(row).data('expiry_date', data.expiry_date);
-            $(row).data('status', data.status);
             $(row).data('status_seo', data.status_seo);
+            if(data.status_seo == 0){
+              $(row).addClass( 'chua-check' );
+            }else if(data.status_seo == 1){
+              $(row).addClass( 'dang-check' );
+            }else if(data.status_seo == 2){
+              $(row).addClass( 'da-check' );
+            }else if(data.status_seo == 3){
+              $(row).addClass( 'chot-mua' );
+            }else if(data.status_seo == 3){
+              $(row).addClass( 'da-mua' );
+            }
         },
         'initComplete': function(settings, json) {
           addEvent();
@@ -808,7 +796,6 @@
             $('#date_added_du').val($(this).data('date_added'));
             $('#price_du').val($(this).data('price'));
             $('#expiry_date_du').val($(this).data('expiry_date'));
-            $('#status_du').val($(this).data('status'));
             $('#status_seo_du').val($(this).data('status_seo'));
 
             if($('#updateDomain').hasClass('show')){
@@ -819,17 +806,91 @@
         })
     }
 
-    document.querySelectorAll('input.toggle-vis').forEach((el) => {
-        el.addEventListener('click', function (e) {
-            // e.preventDefault();
+    let toggleCollumn = [];
+    function checkToggleCollumn(){
+        var toggleCollumnDefault = {
+            'no': true,
+            'domain': true,
+            'source': true,
+            'tf': true,
+            'cf': true,
+            'bl': true,
+            'rd': true,
+            'languages': true,
+            'da': true,
+            'pa': true,
+            'age': true,
+            'score': true,
+            'redirects': true,
+            'history': true,
+            'domain_drops': true,
+            'total_organic_results': true,
+            'semrush_traffic': true,
+            'semrush_rank': true,
+            'semrush_keyword_number': true,
+            'date_added': true,
+            'price': true,
+            'expiry_date': true,
+            'status_seo': true
+        }
+
+        // Put the object into storage
+        // localStorage.setItem('testObject', JSON.stringify(testObject));
+
+        // Retrieve the object from storage
+        // var retrievedObject = localStorage.getItem('testObject');
+
+        // console.log('retrievedObject: ', JSON.parse(retrievedObject));
+
+        
+        if (localStorage.getItem("toggleCollumn") === null) {
+            localStorage.setItem('toggleCollumn', JSON.stringify(toggleCollumnDefault));
+            toggleCollumn = toggleCollumnDefault;
+        }else{
+            toggleCollumn = JSON.parse(localStorage.getItem("toggleCollumn"))
+        }
+
+        console.log(toggleCollumn);
+
+        $('#no_column').prop( "checked", toggleCollumn.no );
+        $('#domain_column').prop( "checked", toggleCollumn.domain );
+        $('#source_column').prop( "checked", toggleCollumn.source );
+        $('#tf_column').prop( "checked", toggleCollumn.tf );
+        $('#cf_column').prop( "checked", toggleCollumn.cf );
+        $('#bl_column').prop( "checked", toggleCollumn.bl );
+        $('#rd_column').prop( "checked", toggleCollumn.rd );
+        $('#languages_column').prop( "checked", toggleCollumn.languages );
+        $('#da_column').prop( "checked", toggleCollumn.da );
+        $('#pa_column').prop( "checked", toggleCollumn.pa );
+        $('#age_column').prop( "checked", toggleCollumn.age );
+        $('#score_column').prop( "checked", toggleCollumn.score );
+        $('#redirects_column').prop( "checked", toggleCollumn.redirects );
+        $('#history_column').prop( "checked", toggleCollumn.history );
+        $('#domain_drops_column').prop( "checked", toggleCollumn.domain_drops );
+        $('#total_organic_results_column').prop( "checked", toggleCollumn.total_organic_results );
+        $('#semrush_traffic_column').prop( "checked", toggleCollumn.semrush_traffic );
+        $('#semrush_rank_column').prop( "checked", toggleCollumn.semrush_rank );
+        $('#semrush_keyword_number_column').prop( "checked", toggleCollumn.semrush_keyword_number );
+        $('#date_added_column').prop( "checked", toggleCollumn.date_added );
+        $('#price_column').prop( "checked", toggleCollumn.price );
+        $('#expiry_date_column').prop( "checked", toggleCollumn.expiry_date );
+        $('#status_seo_column').prop( "checked", toggleCollumn.status_seo );
+    }
+
+    $('.toggle-item').click(function(){
+
+      // alert()
+      let columnIdx = $(this).data('column');
+      let column = table.column(columnIdx);
+
+      // Toggle the visibility
+      column.visible($(this).prop( "checked"));
+
+      toggleCollumn[$(this).data('id')] = $(this).is(":checked");
+      localStorage.setItem('toggleCollumn', JSON.stringify(toggleCollumn));
+    })
     
-            let columnIdx = e.target.getAttribute('data-column');
-            let column = table.column(columnIdx);
-    
-            // Toggle the visibility
-            column.visible(!column.visible());
-        });
-    });
+    checkToggleCollumn();
       
   });
 </script>

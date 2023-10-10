@@ -1,12 +1,13 @@
-
-.toggle-vis{
+.toggle-vis {
     cursor: pointer;
 }
-.filter-class{
+
+.filter-class {
     color: -webkit-link;
     position: relative;
 }
-.filter-model{
+
+.filter-model {
     position: absolute;
     background-color: #ffffff;
     top: 25px;
@@ -17,30 +18,34 @@
     border: 1px solid #ddd;
     display: none;
 }
-.filter-model ul{
+
+.filter-model ul {
     list-style-type: none;
-    margin:0;
+    margin: 0;
     padding: 0;
 }
-.filter-item
-{
+
+.filter-item {
     color: -webkit-link;
     position: relative;
 }
-.filter-item .update-item{
+
+.filter-item .update-item {
     position: absolute;
     right: 50px;
 }
-.filter-item .delete-item{
+
+.filter-item .delete-item {
     position: absolute;
     right: 0px;
 }
-.filter-add{
+
+.filter-add {
     cursor: pointer;
     color: -webkit-link;
 }
 
-.add-domain{
+.add-domain {
     font-size: 16px;
     line-height: 56px;
     margin-right: 2px;
@@ -48,30 +53,19 @@
     color: -webkit-link;
 }
 
-.data-table tr{
+.data-table tr {
     cursor: pointer;
 }
 
-.btn.domain-available-soon{
+.btn.domain-available-soon {
     border: 1px solid #ddd;
 }
-.domain-available-soon{
-    /* background-color: #b5ead7!important; */
-}
 
-.domain-available{
-    background-color: #ee9a7d!important;
-}
-
-.domain-in-auction{
-    background-color: #a8d39d;
-}
-
-.domain-exp{
-    background-color: #83a5d9!important;
-}
-
-.accept-item, .delete-item, .update-item, #filter-clear, #filter-add{
+.accept-item,
+.delete-item,
+.update-item,
+#filter-clear,
+#filter-add {
     cursor: pointer;
 }
 
@@ -123,4 +117,80 @@
     border-radius: .5em;
     -webkit-box-shadow: rgba(0, 0, 0, .75) 1.5em 0 0 0, rgba(0, 0, 0, .75) 1.1em 1.1em 0 0, rgba(0, 0, 0, .75) 0 1.5em 0 0, rgba(0, 0, 0, .75) -1.1em 1.1em 0 0, rgba(0, 0, 0, .5) -1.5em 0 0 0, rgba(0, 0, 0, .5) -1.1em -1.1em 0 0, rgba(0, 0, 0, .75) 0 -1.5em 0 0, rgba(0, 0, 0, .75) 1.1em -1.1em 0 0;
     box-shadow: rgba(0, 0, 0, .75) 1.5em 0 0 0, rgba(0, 0, 0, .75) 1.1em 1.1em 0 0, rgba(0, 0, 0, .75) 0 1.5em 0 0, rgba(0, 0, 0, .75) -1.1em 1.1em 0 0, rgba(0, 0, 0, .75) -1.5em 0 0 0, rgba(0, 0, 0, .75) -1.1em -1.1em 0 0, rgba(0, 0, 0, .75) 0 -1.5em 0 0, rgba(0, 0, 0, .75) 1.1em -1.1em 0 0
+}
+
+.sticky-option {
+    position: sticky;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    background: #ccc;
+}
+
+.wrap-table {
+    width: 100%;
+    overflow: auto;
+}
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+    /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.full-cont {
+    background-color: #ddd;
+    width: 100%;
+    height: 100%;
+}
+
+.domain-available {
+    background-color: #ee9a7d !important;
+}
+
+.domain-in-auction {
+    background-color: #a8d39d;
+}
+
+.domain-exp {
+    background-color: #83a5d9 !important;
+}
+
+.dang-check .status_seo {
+    background-color: #ee9a82;
+}
+
+.da-check .status_seo {
+    background-color: #fdf79f;
+}
+
+.chot-mua .status_seo {
+    background-color: #80cd9f;
+}
+
+.da-mua .status_seo {
+    background-color: #86a4d8;
 }

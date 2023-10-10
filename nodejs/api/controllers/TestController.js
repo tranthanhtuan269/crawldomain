@@ -83,7 +83,7 @@ module.exports = {
                 })
             }
 
-            gotoPageNoxtools('https://spamzilla.noxtools.com/domains/?per-page=25&page=', 4500);
+            gotoPageNoxtools('https://spamzilla.noxtools.com/domains/?per-page=25&page=', 11782);
         }
 
         async function gotoPageNoxtools(url, numberpage){
@@ -99,32 +99,52 @@ module.exports = {
                 for (let i = 0; i < domains.length; i++) {
                     const domain = await domains[i].$eval('.expired-domains:nth-child(2)', el => el.textContent.trim());
                     const source = await domains[i].$eval('.td_data_source a', el => el.href);
-                    const tf = await domains[i].$eval('.td_majestic_tf a', el => el.textContent.trim());
-                    const cf = await domains[i].$eval('.td_majestic_cf', el => el.textContent.trim());
-                    const bl = await domains[i].$eval('.td_majestic_bl', el => el.textContent.trim());
-                    const rd = await domains[i].$eval('.td_majestic_rd', el => el.textContent.trim());
-                    const languages = await domains[i].$eval('.td_languages', el => el.textContent.trim());
-                    const da = await domains[i].$eval('.td_moz_da', el => el.textContent.trim());
-                    const pa = await domains[i].$eval('.td_moz_pa', el => el.textContent.trim());
-                    const age = await domains[i].$eval('.td_age', el => el.textContent.trim());
+                    let tf = await domains[i].$eval('.td_majestic_tf a', el => el.textContent.trim());
+                    let cf = await domains[i].$eval('.td_majestic_cf', el => el.textContent.trim());
+                    let bl = await domains[i].$eval('.td_majestic_bl', el => el.textContent.trim());
+                    let rd = await domains[i].$eval('.td_majestic_rd', el => el.textContent.trim());
+                    let languages = await domains[i].$eval('.td_languages', el => el.textContent.trim());
+                    let da = await domains[i].$eval('.td_moz_da', el => el.textContent.trim());
+                    let pa = await domains[i].$eval('.td_moz_pa', el => el.textContent.trim());
+                    let age = await domains[i].$eval('.td_age', el => el.textContent.trim());
                     let score = 0;
                     try{
                         score = await domains[i].$eval('.td_sz_score strong', el => el.textContent.trim());
                     }catch(error){
                         score = await domains[i].$eval('.td_sz_score', el => el.textContent.trim());
                     }
-                    const redirects = await domains[i].$eval('.td_redirects', el => el.textContent.trim());
-                    const history = await domains[i].$eval('.td_active_history', el => el.textContent.trim());
-                    const domain_drops = await domains[i].$eval('.td_domain_drops', el => el.textContent.trim());
-                    const total_organic_results = await domains[i].$eval('.td_total_organic_results', el => el.textContent.trim());
-                    const semrush_traffic = await domains[i].$eval('.td_semrush_traffic', el => el.textContent.trim());
-                    const semrush_rank = await domains[i].$eval('.td_semrush_rank', el => el.textContent.trim());
-                    const semrush_keyword_number = await domains[i].$eval('.td_semrush_keyword_number', el => el.textContent.trim());
-                    const date_added = await domains[i].$eval('.td_date_added', el => el.textContent.trim());
-                    const price = await domains[i].$eval('.td_price', el => el.textContent.trim());
-                    const expiry_date = await domains[i].$eval('.td_expiry_date', el => el.textContent.trim());
+                    let redirects = '-';
+                    let history = '-';
+                    let domain_drops = '-';
+                    let total_organic_results = await domains[i].$eval('.td_total_organic_results', el => el.textContent.trim());
+                    let semrush_traffic = await domains[i].$eval('.td_semrush_traffic', el => el.textContent.trim());
+                    let semrush_rank = await domains[i].$eval('.td_semrush_rank', el => el.textContent.trim());
+                    let semrush_keyword_number = await domains[i].$eval('.td_semrush_keyword_number', el => el.textContent.trim());
+                    let date_added = await domains[i].$eval('.td_date_added', el => el.textContent.trim());
+                    let price = await domains[i].$eval('.td_price', el => el.textContent.trim());
+                    let expiry_date = await domains[i].$eval('.td_expiry_date', el => el.textContent.trim());
 
-                    console.log('domain: ' + domain);
+                    (tf == '' || tf == '-') ? tf = -1 : tf = tf;
+                    (cf == '' || cf == '-') ? cf = -1 : cf = cf;
+                    (bl == '' || bl == '-') ? bl = -1 : bl = bl;
+                    (rd == '' || rd == '-') ? rd = -1 : rd = rd;
+                    (languages == '' || languages == '-') ? languages = -1 : languages = languages;
+                    (da == '' || da == '-') ? da = -1 : da = da;
+                    (pa == '' || pa == '-') ? pa = -1 : pa = pa;
+                    (age == '' || age == '-') ? age = -1 : age = age;
+                    (score == '' || score == '-') ? score = -1 : score = score;
+                    (redirects == '' || redirects == '-') ? redirects = -1 : redirects = redirects;
+                    (history == '' || history == '-') ? history = -1 : history = history;
+                    (domain_drops == '' || domain_drops == '-') ? domain_drops = -1 : domain_drops = domain_drops;
+                    (total_organic_results == '' || total_organic_results == '-') ? total_organic_results = -1 : total_organic_results = total_organic_results;
+                    (semrush_traffic == '' || semrush_traffic == '-') ? semrush_traffic = -1 : semrush_traffic = semrush_traffic;
+                    (semrush_rank == '' || semrush_rank == '-') ? semrush_rank = -1 : semrush_rank = semrush_rank;
+                    (semrush_keyword_number == '' || semrush_keyword_number == '-') ? semrush_keyword_number = -1 : semrush_keyword_number = semrush_keyword_number;
+                    (date_added == '' || date_added == '-') ? date_added = -1 : date_added = date_added;
+                    (price == '' || price == '-') ? price = -1 : price = price;
+                    (expiry_date == '' || expiry_date == '-') ? expiry_date = -1 : expiry_date = expiry_date;
+
+                    // console.log('domain: ' + domain);
                     // console.log('source: ' + source);
                     // console.log('tf: ' + tf);
                     // console.log('cf: ' + cf);
@@ -145,13 +165,15 @@ module.exports = {
                     // console.log('date_added: ' + date_added);
                     // console.log('price: ' + price);
                     // console.log('expiry_date: ' + expiry_date);
-                    console.log('--------------------');
+                    // console.log('--------------------');
                     // insert ignore 
                     var sql = "INSERT IGNORE INTO domain2 (domain, source, tf, cf, bl, rd, languages, da, pa, age, score, redirects, history, domain_drops, total_organic_results, semrush_traffic, semrush_rank, semrush_keyword_number, date_added, price, expiry_date) VALUES ('"+ domain +"', '"+ source +"', '"+ tf +"', '"+ cf +"', '"+ bl +"', '"+ rd +"', '"+ languages +"', '"+ da +"', '"+ pa +"', '"+ age +"', '"+ score +"', '"+ redirects +"', '"+ history +"', '"+ domain_drops +"', '"+ total_organic_results +"', '"+ semrush_traffic +"', '"+ semrush_rank +"', '"+ semrush_keyword_number +"', '"+ date_added +"', '"+ price +"', '"+ expiry_date +"')";
-                    con.query(sql, function (err, result) {
-                        if (err) throw err;
-                        console.log("1 record inserted");
-                    });
+                    try{
+                        con.query(sql);
+                        console.log("domain: " + domain + " is added to system");
+                    }catch(e){
+                        console.log("domain: " + domain + " is existed");
+                    }
                 }
 
                 gotoPageNoxtools('https://spamzilla.noxtools.com/domains/?per-page=25&page=', numberpage+1);
@@ -793,11 +815,17 @@ module.exports = {
                 const order = await domains[i].$eval('.left.dtOrderBy', el => el.textContent.trim());
 
                 // insert ignore 
-                var sql = "INSERT IGNORE INTO domains (name, price, status, order_time) VALUES ('"+domain+"', '"+bid.substr(1).replaceAll(",","")+"', '"+status+"', '"+processTime(order)+"')";
-                con.query(sql, function (err, result) {
-                    if (err) throw err;
-                    console.log("1 record inserted");
-                });
+                // var sql = "INSERT IGNORE INTO domains (name, price, status, order_time) VALUES ('"+domain+"', '"+bid.substr(1).replaceAll(",","")+"', '"+status+"', '"+processTime(order)+"')";
+                var sql = "INSERT INTO domains (name, price, status, order_time) VALUES ('"+domain+"', '"+bid.substr(1).replaceAll(",","")+"', '"+status+"', '"+processTime(order)+"')";
+                try{
+                    con.query(sql, function (err, result) {
+                        if (err) throw err;
+                        console.log("domain: "+domain+" is added to system");
+                    });
+                }catch(e){
+                    console.log("domain: "+domain+" is existed");
+                }
+                
 
                 query("UPDATE domains set price = '"+bid.substr(1).replaceAll(",","")+"', status = '"+status+"', order_time = '"+processTime(order)+"' where name = '"+domain+"'");
 
