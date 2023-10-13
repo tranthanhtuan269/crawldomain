@@ -6,8 +6,8 @@ const puppeteer = require('puppeteer');
 
 const fs = require('fs');
 const cookiesFilePath = 'cookies.json';
-const cookiesFilePath2 = 'cookiesHammer.json';
 const cookiesFilePath3 = 'cookiesNoxtools.json';
+const logFile = 'log.txt';
 
 var mysql = require('mysql');
 var i = 1;
@@ -83,13 +83,20 @@ module.exports = {
                 })
             }
 
-            gotoPageNoxtools('https://spamzilla.noxtools.com/domains/?per-page=25&page=', 11782);
+            gotoPageNoxtools('https://spamzilla.noxtools.com/domains/?per-page=100&page=', 5703);
         }
 
         async function gotoPageNoxtools(url, numberpage){
+            const fs = require('fs').promises;
+            fs.writeFile(logFile, numberpage + "",
+            function(err) {
+                if (err) {
+                    console.log('The file could not be written.', err)
+                }
+                    console.log('Session has been successfully saved')
+                }
+            )
             console.log(url+numberpage);
-            // await new Promise(r => setTimeout(r, Math.floor(Math.random() * 10)*1000 + 2000));
-            // await new Promise(r => setTimeout(r, 3000));
             
             try {
                 await page.goto(url+numberpage, {timeout: 0}); // wait until page load
@@ -99,7 +106,7 @@ module.exports = {
                 for (let i = 0; i < domains.length; i++) {
                     const domain = await domains[i].$eval('.expired-domains:nth-child(2)', el => el.textContent.trim());
                     const source = await domains[i].$eval('.td_data_source a', el => el.href);
-                    let tf = await domains[i].$eval('.td_majestic_tf a', el => el.textContent.trim());
+                    let tf = await domains[i].$eval('.td_majestic_tf', el => el.textContent.trim());
                     let cf = await domains[i].$eval('.td_majestic_cf', el => el.textContent.trim());
                     let bl = await domains[i].$eval('.td_majestic_bl', el => el.textContent.trim());
                     let rd = await domains[i].$eval('.td_majestic_rd', el => el.textContent.trim());
@@ -113,17 +120,19 @@ module.exports = {
                     }catch(error){
                         score = await domains[i].$eval('.td_sz_score', el => el.textContent.trim());
                     }
-                    let redirects = '-';
-                    let history = '-';
-                    let domain_drops = '-';
+                    let redirects = await domains[i].$eval('.td_redirects', el => el.textContent.trim());
+                    // const history = await domains[i].$eval('.td_active_history', el => el.textContent.trim());
+                    let history = -1;
+                    let domain_drops = await domains[i].$eval('.td_domain_drops', el => el.textContent.trim());
                     let total_organic_results = await domains[i].$eval('.td_total_organic_results', el => el.textContent.trim());
                     let semrush_traffic = await domains[i].$eval('.td_semrush_traffic', el => el.textContent.trim());
                     let semrush_rank = await domains[i].$eval('.td_semrush_rank', el => el.textContent.trim());
-                    let semrush_keyword_number = await domains[i].$eval('.td_semrush_keyword_number', el => el.textContent.trim());
+                    // let semrush_keyword_number = await domains[i].$eval('.td_semrush_keyword_number', el => el.textContent.trim());
+                    let semrush_keyword_number = -1;
                     let date_added = await domains[i].$eval('.td_date_added', el => el.textContent.trim());
                     let price = await domains[i].$eval('.td_price', el => el.textContent.trim());
                     let expiry_date = await domains[i].$eval('.td_expiry_date', el => el.textContent.trim());
-
+ 
                     (tf == '' || tf == '-') ? tf = -1 : tf = tf;
                     (cf == '' || cf == '-') ? cf = -1 : cf = cf;
                     (bl == '' || bl == '-') ? bl = -1 : bl = bl;
@@ -176,7 +185,7 @@ module.exports = {
                     }
                 }
 
-                gotoPageNoxtools('https://spamzilla.noxtools.com/domains/?per-page=25&page=', numberpage+1);
+                gotoPageNoxtools('https://spamzilla.noxtools.com/domains/?per-page=100&page=', numberpage+1);
             } catch(e){
                 console.log(e);
             }

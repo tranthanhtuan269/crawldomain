@@ -34,6 +34,8 @@ class DomainController extends Controller
                     if($filter->pricemin != ''){    $data->where('price', '>=', $filter->pricemin); }
                     if($filter->pricemax != ''){    $data->where('price', '<=', $filter->pricemax); }
 
+                    $data->where('expiry_date', '!=', 'Available');
+
                     if($request->status_seo){
                         $data->where('status_seo', $request->status_seo);
 
@@ -48,6 +50,8 @@ class DomainController extends Controller
                 }
             }else{
                 $data = Domain::select('*');
+                $data->where('expiry_date', '!=', 'Available');    
+
                 if($request->status_seo){
                     $data->where('status_seo', $request->status_seo);
                 }
