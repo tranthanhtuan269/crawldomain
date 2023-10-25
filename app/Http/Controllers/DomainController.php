@@ -82,7 +82,8 @@ class DomainController extends Controller
                         }
                     }
 
-                    $data->where('expiry_date', '!=', 'Available');
+                    // $data->where('expiry_date', '!=', 'Available');
+                    $data->whereDate('expiry_date2', '>=', date('Y-m-d'));
 
                     if($request->status_seo){
                         $data->where('status_seo', $request->status_seo);
@@ -227,7 +228,7 @@ class DomainController extends Controller
         foreach($domains as $domain){
             $old_time = strtotime($domain->order_time);
             $new_date = date('Y-m-d H:i:s', $old_time);  
-            $domain->order_time = $new_date;
+            $domain->order_time_2 = $new_date;
             $domain->save();
         }
     }
