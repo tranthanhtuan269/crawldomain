@@ -32,7 +32,7 @@ class DomainController extends Controller
                     'semrush_keyword_number',
                     'date_added',
                     'price',
-                    'expiry_date'
+                    'expiry_date2'
                     ];
     public function index(Request $request)
     {
