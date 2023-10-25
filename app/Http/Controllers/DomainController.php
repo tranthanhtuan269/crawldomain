@@ -224,12 +224,11 @@ class DomainController extends Controller
     }
 
     public function test(){
-        $domains = Domain::where('expiry_date', '!=', 'Available')->get();
-        dd($domains);
+        $domains = Domain::where('expiry_date', '!=' , 'Available')->take(100)->get();
         foreach($domains as $domain){
-            $old_time = strtotime($domain->order_time);
+            $old_time = strtotime($domain->expiry_date);
             $new_date = date('Y-m-d H:i:s', $old_time);  
-            $domain->order_time_2 = $new_date;
+            $domain->expiry_date2 = $new_date;
             $domain->save();
         }
     }
