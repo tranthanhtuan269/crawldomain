@@ -703,38 +703,41 @@
     });
 
     $('.apply-all-btn').click(function (){
-        var $id_list = [];
-        $.each($('.check-cities'), function (key, value){
-            if($(this).prop('checked') == true) {
-                $id_list.push( $(this).attr("data-column") );
+      var $id_list = [];
+      $.each($('.check-cities'), function (key, value){
+        if($(this).prop('checked') == true) {
+          $id_list.push( $(this).attr("data-column") );
+        }
+      });
+      
+      if ($id_list.length > 0) {
+        $('.ajax_waiting').addClass('loading');
+        var data = {
+            id_list : $id_list,
+            switch : $(this).data('change'),
+            active  : '1',
+        };
+        $.ajax({
+            type: "POST",
+            url: "{{ url('/') }}/domains/actionMulti",
+            data: data,
+            dataType  : 'json',
+            success: function (obj) {
+              $('.ajax_waiting').removeClass('loading');
+              if(obj.status == 200){
+                table.ajax.reload(null, false); 
+              }
+            },
+            error: function (data) {
+              $('.ajax_waiting').removeClass('loading');
+              if(data.status == 401){
+                window.location.replace(baseURL);
+              }else{
+                $().toastmessage('showErrorToast', errorConnect);
+              }
             }
         });
-
-        if ($id_list.length > 0) {
-            var data = {
-                id_list : $id_list,
-                switch : $(this).data('change'),
-                active  : '1',
-            };
-            $.ajax({
-                type: "POST",
-                url: "{{ url('/') }}/domains/actionMulti",
-                data: data,
-                dataType  : 'json',
-                success: function (obj) {
-                    if(obj.status == 200){
-                      table.ajax.reload(null, false); 
-                    }
-                },
-                error: function (data) {
-                    if(data.status == 401){
-                      window.location.replace(baseURL);
-                    }else{
-                      $().toastmessage('showErrorToast', errorConnect);
-                    }
-                }
-            });
-        }
+      }
     });
 
     $('#expiry_date_d').datetimepicker({
