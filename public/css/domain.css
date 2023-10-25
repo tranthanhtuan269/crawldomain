@@ -212,6 +212,10 @@
     padding:0.5rem;
 }
 
+.btn.chua-check-i{
+    border: 1px solid #ddd;
+}
+
 .btn.dang-check-i {
     background-color: #ee9a82;
 }
