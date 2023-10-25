@@ -998,29 +998,53 @@
 
         console.log(toggleCollumn);
 
-        $('#no_column').prop( "checked", toggleCollumn.no );
-        $('#domain_column').prop( "checked", toggleCollumn.domain );
-        $('#source_column').prop( "checked", toggleCollumn.source );
-        $('#tf_column').prop( "checked", toggleCollumn.tf );
-        $('#cf_column').prop( "checked", toggleCollumn.cf );
-        $('#bl_column').prop( "checked", toggleCollumn.bl );
-        $('#rd_column').prop( "checked", toggleCollumn.rd );
-        $('#languages_column').prop( "checked", toggleCollumn.languages );
-        $('#da_column').prop( "checked", toggleCollumn.da );
-        $('#pa_column').prop( "checked", toggleCollumn.pa );
-        $('#age_column').prop( "checked", toggleCollumn.age );
-        $('#score_column').prop( "checked", toggleCollumn.score );
-        $('#redirects_column').prop( "checked", toggleCollumn.redirects );
-        $('#history_column').prop( "checked", toggleCollumn.history );
-        $('#domain_drops_column').prop( "checked", toggleCollumn.domain_drops );
-        $('#total_organic_results_column').prop( "checked", toggleCollumn.total_organic_results );
-        $('#semrush_traffic_column').prop( "checked", toggleCollumn.semrush_traffic );
-        $('#semrush_rank_column').prop( "checked", toggleCollumn.semrush_rank );
-        $('#semrush_keyword_number_column').prop( "checked", toggleCollumn.semrush_keyword_number );
-        $('#date_added_column').prop( "checked", toggleCollumn.date_added );
-        $('#price_column').prop( "checked", toggleCollumn.price );
-        $('#expiry_date_column').prop( "checked", toggleCollumn.expiry_date );
-        $('#status_seo_column').prop( "checked", toggleCollumn.status_seo );
+        $('#no_column').prop( "checked", true );
+        $('#domain_column').prop( "checked", true );
+        $('#source_column').prop( "checked", true );
+        $('#tf_column').prop( "checked", true );
+        $('#cf_column').prop( "checked", true );
+        $('#bl_column').prop( "checked", true );
+        $('#rd_column').prop( "checked", true );
+        $('#languages_column').prop( "checked", true );
+        $('#da_column').prop( "checked", true );
+        $('#pa_column').prop( "checked", true );
+        $('#age_column').prop( "checked", true );
+        $('#score_column').prop( "checked", true );
+        $('#redirects_column').prop( "checked", true );
+        $('#history_column').prop( "checked", true );
+        $('#domain_drops_column').prop( "checked", true );
+        $('#total_organic_results_column').prop( "checked", true );
+        $('#semrush_traffic_column').prop( "checked", true );
+        $('#semrush_rank_column').prop( "checked", true );
+        $('#semrush_keyword_number_column').prop( "checked", true );
+        $('#date_added_column').prop( "checked", true );
+        $('#price_column').prop( "checked", true );
+        $('#expiry_date_column').prop( "checked", true );
+        $('#status_seo_column').prop( "checked", true );
+
+        if(!toggleCollumn.no){ $('#no_column').click(); }
+        if(!toggleCollumn.domain){ $('#domain_column').click(); }
+        if(!toggleCollumn.source){ $('#source_column').click(); }
+        if(!toggleCollumn.tf){ $('#tf_column').click(); }
+        if(!toggleCollumn.cf){ $('#cf_column').click(); }
+        if(!toggleCollumn.bl){ $('#bl_column').click(); }
+        if(!toggleCollumn.rd){ $('#rd_column').click(); }
+        if(!toggleCollumn.languages){ $('#languages_column').click(); }
+        if(!toggleCollumn.da){ $('#da_column').click(); }
+        if(!toggleCollumn.pa){ $('#pa_column').click(); }
+        if(!toggleCollumn.age){ $('#age_column').click(); }
+        if(!toggleCollumn.score){ $('#score_column').click(); }
+        if(!toggleCollumn.redirects){ $('#redirects_column').click(); }
+        if(!toggleCollumn.history){ $('#history_column').click(); }
+        if(!toggleCollumn.domain_drops){ $('#domain_drops_column').click(); }
+        if(!toggleCollumn.total_organic_results){ $('#total_organic_results_column').click(); }
+        if(!toggleCollumn.semrush_traffic){ $('#semrush_traffic_column').click(); }
+        if(!toggleCollumn.semrush_rank){ $('#semrush_rank_column').click(); }
+        if(!toggleCollumn.semrush_keyword_number){ $('#semrush_keyword_number_column').click(); }
+        if(!toggleCollumn.date_added){ $('#date_added_column').click(); }
+        if(!toggleCollumn.price){ $('#price_column').click(); }
+        if(!toggleCollumn.expiry_date){ $('#expiry_date_column').click(); }
+        if(!toggleCollumn.status_seo){ $('#status_seo_column').click(); }
     }
 
     $('.toggle-item').click(function(){
