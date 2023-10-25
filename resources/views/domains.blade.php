@@ -651,6 +651,7 @@
                       <input type="checkbox" id="select-all-btn" data-check="false">
                   </th>
                   <th>domain</th>
+                  <th>status seo</th>
                   <th>source</th>
                   <th>tf</th>
                   <th>cf</th>
@@ -671,7 +672,6 @@
                   <th>date added</th>
                   <th>price</th>
                   <th>expiry date</th>
-                  <th>status seo</th>
               </tr>
           </thead>
           <tbody>
@@ -680,11 +680,11 @@
       
       <p class="action-selected-rows">
         <span>Action on selected rows:</span>
-        <span class="btn btn-sm btn-primary ml-2 apply-all-btn" data-change="0" id="apply-all-btn-chua-check">Chưa check</span>
-        <span class="btn btn-sm btn-primary ml-2 apply-all-btn" data-change="1" id="apply-all-btn-dang-check">Đang check</span>
-        <span class="btn btn-sm btn-primary ml-2 apply-all-btn" data-change="2" id="apply-all-btn-da-check">Đã check</span>
-        <span class="btn btn-sm btn-primary ml-2 apply-all-btn" data-change="3" id="apply-all-btn-chot-mua">Chốt mua</span>
-        <span class="btn btn-sm btn-primary ml-2 apply-all-btn" data-change="4" id="apply-all-btn-da-mua">Đã mua</span>
+        <span class="btn btn-sm chua-check-i ml-2 apply-all-btn" data-change="0" id="apply-all-btn-chua-check">Chưa check</span>
+        <span class="btn btn-sm dang-check-i ml-2 apply-all-btn" data-change="1" id="apply-all-btn-dang-check">Đang check</span>
+        <span class="btn btn-sm da-check-i ml-2 apply-all-btn" data-change="2" id="apply-all-btn-da-check">Đã check</span>
+        <span class="btn btn-sm chot-mua-i ml-2 apply-all-btn" data-change="3" id="apply-all-btn-chot-mua">Chốt mua</span>
+        <span class="btn btn-sm da-mua-i ml-2 apply-all-btn" data-change="4" id="apply-all-btn-da-mua">Đã mua</span>
       </p>  
     </div>
 </div>
@@ -767,6 +767,19 @@
               orderable: false
             },
             {data: 'domain', name: 'domain', class: 'edit-switch'},
+            {data: 'status_seo', name: 'status_seo', class: 'edit-switch seo-status',
+              render: function(data, type, row){
+                let html = '';
+                switch(data){
+                  case 0: html = '<span class="chua-check-i">Chưa check</span>'; break;
+                  case 1: html = '<span class="dang-check-i">Đang check</span>'; break;
+                  case 2: html = '<span class="da-check-i">Đã check</span>'; break;
+                  case 3: html = '<span class="chot-mua-i">Chốt mua</span>'; break;
+                  case 4: html = '<span class="da-mua-i">Đã mua</span>'; break;
+                }
+                return html;
+              },
+            },
             {data: 'source', name: 'source', class: 'edit-switch', render: function(data, type, row) {
               return '<a href="'+data+'" target="_blank">source</a>';                                            
             }},
@@ -789,7 +802,6 @@
             {data: 'date_added', name: 'date_added', class: 'edit-switch'},
             {data: 'price', name: 'price', class: 'edit-switch'},
             {data: 'expiry_date', name: 'expiry_date', class: 'edit-switch'},
-            {data: 'status_seo', name: 'status_seo', class: 'status_seo', class: 'edit-switch'},
         ],
         'createdRow': function( row, data, dataIndex ) {
             $(row).addClass( 'domain-row' );

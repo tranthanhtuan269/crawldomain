@@ -179,18 +179,51 @@
     background-color: #83a5d9 !important;
 }
 
-.dang-check .status_seo {
+.edit-switch.seo-status{
+    padding: 0;
+}
+
+.seo-status .chua-check-i{
+    display: block;
+    padding:0.5rem;
+}
+
+.seo-status .dang-check-i {
+    display: block;
+    background-color: #ee9a82;
+    padding:0.5rem;
+}
+
+.seo-status .da-check-i {
+    display: block;
+    background-color: #fdf79f;
+    padding:0.5rem;
+}
+
+.seo-status .chot-mua-i {
+    display: block;
+    background-color: #80cd9f;
+    padding:0.5rem;
+}
+
+.seo-status .da-mua-i {
+    display: block;
+    background-color: #86a4d8;
+    padding:0.5rem;
+}
+
+.btn.dang-check-i {
     background-color: #ee9a82;
 }
 
-.da-check .status_seo {
+.btn.da-check-i {
     background-color: #fdf79f;
 }
 
-.chot-mua .status_seo {
+.btn.chot-mua-i {
     background-color: #80cd9f;
 }
 
-.da-mua .status_seo {
+.btn.da-mua-i {
     background-color: #86a4d8;
 }

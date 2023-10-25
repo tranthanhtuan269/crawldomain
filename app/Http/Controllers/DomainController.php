@@ -12,6 +12,7 @@ class DomainController extends Controller
     public $cols = [
                     'id',
                     'domain',
+                    'status_seo',
                     'source',
                     'tf',
                     'cf',
@@ -31,8 +32,7 @@ class DomainController extends Controller
                     'semrush_keyword_number',
                     'date_added',
                     'price',
-                    'expiry_date',
-                    'status_seo'
+                    'expiry_date'
                     ];
     public function index(Request $request)
     {
