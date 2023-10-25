@@ -647,7 +647,9 @@
       <table class="table table-bordered data-table table-fixed" >
           <thead class="table-dark">
               <tr>
-                  <th>No</th>
+                  <th class="id-field text-center" width="8%">
+                      <input type="checkbox" id="select-all-btn" data-check="false">
+                  </th>
                   <th>domain</th>
                   <th>source</th>
                   <th>tf</th>
@@ -675,12 +677,66 @@
           <tbody>
           </tbody>
       </table>
+      
+      <p class="action-selected-rows">
+        <span>Action on selected rows:</span>
+        <span class="btn btn-sm btn-primary ml-2 apply-all-btn" data-change="0" id="apply-all-btn-chua-check">Chưa check</span>
+        <span class="btn btn-sm btn-primary ml-2 apply-all-btn" data-change="1" id="apply-all-btn-dang-check">Đang check</span>
+        <span class="btn btn-sm btn-primary ml-2 apply-all-btn" data-change="2" id="apply-all-btn-da-check">Đã check</span>
+        <span class="btn btn-sm btn-primary ml-2 apply-all-btn" data-change="3" id="apply-all-btn-chot-mua">Chốt mua</span>
+        <span class="btn btn-sm btn-primary ml-2 apply-all-btn" data-change="4" id="apply-all-btn-da-mua">Đã mua</span>
+      </p>  
     </div>
 </div>
 </body>
      
 <script type="text/javascript">
   $(document).ready(function(){
+    var roleCheckList           = [];
+
+    $.ajaxSetup(
+    {
+      headers:
+      {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    $('.apply-all-btn').click(function (){
+        var $id_list = [];
+        $.each($('.check-cities'), function (key, value){
+            if($(this).prop('checked') == true) {
+                $id_list.push( $(this).attr("data-column") );
+            }
+        });
+
+        if ($id_list.length > 0) {
+            var data = {
+                id_list : $id_list,
+                switch : $(this).data('change'),
+                active  : '1',
+            };
+            $.ajax({
+                type: "POST",
+                url: "{{ url('/') }}/domains/actionMulti",
+                data: data,
+                dataType  : 'json',
+                success: function (obj) {
+                    if(obj.status == 200){
+                      table.ajax.reload(null, false); 
+                    }
+                },
+                error: function (data) {
+                    if(data.status == 401){
+                      window.location.replace(baseURL);
+                    }else{
+                      $().toastmessage('showErrorToast', errorConnect);
+                    }
+                }
+            });
+        }
+    });
+
     $('#expiry_date_d').datetimepicker({
                       format: 'Y-m-d H:i:00'
                   });
@@ -692,36 +748,48 @@
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        stateSave: true,
+        stateSave: false,
         fixedHeader: true,
+        aaSorting: [],
         pageLength: 25,
+        colReorder: {
+          fixedColumnsRight: 1,
+          fixedColumnsLeft: 1
+        },
         ajax: "{{ route('domains.index', ['filter' => isset($_GET['filter']) ? $_GET['filter'] : null]) }}",
         columns: [
-            {data: 'id', name: 'id'},
-            {data: 'domain', name: 'domain'},
-            {data: 'source', name: 'source', render: function(data, type, row) {
+            { 
+              data: "rows",
+              class: "rows-item text-center",
+              render: function(data, type, row){
+                  return '<input type="checkbox" name="selectCol" class="check-cities" value="' + data + '" data-column="' + data + '">';
+              },
+              orderable: false
+            },
+            {data: 'domain', name: 'domain', class: 'edit-switch'},
+            {data: 'source', name: 'source', class: 'edit-switch', render: function(data, type, row) {
               return '<a href="'+data+'" target="_blank">source</a>';                                            
             }},
-            {data: 'tf', name: 'tf'},
-            {data: 'cf', name: 'cf'},
-            {data: 'bl', name: 'bl'},
-            {data: 'rd', name: 'rd'},
-            {data: 'da', name: 'da'},
-            {data: 'pa', name: 'pa'},
-            {data: 'languages', name: 'languages'},
-            {data: 'age', name: 'age'},
-            {data: 'score', name: 'score'},
-            {data: 'redirects', name: 'redirects'},
-            {data: 'history', name: 'history'},
-            {data: 'domain_drops', name: 'domain_drops'},
-            {data: 'total_organic_results', name: 'total_organic_results'},
-            {data: 'semrush_traffic', name: 'semrush_traffic'},
-            {data: 'semrush_rank', name: 'semrush_rank'},
-            {data: 'semrush_keyword_number', name: 'semrush_keyword_number'},
-            {data: 'date_added', name: 'date_added'},
-            {data: 'price', name: 'price'},
-            {data: 'expiry_date', name: 'expiry_date'},
-            {data: 'status_seo', name: 'status_seo', class: 'status_seo'},
+            {data: 'tf', name: 'tf', class: 'edit-switch'},
+            {data: 'cf', name: 'cf', class: 'edit-switch'},
+            {data: 'bl', name: 'bl', class: 'edit-switch'},
+            {data: 'rd', name: 'rd', class: 'edit-switch'},
+            {data: 'da', name: 'da', class: 'edit-switch'},
+            {data: 'pa', name: 'pa', class: 'edit-switch'},
+            {data: 'languages', name: 'languages', class: 'edit-switch'},
+            {data: 'age', name: 'age', class: 'edit-switch'},
+            {data: 'score', name: 'score', class: 'edit-switch'},
+            {data: 'redirects', name: 'redirects', class: 'edit-switch'},
+            {data: 'history', name: 'history', class: 'edit-switch'},
+            {data: 'domain_drops', name: 'domain_drops', class: 'edit-switch'},
+            {data: 'total_organic_results', name: 'total_organic_results', class: 'edit-switch'},
+            {data: 'semrush_traffic', name: 'semrush_traffic', class: 'edit-switch'},
+            {data: 'semrush_rank', name: 'semrush_rank', class: 'edit-switch'},
+            {data: 'semrush_keyword_number', name: 'semrush_keyword_number', class: 'edit-switch'},
+            {data: 'date_added', name: 'date_added', class: 'edit-switch'},
+            {data: 'price', name: 'price', class: 'edit-switch'},
+            {data: 'expiry_date', name: 'expiry_date', class: 'edit-switch'},
+            {data: 'status_seo', name: 'status_seo', class: 'status_seo', class: 'edit-switch'},
         ],
         'createdRow': function( row, data, dataIndex ) {
             $(row).addClass( 'domain-row' );
@@ -756,7 +824,7 @@
               $(row).addClass( 'da-check' );
             }else if(data.status_seo == 3){
               $(row).addClass( 'chot-mua' );
-            }else if(data.status_seo == 3){
+            }else if(data.status_seo == 4){
               $(row).addClass( 'da-mua' );
             }
         },
@@ -765,38 +833,101 @@
         },
         'drawCallback': function(settings, start, end, max, total, pre){
           addEvent();
+          checkCheckboxChecked();
           $('.number-result').text(this.fnSettings().json.recordsTotal);
         }
     });
 
-    function addEvent(){
-        $('.domain-row').off('click');
-        $('.domain-row').click(function(){
-            $('#update-domain').data('id', $(this).data('id'));
-            $('#delete-domain').data('id', $(this).data('id'));
+    //select all checkboxes
+    $("#select-all-btn").change(function(){  
+        $('table tbody input[type="checkbox"]').prop('checked', $(this).prop("checked"));
+        // save localstore
+        setCheckboxChecked();
+    });
 
-            $('#domain_du').val($(this).data('domain'));
-            $('#source_du').val($(this).data('source'));
-            $('#tf_du').val($(this).data('tf'));
-            $('#cf_du').val($(this).data('cf'));
-            $('#bl_du').val($(this).data('bl'));
-            $('#rd_du').val($(this).data('rd'));
-            $('#languages_du').val($(this).data('languages'));
-            $('#da_du').val($(this).data('da'));
-            $('#pa_du').val($(this).data('pa'));
-            $('#age_du').val($(this).data('age'));
-            $('#score_du').val($(this).data('score'));
-            $('#redirects_du').val($(this).data('redirects'));
-            $('#history_du').val($(this).data('history'));
-            $('#domain_drops_du').val($(this).data('domain_drops'));
-            $('#total_organic_results_du').val($(this).data('total_organic_results'));
-            $('#semrush_traffic_du').val($(this).data('semrush_traffic'));
-            $('#semrush_rank_du').val($(this).data('semrush_rank'));
-            $('#semrush_keyword_number_du').val($(this).data('semrush_keyword_number'));
-            $('#date_added_du').val($(this).data('date_added'));
-            $('#price_du').val($(this).data('price'));
-            $('#expiry_date_du').val($(this).data('expiry_date'));
-            $('#status_seo_du').val($(this).data('status_seo'));
+    $('body').on('click', 'table tbody input[type="checkbox"]', function() {
+        if(false == $(this).prop("checked")){
+            $("#select-all-btn").prop('checked', false); 
+        }
+        if ($('table tbody input[type="checkbox"]:checked').length == $('table tbody input[type="checkbox"]').length ){
+            $("#select-all-btn").prop('checked', true);
+        }
+
+        // save localstore
+        setCheckboxChecked();
+    });
+
+    function setCheckboxChecked(){
+        roleCheckList = [];
+        $.each($('.check-cities'), function( index, value ) {
+            if($(this).prop('checked')){
+                roleCheckList.push($(this).val());
+            }
+        });
+        // console.log(roleCheckList);
+    }
+
+    function checkCheckboxChecked(){
+        // console.log(roleCheckList);
+        var count_row = 0;
+        var listCities = $('.check-cities');
+        if(listCities.length > 0){
+            $.each(listCities, function( index, value ) {
+                if(containsObject($(this).val(), roleCheckList)){
+                    $(this).prop('checked', 'true');
+                    count_row++;
+                }
+            });
+
+            if(count_row == listCities.length){
+                $('#select-all-btn').prop('checked', true);
+            }else{
+                $('#select-all-btn').prop('checked', false);
+            }
+        }else{
+            $('#select-all-btn').prop('checked', false);
+        }
+    }
+
+    function containsObject(obj, list) {
+        var i;
+        for (i = 0; i < list.length; i++) {
+            if (list[i] === obj) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    function addEvent(){
+        $('.domain-row .edit-switch').off('click');
+        $('.domain-row .edit-switch').click(function(){
+            $('#update-domain').data('id', $(this).parent().data('id'));
+            $('#delete-domain').data('id', $(this).parent().data('id'));
+
+            $('#domain_du').val($(this).parent().data('domain'));
+            $('#source_du').val($(this).parent().data('source'));
+            $('#tf_du').val($(this).parent().data('tf'));
+            $('#cf_du').val($(this).parent().data('cf'));
+            $('#bl_du').val($(this).parent().data('bl'));
+            $('#rd_du').val($(this).parent().data('rd'));
+            $('#languages_du').val($(this).parent().data('languages'));
+            $('#da_du').val($(this).parent().data('da'));
+            $('#pa_du').val($(this).parent().data('pa'));
+            $('#age_du').val($(this).parent().data('age'));
+            $('#score_du').val($(this).parent().data('score'));
+            $('#redirects_du').val($(this).parent().data('redirects'));
+            $('#history_du').val($(this).parent().data('history'));
+            $('#domain_drops_du').val($(this).parent().data('domain_drops'));
+            $('#total_organic_results_du').val($(this).parent().data('total_organic_results'));
+            $('#semrush_traffic_du').val($(this).parent().data('semrush_traffic'));
+            $('#semrush_rank_du').val($(this).parent().data('semrush_rank'));
+            $('#semrush_keyword_number_du').val($(this).parent().data('semrush_keyword_number'));
+            $('#date_added_du').val($(this).parent().data('date_added'));
+            $('#price_du').val($(this).parent().data('price'));
+            $('#expiry_date_du').val($(this).parent().data('expiry_date'));
+            $('#status_seo_du').val($(this).parent().data('status_seo'));
 
             if($('#updateDomain').hasClass('show')){
                 $('#updateDomain').modal('hidden');

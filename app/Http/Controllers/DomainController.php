@@ -9,6 +9,31 @@ use DataTables;
 
 class DomainController extends Controller
 {
+    public $cols = [
+                    'id',
+                    'domain',
+                    'source',
+                    'tf',
+                    'cf',
+                    'bl',
+                    'rd',
+                    'da',
+                    'pa',
+                    'languages',
+                    'age',
+                    'score',
+                    'redirects',
+                    'history',
+                    'domain_drops',
+                    'total_organic_results',
+                    'semrush_traffic',
+                    'semrush_rank',
+                    'semrush_keyword_number',
+                    'date_added',
+                    'price',
+                    'expiry_date',
+                    'status_seo'
+                    ];
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -16,7 +41,24 @@ class DomainController extends Controller
                 $filter = Filter::find($request->filter);
                 if($filter){
                     $data = Domain::select('*');
-                    if($filter->keyword != ''){   $data->where('domain', 'like', '%'.$filter->keyword.'%');; }
+                    
+                    if($filter->keyword != ''){   
+                        if (str_contains($filter->keyword, ',')) { 
+                            $pieces = explode(",", $filter->keyword);
+                            $data->where(function ($query) use ($pieces) {
+                                foreach($pieces as $key=>$piece){
+                                    if($key == 0){
+                                        $query->where('domain', 'like', '%'.$piece.'%');
+                                    }else{
+                                        $query->orWhere('domain', 'like', '%'.$piece.'%');
+                                    }
+                                }
+                            });
+                        }else{
+                            $data->where('domain', 'like', '%'.$filter->keyword.'%'); 
+                        }
+                    }
+
                     if($filter->damin != ''){   $data->where('da', '>=', $filter->damin); }
                     if($filter->damax != ''){   $data->where('da', '<=', $filter->damax); }
                     if($filter->pamin != ''){   $data->where('pa', '>=', $filter->pamin); }
@@ -34,16 +76,28 @@ class DomainController extends Controller
                     if($filter->pricemin != ''){    $data->where('price', '>=', $filter->pricemin); }
                     if($filter->pricemax != ''){    $data->where('price', '<=', $filter->pricemax); }
 
+                    if($request->order){
+                        if($request->order[0]){
+                            $data->orderBy($this->cols[$request->order[0]['column']], $request->order[0]['dir']);
+                        }
+                    }
+
                     $data->where('expiry_date', '!=', 'Available');
 
                     if($request->status_seo){
                         $data->where('status_seo', $request->status_seo);
 
                         return Datatables::of($data->orderBy('id', 'desc'))
+                            ->addColumn('rows', function ($domain) {
+                                return $domain->id;
+                            })
                             ->addIndexColumn()
                             ->make(true);
                     }else{
                         return Datatables::of($data->orderBy('id', 'desc'))
+                            ->addColumn('rows', function ($domain) {
+                                return $domain->id;
+                            })
                             ->addIndexColumn()
                             ->make(true);
                     }
@@ -56,6 +110,9 @@ class DomainController extends Controller
                     $data->where('status_seo', $request->status_seo);
                 }
                 return Datatables::of($data->orderBy('id', 'desc'))
+                        ->addColumn('rows', function ($domain) {
+                            return $domain->id;
+                        })
                         ->addIndexColumn()
                         ->make(true);
             }
@@ -150,6 +207,17 @@ class DomainController extends Controller
             }else{
                 $status = 1;
             }
+        }
+    }
+
+    public function actionMulti(Request $request){
+        if(isset($request) && $request->id_list){
+            if(Domain::actionMulti($request->id_list, $request->switch)){
+                $res=array('status'=>200,"Message"=>"Action successfully");
+            }else{
+                $res=array('status'=>"204","Message"=>"Action unsuccessfully");
+            }
+            echo json_encode($res);
         }
     }
 

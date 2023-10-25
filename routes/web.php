@@ -29,6 +29,7 @@ Route::resource('filters', FilterController::class);
 
 Route::get('filters', [FilterController::class, 'index'])->name('filters.index');
 Route::get('domains', [DomainController::class, 'index'])->name('domains.index');
+Route::post('domains/actionMulti', [DomainController::class, 'actionMulti'])->name('domains.actionMulti');
 Route::get('/test', [HomeController::class, 'test'])->name('home.test');
 Route::get('/test2', [DomainController::class, 'test'])->name('domain.test');
 Route::get('/test3', [DomainController::class, 'test2'])->name('domain.test2');
