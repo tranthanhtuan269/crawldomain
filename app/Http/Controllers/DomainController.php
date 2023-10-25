@@ -224,7 +224,7 @@ class DomainController extends Controller
     }
 
     public function test(){
-        $domains = Domain::where('order_time', 'like', '%Aug%')->get();
+        $domains = Domain::where('expiry_date', '!=', 'Available')->get();
         dd($domains);
         foreach($domains as $domain){
             $old_time = strtotime($domain->order_time);

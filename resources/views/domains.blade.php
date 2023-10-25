@@ -804,7 +804,7 @@
             {data: 'semrush_keyword_number', name: 'semrush_keyword_number', class: 'edit-switch'},
             {data: 'date_added', name: 'date_added', class: 'edit-switch'},
             {data: 'price', name: 'price', class: 'edit-switch'},
-            {data: 'expiry_date', name: 'expiry_date', class: 'edit-switch'},
+            {data: 'expiry_date2', name: 'expiry_date', class: 'edit-switch'},
         ],
         'createdRow': function( row, data, dataIndex ) {
             $(row).addClass( 'domain-row' );
