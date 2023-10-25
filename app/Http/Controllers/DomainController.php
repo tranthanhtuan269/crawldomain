@@ -105,7 +105,8 @@ class DomainController extends Controller
                 }
             }else{
                 $data = Domain::select('*');
-                $data->where('expiry_date', '!=', 'Available');    
+                // $data->where('expiry_date', '!=', 'Available');    
+                $data->whereDate('expiry_date2', '>=', date('Y-m-d'));
 
                 if($request->status_seo){
                     $data->where('status_seo', $request->status_seo);
