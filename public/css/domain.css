@@ -183,6 +183,10 @@
     padding: 0;
 }
 
+th.edit-switch.seo-status{
+    padding:0.5rem;
+}
+
 .seo-status .chua-check-i{
     display: block;
     padding:0.5rem;
