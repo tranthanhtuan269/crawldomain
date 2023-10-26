@@ -38,8 +38,8 @@ var urll = 'https://noxtools.com/secure/login?amember_redirect_url=https%3A%2F%2
 var config = {headless: false, executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe'};
 var user = 'dttphuong';
 var pass = 'DttphuongZilla2';
-var domain = 'https://spamzilla.noxtools.com/';
-// var domain = 'https://sz.noxtools.com/';
+// var domain = 'https://spamzilla.noxtools.com/';
+var domain = 'https://sz.noxtools.com/';
 var currentPage = -1;
 
 module.exports = {
@@ -123,7 +123,7 @@ module.exports = {
             console.log(url+numberpage);
             
             try {
-                await page.goto(url+numberpage, { waitUntil: 'load' }); // wait until page load
+                await page.goto(url+numberpage, {timeout: 0}); // wait until page load
                 await page.waitForSelector('.domains-table tbody tr.expired-domains');
                 var domains = await page.$$('.domains-table tbody tr.expired-domains');
 
