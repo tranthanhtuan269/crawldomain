@@ -647,7 +647,7 @@
       <table class="table table-bordered data-table table-fixed" >
           <thead class="table-dark">
               <tr>
-                  <th class="id-field text-center" width="8%">
+                  <th class="id-field text-center" width="3%">
                       <input type="checkbox" id="select-all-btn" data-check="false">
                   </th>
                   <th>domain</th>
