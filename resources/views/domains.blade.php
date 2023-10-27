@@ -804,7 +804,12 @@
             {data: 'semrush_keyword_number', name: 'semrush_keyword_number', class: 'edit-switch'},
             {data: 'date_added', name: 'date_added', class: 'edit-switch'},
             {data: 'price', name: 'price', class: 'edit-switch'},
-            {data: 'expiry_date2', name: 'expiry_date', class: 'edit-switch'},
+            {data: 'expiry_date2', name: 'expiry_date', class: 'edit-switch', render: function(data, type, row) {
+              if(isNaN(data) && moment(data, 'YYYY-MM-DD h:mm:ss', true).isValid())
+              {
+                  return moment(data).format('MM/DD/YYYY');
+              }                                        
+            }},
         ],
         'createdRow': function( row, data, dataIndex ) {
             $(row).addClass( 'domain-row' );
