@@ -509,129 +509,129 @@
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="2" type="checkbox" checked data-id="source" id="source_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="2" type="checkbox" checked data-id="status_seo" id="status_seo_column">
+            <label class="form-check-label" for="status_seo_column">
+              Status Seo
+            </label>
+          </div>
+          <div class="form-check me-4 mt-2 ">
+            <input class="form-check-input toggle-item toggle-vis" data-column="3" type="checkbox" checked data-id="source" id="source_column">
             <label class="form-check-label" for="source_column">
               Source
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="3" type="checkbox" checked data-id="tf" id="tf_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="4" type="checkbox" checked data-id="tf" id="tf_column">
             <label class="form-check-label" for="tf_column">
               TF
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="4" type="checkbox" checked data-id="cf" id="cf_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="5" type="checkbox" checked data-id="cf" id="cf_column">
             <label class="form-check-label" for="cf_column">
               CF
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="5" type="checkbox" checked data-id="bl" id="bl_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="6" type="checkbox" checked data-id="bl" id="bl_column">
             <label class="form-check-label" for="bl_column">
               BL
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="6" type="checkbox" checked data-id="rd" id="rd_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="7" type="checkbox" checked data-id="rd" id="rd_column">
             <label class="form-check-label" for="rd_column">
               RD
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="7" type="checkbox" checked data-id="da" id="da_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="8" type="checkbox" checked data-id="da" id="da_column">
             <label class="form-check-label" for="da_column">
               DA
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="8" type="checkbox" checked data-id="pa" id="pa_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="9" type="checkbox" checked data-id="pa" id="pa_column">
             <label class="form-check-label" for="pa_column">
               PA
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="9" type="checkbox" checked data-id="language" id="language_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="10" type="checkbox" checked data-id="language" id="language_column">
             <label class="form-check-label" for="language_column">
               Languages
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="10" type="checkbox" checked data-id="age" id="age_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="11" type="checkbox" checked data-id="age" id="age_column">
             <label class="form-check-label" for="age_column">
               Age
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="11" type="checkbox" checked data-id="score" id="score_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="12" type="checkbox" checked data-id="score" id="score_column">
             <label class="form-check-label" for="score_column">
               Score
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="12" type="checkbox" checked data-id="redirects" id="redirects_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="13" type="checkbox" checked data-id="redirects" id="redirects_column">
             <label class="form-check-label" for="redirects_column">
               Redirects
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="13" type="checkbox" checked data-id="history" id="history_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="14" type="checkbox" checked data-id="history" id="history_column">
             <label class="form-check-label" for="history_column">
               History
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="14" type="checkbox" checked data-id="domain_drops" id="domain_drops_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="15" type="checkbox" checked data-id="domain_drops" id="domain_drops_column">
             <label class="form-check-label" for="domain_drops_column">
               Domain Drops
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="15" type="checkbox" checked data-id="total_organic_results" id="total_organic_results_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="16" type="checkbox" checked data-id="total_organic_results" id="total_organic_results_column">
             <label class="form-check-label" for="total_organic_results_column">
               Total Organic Results
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="16" type="checkbox" checked data-id="semrush_traffic" id="semrush_traffic_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="17" type="checkbox" checked data-id="semrush_traffic" id="semrush_traffic_column">
             <label class="form-check-label" for="semrush_traffic_column">
               Semrush Traffic
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="17" type="checkbox" checked data-id="semrush_rank" id="semrush_rank_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="18" type="checkbox" checked data-id="semrush_rank" id="semrush_rank_column">
             <label class="form-check-label" for="semrush_rank_column">
               Semrush Rank
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="18" type="checkbox" checked data-id="semrush_keyword_number" id="semrush_keyword_number_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="19" type="checkbox" checked data-id="semrush_keyword_number" id="semrush_keyword_number_column">
             <label class="form-check-label" for="semrush_keyword_number_column">
               Semrush Keyword Number
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="19" type="checkbox" checked data-id="date_added" id="date_added_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="20" type="checkbox" checked data-id="date_added" id="date_added_column">
             <label class="form-check-label" for="date_added_column">
               Date Added
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="20" type="checkbox" checked data-id="price" id="price_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="21" type="checkbox" checked data-id="price" id="price_column">
             <label class="form-check-label" for="price_column">
               Price
             </label>
           </div>
           <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="21" type="checkbox" checked data-id="expiry_date" id="expiry_date_column">
+            <input class="form-check-input toggle-item toggle-vis" data-column="22" type="checkbox" checked data-id="expiry_date" id="expiry_date_column">
             <label class="form-check-label" for="expiry_date_column">
               Expiry Date
-            </label>
-          </div>
-          <div class="form-check me-4 mt-2 ">
-            <input class="form-check-input toggle-item toggle-vis" data-column="22" type="checkbox" checked data-id="status_seo" id="status_seo_column">
-            <label class="form-check-label" for="status_seo_column">
-              Status Seo
             </label>
           </div>
         </div>
