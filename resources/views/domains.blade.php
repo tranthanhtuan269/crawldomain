@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" type="text/css" href="/build/jquery.datetimepicker.min.css" />
     <script src="/build/jquery.datetimepicker.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 
     <script src="{{ url('/') }}/js/domain.js"></script>
     <link href="{{ url('/') }}/css/domain.css" rel="stylesheet">
