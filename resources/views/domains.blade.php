@@ -835,7 +835,7 @@
             $(row).data('semrush_keyword_number', data.semrush_keyword_number);
             $(row).data('date_added', data.date_added);
             $(row).data('price', data.price);
-            $(row).data('expiry_date', data.expiry_date);
+            $(row).data('expiry_date', data.expiry_date2);
             $(row).data('status_seo', data.status_seo);
             if(data.status_seo == 0){
               $(row).addClass( 'chua-check' );
