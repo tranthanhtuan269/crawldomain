@@ -695,14 +695,6 @@
   $(document).ready(function(){
     var roleCheckList           = [];
 
-    $.ajaxSetup(
-    {
-      headers:
-      {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-
     $('.apply-all-btn').click(function (){
       var $id_list = [];
       $.each($('.check-cities'), function (key, value){
@@ -718,6 +710,14 @@
             switch : $(this).data('change'),
             active  : '1',
         };
+
+        $.ajaxSetup(
+        {
+          headers:
+          {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
         $.ajax({
             type: "POST",
             url: "{{ url('/') }}/domains/actionMulti",
@@ -805,11 +805,8 @@
             {data: 'semrush_keyword_number', name: 'semrush_keyword_number', class: 'edit-switch'},
             {data: 'date_added', name: 'date_added', class: 'edit-switch'},
             {data: 'price', name: 'price', class: 'edit-switch'},
-            {data: 'expiry_date2', name: 'expiry_date', class: 'edit-switch', render: function(data, type, row) {
-              if(isNaN(data) && moment(data, 'YYYY-MM-DD h:mm:ss', true).isValid())
-              {
-                  return moment(data).format('MM/DD/YYYY');
-              }                                        
+            {data: 'expiry_date2', name: 'expiry_date', class: 'edit-switch', render: function(data) {
+              return moment(data).format('MM/DD/YYYY');
             }},
         ],
         'createdRow': function( row, data, dataIndex ) {
