@@ -38,9 +38,11 @@ var urll = 'https://noxtools.com/secure/login?amember_redirect_url=https%3A%2F%2
 var config = {headless: false, executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe'};
 var user = 'dttphuong';
 var pass = 'DttphuongZilla2';
-// var domain = 'https://spamzilla.noxtools.com/';
-var domain = 'https://sz.noxtools.com/';
+var domain = 'https://spamzilla.noxtools.com/';
+// var domain = 'https://sz.noxtools.com/';
 var currentPage = -1;
+var table = 'domain2';
+var browser = null;
 
 module.exports = {
 
@@ -66,7 +68,7 @@ module.exports = {
             puppeteer.use(StealthPlugin()) 
             
 
-            const browser = await puppeteer.launch(config);
+            browser = await puppeteer.launch(config);
             page = await browser.newPage();
 
             const previousSession = fs.existsSync(cookiesFilePath3)
@@ -152,8 +154,8 @@ module.exports = {
                     let total_organic_results = await domains[i].$eval('.td_total_organic_results', el => el.textContent.trim());
                     let semrush_traffic = await domains[i].$eval('.td_semrush_traffic', el => el.textContent.trim());
                     let semrush_rank = await domains[i].$eval('.td_semrush_rank', el => el.textContent.trim());
-                    // let semrush_keyword_number = await domains[i].$eval('.td_semrush_keyword_number', el => el.textContent.trim());
-                    let semrush_keyword_number = -1;
+                    let semrush_keyword_number = await domains[i].$eval('.td_semrush_keyword_number', el => el.textContent.trim());
+                    // let semrush_keyword_number = -1;
                     let date_added = await domains[i].$eval('.td_date_added', el => el.textContent.trim());
                     let price = await domains[i].$eval('.td_price', el => el.textContent.trim());
                     let expiry_date = await domains[i].$eval('.td_expiry_date', el => el.textContent.trim());
@@ -179,10 +181,14 @@ module.exports = {
                     (expiry_date == '' || expiry_date == '-') ? expiry_date = -1 : expiry_date = expiry_date;
 
                     // insert ignore 
-                    var sql = "INSERT IGNORE INTO domains (domain, source, tf, cf, bl, rd, languages, da, pa, age, score, redirects, history, domain_drops, total_organic_results, semrush_traffic, semrush_rank, semrush_keyword_number, date_added, price, expiry_date) VALUES ('"+ domain +"', '"+ source +"', '"+ tf +"', '"+ cf +"', '"+ bl +"', '"+ rd +"', '"+ languages +"', '"+ da +"', '"+ pa +"', '"+ age +"', '"+ score +"', '"+ redirects +"', '"+ history +"', '"+ domain_drops +"', '"+ total_organic_results +"', '"+ semrush_traffic +"', '"+ semrush_rank +"', '"+ semrush_keyword_number +"', '"+ date_added +"', '"+ price +"', '"+ expiry_date +"')";
+                    var sql = "INSERT IGNORE INTO " + table + " (domain, source, tf, cf, bl, rd, languages, da, pa, age, score, redirects, history, domain_drops, total_organic_results, semrush_traffic, semrush_rank, semrush_keyword_number, date_added, price, expiry_date) VALUES ('"+ domain +"', '"+ source +"', '"+ tf +"', '"+ cf +"', '"+ bl +"', '"+ rd +"', '"+ languages +"', '"+ da +"', '"+ pa +"', '"+ age +"', '"+ score +"', '"+ redirects +"', '"+ history +"', '"+ domain_drops +"', '"+ total_organic_results +"', '"+ semrush_traffic +"', '"+ semrush_rank +"', '"+ semrush_keyword_number +"', '"+ date_added +"', '"+ price +"', '"+ expiry_date +"')";
                     try{
                         con.query(sql);
-                        console.log("domain: " + domain + " is added to system");
+                        console.log(domain);
+                        // console.log("domain: " + domain + " is added to system");
+                        con.query("UPDATE " + table + " set source = '"+ source +"', tf ='"+ tf +"', cf = '"+ cf +"', bl = '"+ bl +"', rd = '"+ rd +"', languages = '"+ languages +"', da = '"+ da +"', pa = '"+ pa +"', age = '"+ age +"', score = '"+ score +"', redirects = '"+ redirects +"', history = '"+ history +"', domain_drops = '"+ domain_drops +"', total_organic_results = '"+ total_organic_results +"', semrush_traffic = '"+ semrush_traffic +"', semrush_rank = '"+ semrush_rank +"', semrush_keyword_number = '"+ semrush_keyword_number +"', date_added = '"+ date_added +"', price = '"+ price +"', expiry_date = '"+ expiry_date +"' where domain = '"+ domain +"'");
+                        // console.log("UPDATE " + table + " set source = '"+ source +"', tf ='"+ tf +"', cf = '"+ cf +"', bl = '"+ bl +"', rd = '"+ rd +"', languages = '"+ languages +"', da = '"+ da +"', pa = '"+ pa +"', age = '"+ age +"', score = '"+ score +"', redirects = '"+ redirects +"', history = '"+ history +"', domain_drops = '"+ domain_drops +"', total_organic_results = '"+ total_organic_results +"', semrush_traffic = '"+ semrush_traffic +"', semrush_rank = '"+ semrush_rank +"', semrush_keyword_number = '"+ semrush_keyword_number +"', date_added = '"+ date_added +"', price = '"+ price +"', expiry_date = '"+ expiry_date +"' where domain = '"+ domain +"'");
+                        // console.log("domain: " + domain + " is updated on system");
                     }catch(e){
                         console.log("domain: " + domain + " is existed");
                     }
@@ -191,6 +197,7 @@ module.exports = {
                 gotoPageNoxtools(domain + 'domains/?per-page=200&page=', parseInt(numberpage)+1);
             } catch(e){
                 console.log(e);
+                await browser.close();
                 main();
             }
         }
