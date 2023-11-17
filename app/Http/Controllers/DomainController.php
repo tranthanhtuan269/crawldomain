@@ -243,4 +243,29 @@ class DomainController extends Controller
             $domain->save();
         }
     }
+
+    public function processDomain(){
+        if ($handle = opendir('C:\laragon\www\extension\files')) {
+
+            while (false !== ($entry = readdir($handle))) {
+        
+                if ($entry != "." && $entry != "..") {
+        
+                    // echo "$entry\n";die;
+                    $myfile = fopen("C:/laragon/www/extension/files/$entry", "r") or die("Unable to open file!");
+                    $content = fread($myfile,filesize("C:/laragon/www/extension/files/$entry"));
+                    \App\Helpers\Helper::getData($content);
+                    fclose($myfile);
+
+                    unlink("C:/laragon/www/extension/files/$entry");
+                }
+            }
+        
+            closedir($handle);
+        }
+        // $pages = \DB::table('contents')->where('status', '0')->get();
+        // foreach($pages as $page){
+        //     \App\Helpers\Helper::getData($page->content);
+        // }
+    }
 }

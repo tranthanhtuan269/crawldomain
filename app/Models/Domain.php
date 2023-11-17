@@ -11,7 +11,29 @@ class Domain extends Model
 
     protected $table = 'domain2';
     public $timestamps = false;
-    // protected $fillable = ['name', 'da', 'pa', 'ref', 'tf', 'cf', 'ree', 'backlinks', 'trust', 'citation', 'adresses', 'referring', 'dr', 'ur', 'dp', 'aby', 'acr', 'add_date', 'history', 'registrar', 'market_place', 'price', 'cate1', 'cate2'];
+    protected $fillable = ['domain',
+'source',
+'tf',
+'cf',
+'bl',
+'rd',
+'languages',
+'da',
+'pa',
+'age',
+'score',
+'redirects',
+'history',
+'domain_drops',
+'total_organic_results',
+'semrush_traffic',
+'semrush_rank',
+'semrush_keyword_number',
+'date_added',
+'price',
+'expiry_date',
+'created_at',
+'updated_at'];
     
     public static function actionMulti($id_list, $status) {
         return (Domain::whereIn('id', $id_list)->update(['status_seo' => $status]) > 0);
