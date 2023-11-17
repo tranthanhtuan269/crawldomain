@@ -33,4 +33,5 @@ Route::post('domains/actionMulti', [DomainController::class, 'actionMulti'])->na
 Route::get('/test', [HomeController::class, 'test'])->name('home.test');
 Route::get('/test2', [DomainController::class, 'test'])->name('domain.test');
 Route::get('/test3', [DomainController::class, 'test2'])->name('domain.test2');
+Route::get('/process', [DomainController::class, 'processDomain'])->name('domain.processDomain');
 Route::get('/remove', [DomainController::class, 'removeDupplicateDomain'])->name('domain.removeDupplicateDomain');
