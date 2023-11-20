@@ -104,6 +104,11 @@ class DomainController extends Controller
                             ->addColumn('rows', function ($domain) {
                                 return $domain->id;
                             })
+                            ->editColumn('date_added', function ($domain) 
+                            {
+                                //change over here
+                                return date('Y-m-d', strtotime($domain->date_added) );
+                            })
                             ->addIndexColumn()
                             ->make(true);
                     }
@@ -119,6 +124,11 @@ class DomainController extends Controller
                 return Datatables::of($data->orderBy('id', 'desc'))
                         ->addColumn('rows', function ($domain) {
                             return $domain->id;
+                        })
+                        ->editColumn('date_added', function ($domain) 
+                        {
+                            //change over here
+                            return date('Y-m-d', strtotime($domain->date_added) );
                         })
                         ->addIndexColumn()
                         ->make(true);
