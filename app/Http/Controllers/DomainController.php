@@ -92,6 +92,11 @@ class DomainController extends Controller
                             ->addColumn('rows', function ($domain) {
                                 return $domain->id;
                             })
+                            ->editColumn('date_added', function ($domain) 
+                            {
+                                //change over here
+                                return date('Y-m-d', strtotime($domain->date_added) );
+                            })
                             ->addIndexColumn()
                             ->make(true);
                     }else{
@@ -251,19 +256,19 @@ class DomainController extends Controller
     }
 
     public function processDomain(){
-        if ($handle = opendir('C:\laragon\www\extension\files')) {
+        if ($handle = opendir('C:\laragon\www\tohextension\files')) {
 
             while (false !== ($entry = readdir($handle))) {
         
                 if ($entry != "." && $entry != "..") {
         
                     // echo "$entry\n";die;
-                    $myfile = fopen("C:/laragon/www/extension/files/$entry", "r") or die("Unable to open file!");
-                    $content = fread($myfile,filesize("C:/laragon/www/extension/files/$entry"));
+                    $myfile = fopen("C:/laragon/www/tohextension/files/$entry", "r") or die("Unable to open file!");
+                    $content = fread($myfile,filesize("C:/laragon/www/tohextension/files/$entry"));
                     \App\Helpers\Helper::getData($content);
                     fclose($myfile);
 
-                    unlink("C:/laragon/www/extension/files/$entry");
+                    unlink("C:/laragon/www/tohextension/files/$entry");
                 }
             }
         
