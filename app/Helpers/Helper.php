@@ -1,7 +1,7 @@
 <?php
 namespace App\Helpers;
 
-use simple_html_dom;
+// use simple_html_dom;
 
 use App\Models\Domain;
 
@@ -14,7 +14,7 @@ class Helper {
     public static function getData($content) {
         include_once('simple_html_dom.php');
         $html = str_get_html('<table>'.$content.'</table>');
-        // echo $html;die();
+
         foreach ($html->find('tbody',0)->find("tr") as $key1 => $section1) {
             $name = Helper::isset($section1->find('.expired-domains',1)) ? trim($section1->find('.expired-domains',1)->plaintext) : '';
             $source = Helper::isset($section1->find('.td_data_source a',0)) ? trim($section1->find('.td_data_source a',0)->href) : '';
@@ -63,7 +63,7 @@ class Helper {
                     'date_added' => date('Y-m-d H:i:s', strtotime($date_added)),
                     'price' => $price,
                     'expiry_date' => ($expiry_date != 'Available') ? date('Y-m-d H:i:s', strtotime($expiry_date)) : 'Available',
-                    'created_at' => date("Y-m-d H:i:s"),
+                    // 'created_at' => date("Y-m-d H:i:s"),
                     'updated_at' => date("Y-m-d H:i:s")
                 ]);
             }else{

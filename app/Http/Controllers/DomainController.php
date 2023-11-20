@@ -224,13 +224,19 @@ class DomainController extends Controller
     }
 
     public function test(){
-        $domains = Domain::where('expiry_date', '!=' , 'Available')->where('expiry_date2', '!=', '2023-01-01 01:01:01')->take(100)->get();
-        foreach($domains as $domain){
-            $old_time = strtotime($domain->expiry_date);
-            $new_date = date('Y-m-d H:i:s', $old_time);  
-            $domain->expiry_date2 = $new_date;
-            $domain->save();
+        $domains = Domain::where('expiry_date', '!=' , 'Available')->where('expiry_date2', '2023-01-01 01:01:01')->take(1000)->get();
+
+        if(count($domains) > 0){
+            foreach($domains as $domain){
+                $old_time = strtotime($domain->expiry_date);
+                $new_date = date('Y-m-d H:i:s', $old_time);  
+                $domain->expiry_date2 = $new_date;
+                $domain->save();
+            }
+        }else{
+            dd(1);
         }
+        dd($domains[0]);
     }
 
     public function test2(){
@@ -242,30 +248,5 @@ class DomainController extends Controller
             $domain->order_time = $new_date;
             $domain->save();
         }
-    }
-
-    public function processDomain(){
-        if ($handle = opendir('C:\laragon\www\extension\files')) {
-
-            while (false !== ($entry = readdir($handle))) {
-        
-                if ($entry != "." && $entry != "..") {
-        
-                    // echo "$entry\n";die;
-                    $myfile = fopen("C:/laragon/www/extension/files/$entry", "r") or die("Unable to open file!");
-                    $content = fread($myfile,filesize("C:/laragon/www/extension/files/$entry"));
-                    \App\Helpers\Helper::getData($content);
-                    fclose($myfile);
-
-                    unlink("C:/laragon/www/extension/files/$entry");
-                }
-            }
-        
-            closedir($handle);
-        }
-        // $pages = \DB::table('contents')->where('status', '0')->get();
-        // foreach($pages as $page){
-        //     \App\Helpers\Helper::getData($page->content);
-        // }
     }
 }
