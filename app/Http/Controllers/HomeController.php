@@ -9,10 +9,7 @@ use Schema;
 class HomeController extends Controller
 {
     public function index(Request $request){
-        $items = \DB::table('contents')->get();
-        foreach($items as $item){
-            \App\Helpers\Helper::getData($item->content);
-        }
+        return view('index');
     }
     
     public function index2(Request $request){
