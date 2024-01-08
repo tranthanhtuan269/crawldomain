@@ -31,7 +31,7 @@ Route::get('filters', [FilterController::class, 'index'])->name('filters.index')
 Route::get('domains', [DomainController::class, 'index'])->name('domains.index');
 Route::post('domains/actionMulti', [DomainController::class, 'actionMulti'])->name('domains.actionMulti');
 Route::get('/test', [HomeController::class, 'test'])->name('home.test');
-Route::get('/test2', [DomainController::class, 'test'])->name('domain.test');
+Route::get('/test2', [HomeController::class, 'test2'])->name('home.test2');
 Route::get('/test3', [DomainController::class, 'test2'])->name('domain.test2');
 Route::get('/process', [DomainController::class, 'processDomain'])->name('domain.processDomain');
 Route::get('/remove', [DomainController::class, 'removeDupplicateDomain'])->name('domain.removeDupplicateDomain');
