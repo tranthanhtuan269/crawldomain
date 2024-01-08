@@ -9,6 +9,11 @@ use Schema;
 class HomeController extends Controller
 {
     public function index(Request $request){
+        if($request->search){
+            $db = substr($request->search, 0, 2);
+            $domain = \DB::table($db)->where('domain', $request->search)->first();
+            return view('index', compact('domain'));
+        }
         return view('index');
     }
     

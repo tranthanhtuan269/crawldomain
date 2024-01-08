@@ -258,7 +258,36 @@
       <div class="job_container">
         <div class="row">
           <div class="col-lg-12">
-
+            <table class="table table-hover table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">Domain</th>
+                  <th scope="col">PA</th>
+                  <th scope="col">DA</th>
+                  <th scope="col">TF</th>
+                  <th scope="col">CF</th>
+                  <th scope="col">BL</th>
+                  <th scope="col">RD</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                @if(isset($domain))
+                <tr>
+                  <td>{{ $domain->domain }}</td>
+                  <td>{{ $domain->pa }}</td>
+                  <td>{{ $domain->da }}</td>
+                  <td>{{ $domain->tf }}</td>
+                  <td>{{ $domain->cf }}</td>
+                  <td>{{ $domain->bl }}</td>
+                  <td>{{ $domain->rd }}</td>
+                  <td>{{ $domain->age }}</td>
+                  <td>{{ $domain->score }}</td>
+                </tr>
+                @endif
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
