@@ -34,11 +34,10 @@
 </head>
 
 <body>
-
   <div class="hero_area">
     <!-- header section strats -->
     <header class="header_section">
-      <div class="container-fluid">
+      <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="index.html">
             <span>
@@ -114,54 +113,18 @@
               <div class="col">
                 <form>
                   <div class="form-row ">
-                    <div class="form-group col-lg-3">
-                      <input type="text" class="form-control" id="inputPatientName" placeholder="Keywords">
-                    </div>
-                    <div class="form-group col-lg-3">
-                      <select name="" class="form-control wide" id="inputDoctorName">
-                        <option value="Normal distribution ">All Locations</option>
-                        <option value="Normal distribution ">Location 2 </option>
-                        <option value="Normal distribution ">Location 3 </option>
-                      </select>
-                    </div>
-                    <div class="form-group col-lg-3">
-                      <select name="" class="form-control wide" id="inputDepartmentName">
-                        <option value="Normal distribution ">SEO Expert </option>
-                        <option value="Normal distribution ">Web Designer </option>
-                        <option value="Normal distribution ">Web Developer</option>
-                        <option value="Normal distribution ">Graphic Deesigner</option>
-                        <option value="Normal distribution ">Content Writer</option>
-                      </select>
+                    <div class="form-group col-lg-9">
+                      <input type="text" class="form-control" id="inputPatientName" placeholder="Domain">
                     </div>
                     <div class="form-group col-lg-3">
                       <div class="btn-box">
-                        <button type="submit" class="btn ">Submit Now</button>
+                        <button type="submit" class="btn">Check Now</button>
                       </div>
                     </div>
                   </div>
                 </form>
               </div>
             </div>
-            <ul class="job_check_list">
-              <li class=" ">
-                <input id="checkbox_qu_01" type="checkbox" class="styled-checkbox">
-                <label for="checkbox_qu_01">
-                  Freelancer
-                </label>
-              </li>
-              <li class=" ">
-                <input id="checkbox_qu_02" type="checkbox" class="styled-checkbox">
-                <label for="checkbox_qu_02">
-                  Part Time
-                </label>
-              </li>
-              <li class=" ">
-                <input id="checkbox_qu_03" type="checkbox" class="styled-checkbox">
-                <label for="checkbox_qu_03">
-                  Full Time
-                </label>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
@@ -288,244 +251,16 @@
   <section class="job_section layout_padding">
     <div class="container">
       <div class="heading_container heading_center">
-        <h2>
-          RECENT & FEATURED JOBS
+        <h2 id="domain-info">
+          Domain Info
         </h2>
       </div>
       <div class="job_container">
-        <h4 class="job_heading">
-          Featured Jobs
-        </h4>
         <div class="row">
-          <div class="col-lg-6">
-            <div class="box">
-              <div class="job_content-box">
-                <div class="img-box">
-                  <img src="/images/job_logo1.png" alt="">
-                </div>
-                <div class="detail-box">
-                  <h5>
-                    Development Team Lead
-                  </h5>
-                  <div class="detail-info">
-                    <h6>
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      <span>
-                        Washington. D.C.
-                      </span>
-                    </h6>
-                    <h6>
-                      <i class="fa fa-money" aria-hidden="true"></i>
-                      <span>
-                        $1200 - $1300
-                      </span>
-                    </h6>
-                  </div>
-                </div>
-              </div>
-              <div class="option-box">
-                <button class="fav-btn">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </button>
-                <a href="" class="apply-btn">
-                  Apply Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="box">
-              <div class="job_content-box">
-                <div class="img-box">
-                  <img src="/images/job_logo2.png" alt="">
-                </div>
-                <div class="detail-box">
-                  <h5>
-                    Make my website responsive device compatible
-                  </h5>
-                  <div class="detail-info">
-                    <h6>
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      <span>
-                        New York
-                      </span>
-                    </h6>
-                    <h6>
-                      <i class="fa fa-money" aria-hidden="true"></i>
-                      <span>
-                        $200 - $340
-                      </span>
-                    </h6>
-                  </div>
-                </div>
-              </div>
-              <div class="option-box">
-                <button class="fav-btn">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </button>
-                <a href="" class="apply-btn">
-                  Apply Now
-                </a>
-              </div>
-            </div>
+          <div class="col-lg-12">
+
           </div>
         </div>
-      </div>
-      <div class="job_container">
-        <h4 class="job_heading">
-          Recent Jobs
-        </h4>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="box">
-              <div class="job_content-box">
-                <div class="img-box">
-                  <img src="/images/job_logo3.png" alt="">
-                </div>
-                <div class="detail-box">
-                  <h5>
-                    Looking Graphic Designer (Logo + UI)
-                  </h5>
-                  <div class="detail-info">
-                    <h6>
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      <span>
-                        Washington. D.C.
-                      </span>
-                    </h6>
-                    <h6>
-                      <i class="fa fa-money" aria-hidden="true"></i>
-                      <span>
-                        $1200/mo
-                      </span>
-                    </h6>
-                  </div>
-                </div>
-              </div>
-              <div class="option-box">
-                <button class="fav-btn">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </button>
-                <a href="" class="apply-btn">
-                  Apply Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="box">
-              <div class="job_content-box">
-                <div class="img-box">
-                  <img src="/images/job_logo6.png" alt="">
-                </div>
-                <div class="detail-box">
-                  <h5>
-                    Are you Typography Expert?
-                  </h5>
-                  <div class="detail-info">
-                    <h6>
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      <span>
-                        New York
-                      </span>
-                    </h6>
-                    <h6>
-                      <i class="fa fa-money" aria-hidden="true"></i>
-                      <span>
-                        $56 - $90
-                      </span>
-                    </h6>
-                  </div>
-                </div>
-              </div>
-              <div class="option-box">
-                <button class="fav-btn">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </button>
-                <a href="" class="apply-btn">
-                  Apply Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="box">
-              <div class="job_content-box">
-                <div class="img-box">
-                  <img src="/images/job_logo5.png" alt="">
-                </div>
-                <div class="detail-box">
-                  <h5>
-                    Looking WordPress Developer for ThemeForest
-                  </h5>
-                  <div class="detail-info">
-                    <h6>
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      <span>
-                        Washington. D.C.
-                      </span>
-                    </h6>
-                    <h6>
-                      <i class="fa fa-money" aria-hidden="true"></i>
-                      <span>
-                        $400 - $540
-                      </span>
-                    </h6>
-                  </div>
-                </div>
-              </div>
-              <div class="option-box">
-                <button class="fav-btn">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </button>
-                <a href="" class="apply-btn">
-                  Apply Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="box">
-              <div class="job_content-box">
-                <div class="img-box">
-                  <img src="/images/job_logo4.png" alt="">
-                </div>
-                <div class="detail-box">
-                  <h5>
-                    Hiring Web Designer for Project
-                  </h5>
-                  <div class="detail-info">
-                    <h6>
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      <span>
-                        Washington. D.C.
-                      </span>
-                    </h6>
-                    <h6>
-                      <i class="fa fa-money" aria-hidden="true"></i>
-                      <span>
-                        $350 - $450
-                      </span>
-                    </h6>
-                  </div>
-                </div>
-              </div>
-              <div class="option-box">
-                <button class="fav-btn">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </button>
-                <a href="" class="apply-btn">
-                  Apply Now
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="btn-box">
-        <a href="">
-          View All
-        </a>
       </div>
     </div>
   </section>

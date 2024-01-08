@@ -27,8 +27,7 @@ class HomeController extends Controller
     }
 
     public function test(){
-        $domains = Domain::where('status', 0)->take(30000)->get();
-        dd($domains);
+        $domains = Domain::where('status', 0)->take(10000)->get();
         foreach($domains as $domain){
             $db = substr($domain->domain, 0, 2);
 
