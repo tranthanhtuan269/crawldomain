@@ -18,7 +18,7 @@ use App\Http\Controllers\FilterController;
 */
 
 
-Route::get('/', [DomainController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/listen', [HomeController::class, 'index']);
 Route::get('/listen2', [HomeController::class, 'index2']);
