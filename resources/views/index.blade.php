@@ -31,6 +31,12 @@
   <!-- responsive style -->
   <link href="/css/responsive.css" rel="stylesheet" />
 
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -97,24 +103,22 @@
           <div class="col-lg-7 col-md-8 mx-auto">
             <div class="detail-box">
               <h1>
-                Build Your <br>
-                POWERFUL CAREER
+                Free Checker
               </h1>
               <p>
-                when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                distribution of letters, as opposed to
+                Enter any domain, and we’ll show you the Domain Authority, Page Authority, ranking keywords, and more.
               </p>
             </div>
           </div>
         </div>
-        <div class="find_container ">
+        <div class="find_container">
           <div class="container">
             <div class="row">
               <div class="col">
-                <form>
+                <form action="/#info">
                   <div class="form-row ">
                     <div class="form-group col-lg-9">
-                      <input type="text" class="form-control" id="inputPatientName" placeholder="Domain">
+                      <input type="text" name="search" class="form-control" id="inputPatientName" placeholder="Domain">
                     </div>
                     <div class="form-group col-lg-3">
                       <div class="btn-box">
@@ -248,7 +252,7 @@
   <!-- end about section -->
 
   <!-- job section -->
-  <section class="job_section layout_padding">
+  <section class="job_section layout_padding" id="info">
     <div class="container">
       <div class="heading_container heading_center">
         <h2 id="domain-info">
