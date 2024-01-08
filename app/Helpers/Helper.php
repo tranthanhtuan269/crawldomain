@@ -26,8 +26,7 @@ class Helper {
             $da = Helper::isset($section1->find('.td_moz_da',0)) ? trim($section1->find('.td_moz_da',0)->plaintext) : 0;
             $pa = Helper::isset($section1->find('.td_moz_pa',0)) ? trim($section1->find('.td_moz_pa',0)->plaintext) : 0;
             $age = Helper::isset($section1->find('.td_age',0)) ? trim($section1->find('.td_age',0)->plaintext) : 0;
-            // $score = Helper::isset($section1->find('.td_sz_score a strong',0)) ? $section1->find('.td_sz_score a strong',0)->plaintext : $section1->find('.td_sz_score',0)->plaintext;
-            $score = -1;
+            $score = Helper::isset($section1->find('.td_sz_score a strong',0)) ? $section1->find('.td_sz_score a strong',0)->plaintext : $section1->find('.td_sz_score',0)->plaintext;
             $redirects = Helper::isset($section1->find('.td_redirects',0)) ? trim($section1->find('.td_redirects',0)->plaintext) : 0;
             $history = Helper::isset($section1->find('.td_active_history',0)) ? trim($section1->find('.td_active_history',0)->plaintext) : 0;
             $domain_drops = Helper::isset($section1->find('.td_domain_drops',0)) ? trim($section1->find('.td_domain_drops',0)->plaintext) : 0;
@@ -39,9 +38,10 @@ class Helper {
             $price = Helper::isset($section1->find('.td_price',0)) ? trim($section1->find('.td_price',0)->plaintext) : 0;
             $expiry_date = Helper::isset($section1->find('.td_expiry_date',0)) ? trim($section1->find('.td_expiry_date',0)->plaintext) : 0;
 
-            $existed = Domain::where('domain', $name)->first();
+            $db = substr($name, 0, 2);
+            $existed = \DB::table($db)->where('domain', $name)->first();
             if($existed){
-                $domain = \DB::table('domain2')->where('id', $existed->id)->update([
+                $domain = \DB::table($db)->where('id', $existed->id)->update([
                     'domain' => $name,
                     'source' => $source,
                     'tf' => ($tf == '-') ? -1 : $tf,
@@ -67,7 +67,7 @@ class Helper {
                     'updated_at' => date("Y-m-d H:i:s")
                 ]);
             }else{
-                $domain = Domain::create([
+                \DB::table($db)->insertOrIgnore([
                     'domain' => $name,
                     'source' => $source,
                     'tf' => ($tf == '-') ? -1 : $tf,
@@ -217,6 +217,10 @@ class Helper {
                 ]);
             }
         }
+    }
+
+    public static function getData4() {
+        
     }
 
     static function test($str) {
