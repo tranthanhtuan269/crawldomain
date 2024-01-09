@@ -344,6 +344,7 @@ a:focus {
         button.btn {
           @include hero_btn($primary2, $white, 10px, 45px, 5px);
           text-transform: uppercase;
+          width: 100%;
         }
       }
     }

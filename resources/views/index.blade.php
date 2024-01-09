@@ -11,6 +11,7 @@
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
 
   <title>Hirevac</title>
 
@@ -30,12 +31,6 @@
   <link href="/css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="/css/responsive.css" rel="stylesheet" />
-
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-  </style>
 
 </head>
 
@@ -60,36 +55,6 @@
               <li class="nav-item active">
                 <a class="nav-link" href="index.html">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html"> About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="job.html">Jobs</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="freelancer.html">Freelancers</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="fa fa-user" aria-hidden="true"></i>
-                  <span>
-                    Login
-                  </span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="fa fa-user" aria-hidden="true"></i>
-                  <span>
-                    Sign Up
-                  </span>
-                </a>
-              </li>
-              <form class="form-inline">
-                <button class="btn   nav_search-btn" type="submit">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-              </form>
             </ul>
           </div>
         </nav>
@@ -106,7 +71,7 @@
                 Free Checker
               </h1>
               <p>
-                Enter any domain, and we’ll show you the Domain Authority, Page Authority, ranking keywords, and more.
+                Enter any domain, and we’ll show you the Domain Authority, Page Authority, Trust Flow, Citation Flow, and more.
               </p>
             </div>
           </div>
@@ -115,18 +80,52 @@
           <div class="container">
             <div class="row">
               <div class="col">
-                <form action="/#info">
+                <form>
                   <div class="form-row ">
                     <div class="form-group col-lg-9">
-                      <input type="text" name="search" class="form-control" id="inputPatientName" placeholder="Domain">
+                      <input type="text" name="search" class="form-control" id="inputPatientName" placeholder="Domain" value="{{ isset($_GET['search']) ? $_GET['search'] : ''}}">
                     </div>
                     <div class="form-group col-lg-3">
                       <div class="btn-box">
-                        <button type="submit" class="btn">Check Now</button>
+                        <div class="btn btn-danger" id="check-now-btn" style="height: 45px;line-height: 33px;width: 100%;cursor: pointer;">Check Now</div>
                       </div>
                     </div>
                   </div>
                 </form>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <table class="table table-hover table-dark" id="table-domain-info">
+                  <thead>
+                    <tr>
+                      <th scope="col">Domain</th>
+                      <th scope="col">PA</th>
+                      <th scope="col">DA</th>
+                      <th scope="col">TF</th>
+                      <th scope="col">CF</th>
+                      <th scope="col">BL</th>
+                      <th scope="col">RD</th>
+                      <th scope="col">Age</th>
+                      <th scope="col">Score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @if(isset($domain))
+                    <tr>
+                      <td>{{ ($domain->domain == -1) ? '-' : $domain->domain }}</td>
+                      <td>{{ ($domain->pa == -1) ? '-' : $domain->pa }}</td>
+                      <td>{{ ($domain->da == -1) ? '-' : $domain->da }}</td>
+                      <td>{{ ($domain->tf == -1) ? '-' : $domain->tf }}</td>
+                      <td>{{ ($domain->cf == -1) ? '-' : $domain->cf }}</td>
+                      <td>{{ ($domain->bl == -1) ? '-' : $domain->bl }}</td>
+                      <td>{{ ($domain->rd == -1) ? '-' : $domain->rd }}</td>
+                      <td>{{ ($domain->age == -1) ? '-' : $domain->age }}</td>
+                      <td>{{ ($domain->score == -1) ? '-' : $domain->score }}</td>
+                    </tr>
+                    @endif
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -248,177 +247,7 @@
       </div>
     </div>
   </section>
-
   <!-- end about section -->
-
-  <!-- job section -->
-  <section class="job_section layout_padding" id="info">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2 id="domain-info">
-          Domain Info
-        </h2>
-      </div>
-      <div class="job_container">
-        <div class="row">
-          <div class="col-lg-12">
-            <table class="table table-hover table-dark">
-              <thead>
-                <tr>
-                  <th scope="col">Domain</th>
-                  <th scope="col">PA</th>
-                  <th scope="col">DA</th>
-                  <th scope="col">TF</th>
-                  <th scope="col">CF</th>
-                  <th scope="col">BL</th>
-                  <th scope="col">RD</th>
-                  <th scope="col">Age</th>
-                  <th scope="col">Score</th>
-                </tr>
-              </thead>
-              <tbody>
-                @if(isset($domain))
-                <tr>
-                  <td>{{ $domain->domain }}</td>
-                  <td>{{ $domain->pa }}</td>
-                  <td>{{ $domain->da }}</td>
-                  <td>{{ $domain->tf }}</td>
-                  <td>{{ $domain->cf }}</td>
-                  <td>{{ $domain->bl }}</td>
-                  <td>{{ $domain->rd }}</td>
-                  <td>{{ $domain->age }}</td>
-                  <td>{{ $domain->score }}</td>
-                </tr>
-                @endif
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end job section -->
-
-  <!-- expert section -->
-
-  <section class="expert_section layout_padding">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          LOOKING FOR EXPERTS?
-        </h2>
-        <p>
-          Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris
-          iaculis. Erat eget vitae malesuada, tortor tincidunt porta lorem lectus.
-        </p>
-      </div>
-      <div class="row">
-        <div class="col-md-6 col-lg-4 mx-auto">
-          <div class="box">
-            <div class="img-box">
-              <img src="/images/e1.jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <a href="">
-                Martin Anderson
-              </a>
-              <h6 class="expert_position">
-                <span>
-                  Web Anaylzer
-                </span>
-                <span>
-                  41 Jobs Done
-                </span>
-              </h6>
-              <span class="expert_rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </span>
-              <p>
-                Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam
-                nulla
-                mauris iaculis.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 mx-auto">
-          <div class="box">
-            <div class="img-box">
-              <img src="/images/e2.jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <a href="">
-                Semanta Klores
-              </a>
-              <h6 class="expert_position">
-                <span>
-                  Graphic Designer
-                </span>
-                <span>
-                  32 Jobs Done
-                </span>
-              </h6>
-              <span class="expert_rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </span>
-              <p>
-                Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam
-                nulla
-                mauris iaculis.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 mx-auto">
-          <div class="box">
-            <div class="img-box">
-              <img src="/images/e3.jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <a href="">
-                Ryan Martines
-              </a>
-              <h6 class="expert_position">
-                <span>
-                  SEO Expert
-                </span>
-                <span>
-                  27 Jobs Done
-                </span>
-              </h6>
-              <span class="expert_rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </span>
-              <p>
-                Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam
-                nulla
-                mauris iaculis.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="btn-box">
-        <a href="">
-          View All Freelancers
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- end expert section -->
 
   <!-- info section -->
   <section class="info_section ">
@@ -523,6 +352,7 @@
   <script src="/js/jquery-3.4.1.min.js"></script>
   <!-- bootstrap js -->
   <script src="/js/bootstrap.js"></script>
+  <script src="/js/function.js"></script>
   <!-- nice select -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=" crossorigin="anonymous"></script>
   <!-- custom js -->

@@ -23,6 +23,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/listen', [HomeController::class, 'index']);
 Route::get('/listen2', [HomeController::class, 'index2']);
 Route::get('/listen3', [HomeController::class, 'index3']);
+Route::post('/search', [HomeController::class, 'search']);
 
 Route::resource('domains', DomainController::class);
 Route::resource('filters', FilterController::class);
