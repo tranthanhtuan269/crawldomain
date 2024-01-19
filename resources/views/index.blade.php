@@ -42,7 +42,7 @@
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="/">
             <span>
-              Hirevac
+              FreeInfoDomain.com
             </span>
           </a>
 
