@@ -13,7 +13,7 @@
   <meta name="author" content="" />
   <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-  <title>Hirevac</title>
+  <title>FreeInfoDomain.com</title>
 
 
   <!-- bootstrap core css -->
