@@ -40,7 +40,7 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="/">
             <span>
               Hirevac
             </span>
@@ -53,7 +53,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  ml-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="/">Home</a>
               </li>
             </ul>
           </div>
@@ -253,43 +253,19 @@
   <section class="info_section ">
     <div class="container">
       <div class="row">
-        <div class="col-md-2 info_links">
+        <div class="col-md-4 info_links">
           <h4>
             Menu
           </h4>
           <ul>
             <li class="active">
-              <a href="index.html">
+              <a href="/">
                 Home
-              </a>
-            </li>
-            <li>
-              <a href="about.html">
-                About
-              </a>
-            </li>
-            <li>
-              <a class="" href="job.html">
-                Jobs
-              </a>
-            </li>
-            <li>
-              <a class="" href="freelancer.html">
-                Freelancers
               </a>
             </li>
           </ul>
         </div>
-        <div class="col-md-3">
-          <h4>
-            Jobs
-          </h4>
-          <p>
-            Established fact that a reader will be distracted by the readable content of a page when looking at its
-            layout. The point of using Lorem Ipsum
-          </p>
-        </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="info_social">
             <h4>
               Social Link
