@@ -18,10 +18,7 @@ class HomeController extends Controller
     }
     
     public function index2(Request $request){
-        $items = \DB::table('contents2')->get();
-        foreach($items as $item){
-            \App\Helpers\Helper::getData2($item->content);
-        }
+        \App\Helpers\Helper::getData2();
     }
     
     public function index3(Request $request){

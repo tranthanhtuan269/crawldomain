@@ -96,70 +96,21 @@ class Helper {
         }
     }
 
-    public static function getData2($content) {
+    public static function getData2() {
         include_once('simple_html_dom.php');
-        // include_once(public_path('simple_html_dom.php'));
-        $html = str_get_html('<table>'.$content.'</table>');
-        // echo $html;die;
-        // echo $html;die();
-        foreach ($html->find("tr") as $key1 => $section1) {
-            // echo $section1; die;
-            if($html->find('td.views-field-title',$key1) == NULL) continue;
-            $name = trim($html->find('td.views-field-title',$key1)->find('a', 0)->plaintext);
-            $da = trim($html->find('td.views-field-field-moz-com-da',$key1)->plaintext);
-            $pa = trim($html->find('td.views-field-field-moz-com-pa',$key1)->plaintext);
-            $ref = trim($html->find('td.views-field-field-moz-ref-domains',$key1)->plaintext);
-            $backlinks = trim($html->find('td.views-field-field-total-backlinks',$key1)->plaintext);
-            $trust = trim($html->find('td.views-field-field-trust-flow',$key1)->plaintext);
-            $citation = trim($html->find('td.views-field-field-citation-flow',$key1)->plaintext);
-            $adresses = trim($html->find('td.views-field-field-ip-adresses',$key1)->plaintext);
-            $referring = trim($html->find('td.views-field-field-referring-domains-',$key1)->plaintext);
-            $dr = trim($html->find('td.views-field-field-ahrefs-dr',$key1)->plaintext);
-            $ur = trim($html->find('td.views-field-field-ahrefs-ur',$key1)->plaintext);
-            $history = trim($html->find('td.views-field-field-history',$key1)->plaintext);
-            $registrar = trim($html->find('td.views-field-field-registrar',$key1)->plaintext);
-            $price = trim($html->find('td.views-field-commerce-price',$key1)->plaintext);
+        for($i = 1; $i < 23; $i++){
+            $text = file_get_contents("https://themewp.vn/kho-theme/page/$i/");
+            $html = str_get_html($text);
+            foreach ($html->find(".product-small") as $key1 => $section1){
+                $title = ($section1->find(".product-title", 0)->find('a', 0)->plaintext);
+                $link = ($section1->find(".product-title", 0)->find('a', 0)->href);
+                $img = ($section1->find(".attachment-woocommerce_thumbnail", 0)->attr['data-src']);
 
-            $existed = Domain::where('name', $name)->first();
-            if($existed){
-                $domain = \DB::table('domains')->where('id', $existed->id)->update([
-                    'name' => $name,
-                    'da' => $da,
-                    'pa' => $pa,
-                    'ref' => $ref,
-                    'backlinks' => $backlinks,
-                    'trust' => $trust,
-                    'citation' => $citation,
-                    'adresses' => $adresses,
-                    'referring' => $referring,
-                    'dr' => $dr,
-                    'ur' => $ur,
-                    'history' => $history,
-                    'registrar' => $registrar,
-                    'price' => $price,
-                    'created_at' => date("Y-m-d H:i:s"),
-                    'updated_at' => date("Y-m-d H:i:s")
-                ]);
-            }else{
-                $domain = Domain::create([
-                    'name' => $name,
-                    'da' => $da,
-                    'pa' => $pa,
-                    'ref' => $ref,
-                    'backlinks' => $backlinks,
-                    'trust' => $trust,
-                    'citation' => $citation,
-                    'adresses' => $adresses,
-                    'referring' => $referring,
-                    'dr' => $dr,
-                    'ur' => $ur,
-                    'history' => $history,
-                    'registrar' => $registrar,
-                    'price' => $price,
-                    'created_at' => date("Y-m-d H:i:s"),
-                    'updated_at' => date("Y-m-d H:i:s")
+                \DB::table('links')->insertOrIgnore([
+                    'link' => $link, 'name' => $title, 'image' => $img
                 ]);
             }
+            $i++;
         }
     }
 
